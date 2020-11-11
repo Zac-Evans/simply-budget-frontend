@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       purchase_notes: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       price: {
         type: DataTypes.DOUBLE,
