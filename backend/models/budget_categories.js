@@ -29,9 +29,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false,
       },
-      purchases: {
+      budget_remaining: {
         type: DataTypes.DOUBLE,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
