@@ -29,7 +29,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false,
       },
+<<<<<<< HEAD
       budget_remaining: {
+=======
+      remaining_budget: {
+>>>>>>> 14e5eda41f5219bee05f80b9922f20be0af07a93
         type: DataTypes.DOUBLE,
         allowNull: true,
       },
