@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Link, Route, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/loginComponents/Login";
 import Register from "./components/loginComponents/Register";
@@ -9,6 +9,17 @@ import Category_Setup from "./components/accountCreation/Category-Setup";
 
 export default class App extends Component {
   render() {
+    if (!localStorage.getItem("userId")) {
+      return (
+        <Router>
+          <Switch>
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+          </Switch>
+          <Redirect push to="/login" />
+        </Router>
+      );
+    }
     return (
       <Router>
         <ul>

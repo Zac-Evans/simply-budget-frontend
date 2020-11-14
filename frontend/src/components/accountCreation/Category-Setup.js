@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import Text_Input from "./Text-Input";
-import Number_Input from "./Number-Input";
-import Fail_Modal from "../loginComponents/Fail-Modal";
+import TextInput from "./Text-Input";
+import NumberInput from "./Number-Input";
+import FailModal from "../loginComponents/Fail-Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-export default class Category_Setup extends Component {
+export default class CategorySetup extends Component {
   constructor() {
     super();
     this.state = {
@@ -66,7 +66,7 @@ export default class Category_Setup extends Component {
     // This is for the fail modal
     if (this.state.show) {
       return (
-        <Fail_Modal
+        <FailModal
           errText="Please enter a Category Budget"
           close={this.close}
           show={this.state.show}
@@ -90,12 +90,12 @@ export default class Category_Setup extends Component {
           onSubmit={this.handleSubmit}
         >
           {/* These are the inputs */}
-          <Text_Input
+          <TextInput
             placeholder="Enter budget name"
             id="category_name"
             handleChange={this.handleChange}
           />
-          <Number_Input
+          <NumberInput
             placeholder="Enter monthly budget amount"
             id="category_budget"
             handleChange={this.handleChange}

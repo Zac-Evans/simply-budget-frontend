@@ -3,10 +3,10 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Text_Input from "./Text-Input";
-import Fail_Modal from "../loginComponents/Fail-Modal";
+import TextInput from "./Text-Input";
+import FailModal from "../loginComponents/Fail-Modal";
 
-export default class Income_Setup extends Component {
+export default class IncomeSetup extends Component {
   constructor() {
     super();
     this.state = {
@@ -42,7 +42,7 @@ export default class Income_Setup extends Component {
     }
     if (this.state.show) {
       return (
-        <Fail_Modal
+        <FailModal
           errText="Please enter a number"
           close={this.close}
           show={this.state.show}
@@ -68,7 +68,7 @@ export default class Income_Setup extends Component {
           style={{ maxWidth: "400px" }}
           onSubmit={this.handleSubmit}
         >
-          <Text_Input
+          <TextInput
             placeholder="Enter monthly income"
             id="income"
             handleChange={this.handleChange}

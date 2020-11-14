@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Col from "react-bootstrap/Col";
 
-export default class Text_Income extends Component {
+export default class TextIncome extends Component {
   render() {
     return (
       <Col className="mb-4">

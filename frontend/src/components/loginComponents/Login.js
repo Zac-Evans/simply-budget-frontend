@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import FailModal from "./Fail-Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Fail_Modal from "./Fail-Modal";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 export default class Login extends Component {
   constructor() {
@@ -15,13 +18,11 @@ export default class Login extends Component {
     };
   }
 
-
   // This handles the input change
   handleChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.id]: e.target.value });
   };
-
 
   // This handles the form submit
   handleSubmit = (e) => {
@@ -34,24 +35,22 @@ export default class Login extends Component {
       })
       .then((res) => {
         this.setState({ loggedIn: true });
-        localStorage.setItem("userId", res.data[0].id)
+        localStorage.setItem("userId", res.data[0].id);
       })
       .catch(() => {
         this.setState({ show: true });
       });
   };
 
-
   // This closes the modal
-  close = () => { this.setState({ show: false }) };
-
-
-
+  close = () => {
+    this.setState({ show: false });
+  };
 
   render() {
     if (this.state.show) {
       return (
-        <Fail_Modal
+        <FailModal
           errText="Username or Password did not match"
           close={this.close}
           show={this.state.show}
@@ -96,12 +95,33 @@ export default class Login extends Component {
               style={inputStyle}
             />
           </Form.Group>
-          <Button
-            style={{ border: "1px solid rgb(173, 173, 173)", backgroundColor: "rgb(71, 117, 62)", width: "100%" }}
-            type="submit"
-          >
-            Submit
-          </Button>
+          <Row>
+            <Col>
+              <Link to="/register">
+                <Button
+                  style={{
+                    border: "1px solid rgb(173, 173, 173)",
+                    backgroundColor: "rgb(71, 117, 62)",
+                    width: "100%",
+                  }}
+                >
+                  Create an account
+                </Button>
+              </Link>
+            </Col>
+            <Col>
+              <Button
+                style={{
+                  border: "1px solid rgb(173, 173, 173)",
+                  backgroundColor: "rgb(71, 117, 62)",
+                  width: "100%",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Col>
+          </Row>
         </Form>
       </div>
     );

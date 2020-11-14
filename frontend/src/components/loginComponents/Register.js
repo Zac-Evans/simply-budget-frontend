@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Fail_Modal from "./Fail-Modal";
+import FailModal from "./Fail-Modal";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 export default class Register extends Component {
   constructor() {
@@ -50,7 +53,7 @@ export default class Register extends Component {
   render() {
     if (this.state.show) {
       return (
-        <Fail_Modal
+        <FailModal
           errText="Please fill out all fields"
           close={this.close}
           show={this.state.show}
@@ -121,16 +124,33 @@ export default class Register extends Component {
               style={inputStyle}
             />
           </Form.Group>
-          <Button
-            style={{
-              border: "1px solid rgb(173, 173, 173)",
-              backgroundColor: "rgb(71, 117, 62)",
-              width: "100%",
-            }}
-            type="submit"
-          >
-            Submit
-          </Button>
+          <Row>
+            <Col>
+              <Link to="/login">
+                <Button
+                  style={{
+                    border: "1px solid rgb(173, 173, 173)",
+                    backgroundColor: "rgb(71, 117, 62)",
+                    width: "100%",
+                  }}
+                >
+                  Login
+                </Button>
+              </Link>
+            </Col>
+            <Col>
+              <Button
+                style={{
+                  border: "1px solid rgb(173, 173, 173)",
+                  backgroundColor: "rgb(71, 117, 62)",
+                  width: "100%",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Col>
+          </Row>
         </Form>
       </div>
     );
