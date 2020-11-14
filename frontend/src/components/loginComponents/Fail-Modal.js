@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-export default function FailedModal(props) {
+export default function Fail_Modal(props) {
   return (
     <>
       <Modal show={props.show} onHide={props.close}>

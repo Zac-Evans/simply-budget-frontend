@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       income: {
         type: DataTypes.DOUBLE,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
