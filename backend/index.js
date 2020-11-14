@@ -2,12 +2,10 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
 const cookieParser = require("cookie-parser");
-<<<<<<< HEAD
 const cors = require("cors");
 
-=======
-require('dotenv').config()
->>>>>>> 14e5eda41f5219bee05f80b9922f20be0af07a93
+require("dotenv").config();
+
 app.use(cors());
 
 const Sequelize = require("sequelize");

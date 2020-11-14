@@ -8,6 +8,7 @@ const Sequelize = require("sequelize");
 // For bcrypt
 const saltRounds = 10;
 const bcrypt = require("bcrypt");
+const { eq } = require("sequelize/types/lib/operators");
 let userLoggedIn = false;
 
 function authenticationMiddleware(req, res, next) {
@@ -21,74 +22,77 @@ function authenticationMiddleware(req, res, next) {
 }
 
 //Grab all the specific User's categories
-router.get("/:user_id/budget", (req,res) => {
-  db.budget_categories.findAll( {
-    where: {
-      user_id: req.params.user_id
-    }
-  } )
-  .then((budget_categories) => res.send(budget_categories));
+router.get("user/:user_id/budget", (req, res) => {
+  db.budget_categories
+    .findAll({
+      where: {
+        user_id: req.params.user_id,
+      },
+    })
+    .then((budget_categories) => res.send(budget_categories));
 });
 
 //create a budget category
-router.post("/:user_id/budget/add", (req,res) =>{
+router.post("user/:user_id/budget/add", (req, res) => {
   db.budget_categories
-  .create({
+    .create({
       user_id: req.params.user_id,
       category_name: req.body.category_name,
-      category_budget: req.body.category_budget
-  }).then((addedBudget) => res.send(addedBudget))
-  .catch((err) => console.log(err));
+      category_budget: req.body.category_budget,
+    })
+    .then((addedBudget) => res.send(addedBudget))
+    .catch((err) => console.log(err));
 });
 
-
-
-
 //see all purchases in a single category
-router.get("/:user_id/budget/category/:category_id", (req,res) =>{
-  db.budget_categories.findAll({
-    where: {
-      user_id: req.params.user_id,
-      id: req.params.category_id
-    }
-  }).then((purchases) => res.send(purchases));
-})
+router.get("user/:user_id/budget/category/:category_id", (req, res) => {
+  db.budget_categories
+    .findAll({
+      where: {
+        user_id: req.params.user_id,
+        id: req.params.category_id,
+      },
+    })
+    .then((purchases) => res.send(purchases));
+});
 
 //Delete a category
-router.delete("/:user_id/budget/category/:category_id", (req, res) =>{
-  db.budget_categories.destroy({
-    where: {
-      user_id: req.params.user_id,
-      id: req.params.category_id
-    },
-  })
-  .then(() => res.send("success"))
+router.delete("user/:user_id/budget/category/:category_id", (req, res) => {
+  db.budget_categories
+    .destroy({
+      where: {
+        user_id: req.params.user_id,
+        id: req.params.category_id,
+      },
+    })
+    .then(() => res.send("success"))
 
-  .catch(() => res.send("fail"));
+    .catch(() => res.send("fail"));
 });
 
 //Update a category
-router.put("/:user_id/budget/category/:category_id", (req,res) =>{
-  db.budget_categories.update(
+router.put("user/:user_id/budget/category/:category_id", (req, res) => {
+  db.budget_categories
+    .update(
       {
-      category_name: req.body.category_name,
-      category_budget: req.body.category_budget,
-      budget_remaining: req.body.budget_remaining
+        category_name: req.body.category_name,
+        category_budget: req.body.category_budget,
+        budget_remaining: req.body.budget_remaining,
       },
       {
-      where:{
+        where: {
           user_id: req.params.user_id,
-          id: req.params.category_id
-      },
-  },
- )
- .then((budget) => res.json(budget))
- .catch((err) => console.log(err));
+          id: req.params.category_id,
+        },
+      }
+    )
+    .then((budget) => res.json(budget))
+    .catch((err) => console.log(err));
+});
 
-      ///////////////
-      /////Users/////
-      ///////////////
-
+///////////////
+/////Users/////
+///////////////
 
 // Register a new user
 router.post("/register", (req, res, next) => {
@@ -133,7 +137,6 @@ router.post("/register", (req, res, next) => {
   });
 });
 
-
 // Login to an existing account
 router.post("/login", (req, res) => {
   let email = req.body.email;
@@ -157,121 +160,137 @@ router.post("/login", (req, res) => {
       bcrypt.compare(password, storedPassword, function (err, result) {
         if (result) {
           res.json(user);
-        } else { 
-          res.status(409).send("Incorrect password"); 
+        } else {
+          res.status(409).send("Incorrect password");
         }
       });
     })
-    .catch((e) => { res.status(404).send("Email/Password combination did not match") });
+    .catch((e) => {
+      res.status(404).send("Email/Password combination did not match");
+    });
 });
-
 
 // Update an existing user
 router.put("/user/:id", (req, res) => {
-  if(isNaN(req.body.income)) {
+  if (isNaN(req.body.income)) {
     res.send("Enter a number");
   }
 
   db.users
     .update(
-      { income: req.body.income },
+      {
+        income: req.body.income,
+        email: req.body.email,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        password: req.body.password,
+      },
       {
         where: {
           id: req.params.id,
         },
-      })
+      }
+    )
     .then((user) => res.json(user))
     .catch((err) => res.send(err));
 });
 
+// Get an existing user
+router.get("/user/:id", (req, res) => {
+  db.users
+    .findAll({
+      where: {
+        id: req.params.id,
+      },
+    })
+    .then((user) => res.json(user))
+    .catch((err) => res.send(err));
+});
 
-      ///////////////
-      /////Bills/////
-      ///////////////
-
+///////////////
+/////Bills/////
+///////////////
 
 // Create a bill
-router.post("/bills/create/:id", (req, res) => {
-  if(!req.body.bill_name) {
-    res.status(409).send('Please enter the bill name');
+router.post("/user/:user_id/bills/create", (req, res) => {
+  if (!req.body.bill_name) {
+    res.status(409).send("Please enter the bill name");
   }
-  if(!req.body.bill_amount || isNaN(req.body.bill_amount)) {
-    res.status(409).send('Please enter bill amount')
+  if (!req.body.bill_amount || isNaN(req.body.bill_amount)) {
+    res.status(409).send("Please enter bill amount");
   }
 
   db.bills
-    .create(
-      { 
-        bill_name: req.body.bill_name,
-        bill_amount: req.body.bill_amount,
-        user_id: req.params.id
-      })
+    .create({
+      bill_name: req.body.bill_name,
+      bill_amount: req.body.bill_amount,
+      user_id: req.params.user_id,
+    })
     .then((user) => res.json(user))
     .catch((err) => res.send(err));
 });
 
-
 // Get all of the logged in users bills
-router.get("/bills/:id", (req, res) => {
+router.get("user/:id/bills", (req, res) => {
   db.bills
     .findAll({
       where: {
-        user_id: req.params.id
-      }
+        user_id: req.params.id,
+      },
     })
     .then((bills) => res.json(bills))
-    .catch((err) => res.send(err))
-})
-
+    .catch((err) => res.send(err));
+});
 
 // Get a single bill
-router.get("/bills/:id", (req, res) => {
+router.get("user/:user_id/bills/:id", (req, res) => {
   db.bills
     .findAll({
       where: {
-        id: req.params.idd
-      }
+        id: req.params.id,
+        user_id: req.params.user_id,
+      },
     })
     .then((bills) => res.json(bills))
-    .catch((err) => res.send(err))
-})
-
+    .catch((err) => res.send(err));
+});
 
 // Update a bill
-router.put("/bills/update/:id", (req, res) => {
-  if(req.body.bill_amount && isNaN(req.body.bill_amount)) {
-    res.send('Please enter a number');
+router.put("user/:user_id/bills/:id/update", (req, res) => {
+  if (req.body.bill_amount && isNaN(req.body.bill_amount)) {
+    res.send("Please enter a number");
     return;
   }
 
   db.bills
     .update(
-      { 
+      {
         bill_name: req.body.bill_name,
-        bill_amount: req.body.bill_amount
+        bill_amount: req.body.bill_amount,
       },
       {
         where: {
-          id: req.params.id
+          id: req.params.id,
+          user_id: req.params.user_id,
         },
-      })
+      }
+    )
     .then((user) => res.json(user))
     .catch((err) => res.send(err));
 });
 
-
 // Delete a bill
-router.delete("/bills/delete/:id", (req, res) => {
+router.delete("user/:user_id/bills/:id/delete", (req, res) => {
   db.bills
     .destroy({
       where: {
+        user_id: req.params.user_id,
         id: req.params.id,
       },
     })
     .then(() => res.send("success"))
     .catch(() => res.send("fail"));
 });
-
 
 //Backend running
 router.get("/", (req, res) => {
@@ -281,7 +300,7 @@ router.get("/", (req, res) => {
 //PURCHASES
 
 //Get all of a specific user’s purchases
-router.get("/:user_id/purchases", (req, res) => {
+router.get("user/:user_id/purchases", (req, res) => {
   db.purchases
     .findAll({
       where: {
@@ -293,7 +312,7 @@ router.get("/:user_id/purchases", (req, res) => {
 });
 
 //Get a single purchase
-router.get("/:user_id/purchases/:purchase_id", (req, res) => {
+router.get("user/:user_id/purchases/:purchase_id", (req, res) => {
   db.purchases
     .findAll({
       where: {
@@ -306,7 +325,7 @@ router.get("/:user_id/purchases/:purchase_id", (req, res) => {
 });
 
 //Add a purchase
-router.post("/:user_id/purchases/", (req, res) => {
+router.post("user/:user_id/purchases/", (req, res) => {
   db.purchases
     .create({
       user_id: req.params.user_id,
@@ -320,7 +339,7 @@ router.post("/:user_id/purchases/", (req, res) => {
 });
 
 //Get purchases by category id
-router.get("/:user_id/purchases/category/:category_id", (req, res) => {
+router.get("user/:user_id/purchases/category/:category_id", (req, res) => {
   db.purchases
     .findAll({
       where: {
@@ -333,7 +352,7 @@ router.get("/:user_id/purchases/category/:category_id", (req, res) => {
 });
 
 //Delete a purchase
-router.delete("/:user_id/purchases/:purchase_id", (req, res) => {
+router.delete("user/:user_id/purchases/:purchase_id", (req, res) => {
   db.purchases
     .destroy({
       where: {
@@ -346,7 +365,7 @@ router.delete("/:user_id/purchases/:purchase_id", (req, res) => {
 });
 
 //Update a purchase
-router.put("/:user_id/purchases/:purchase_id", (req, res) => {
+router.put("user/:user_id/purchases/:purchase_id", (req, res) => {
   db.purchases
     .update(
       {
@@ -367,7 +386,7 @@ router.put("/:user_id/purchases/:purchase_id", (req, res) => {
 });
 
 //Search purchases by name
-router.get("/:user_id/search-purchases", (req, res) => {
+router.get("user/:user_id/search-purchases", (req, res) => {
   db.purchases
     .findAll({
       where: {
@@ -382,7 +401,7 @@ router.get("/:user_id/search-purchases", (req, res) => {
 });
 
 //Get purchases by date range
-router.get("/:user_id/search-dates", (req, res) => {
+router.get("user/:user_id/search-dates", (req, res) => {
   console.log(req.query.start);
   db.purchases
     .findAll({
@@ -398,7 +417,7 @@ router.get("/:user_id/search-dates", (req, res) => {
 });
 
 //Get by price range
-router.get("/:user_id/search-prices", (req, res) => {
+router.get("user/:user_id/search-prices", (req, res) => {
   db.purchases
     .findAll({
       where: {
