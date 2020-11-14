@@ -66,92 +66,99 @@ export default class Register extends Component {
     }
 
     return (
-      <div>
-        <Form
-          className="w-50 mx-auto"
-          style={{ maxWidth: "400px", marginTop: "100px" }}
-          onSubmit={this.handleSubmit}
-        >
-          <img
-            className="mb-2"
-            style={{ width: "75px", height: "75px", marginLeft: "38%" }}
-            src="https://cdn0.iconfinder.com/data/icons/cosmetic-store/25/Register-512.png"
-            alt="icon"
-          />
-          <p className="mb-4 text-center" style={{ fontSize: "30px" }}>
-            Create a{" "}
-            <strong style={{ color: "rgb(71, 117, 62)" }}>Simply Budget</strong>{" "}
-            account
-          </p>
-          <Form.Group>
-            <Form.Control
-              id="first_name"
-              placeholder="Enter first name"
-              onChange={this.handleChange}
-              style={inputStyle}
-              className="mb-4"
+      <div
+        className="vw-100 vh-100"
+        style={{ paddingTop: "150px", backgroundColor: "rgb(71, 117, 62)" }}
+      >
+        <div style={divStyle} className="w-50 mx-auto">
+          <Form
+            className="w-50 mx-auto"
+            style={{ maxWidth: "400px"}}
+            onSubmit={this.handleSubmit}
+          >
+            <img
+              className="mb-2"
+              style={{ width: "75px", height: "75px", marginLeft: "38%" }}
+              src="https://cdn0.iconfinder.com/data/icons/cosmetic-store/25/Register-512.png"
+              alt="icon"
             />
-          </Form.Group>
+            <p className="mb-4 text-center" style={{ fontSize: "30px" }}>
+              Create a{" "}
+              <strong style={{ color: "rgb(71, 117, 62)" }}>
+                Simply Budget
+              </strong>{" "}
+              account
+            </p>
+            <Form.Group>
+              <Form.Control
+                id="first_name"
+                placeholder="Enter first name"
+                onChange={this.handleChange}
+                style={inputStyle}
+                className="mb-4"
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Control
-              id="last_name"
-              placeholder="Enter last name"
-              onChange={this.handleChange}
-              className="mb-4"
-              style={inputStyle}
-            />
-          </Form.Group>
+            <Form.Group>
+              <Form.Control
+                id="last_name"
+                placeholder="Enter last name"
+                onChange={this.handleChange}
+                className="mb-4"
+                style={inputStyle}
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Control
-              id="email"
-              type="email"
-              placeholder="Enter email"
-              onChange={this.handleChange}
-              className="mb-4"
-              style={inputStyle}
-            />
-          </Form.Group>
+            <Form.Group>
+              <Form.Control
+                id="email"
+                type="email"
+                placeholder="Enter email"
+                onChange={this.handleChange}
+                className="mb-4"
+                style={inputStyle}
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Control
-              id="password"
-              type="password"
-              placeholder="Enter password"
-              onChange={this.handleChange}
-              className="mb-4"
-              style={inputStyle}
-            />
-          </Form.Group>
-          <Row>
-            <Col>
-              <Link to="/login">
+            <Form.Group>
+              <Form.Control
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                onChange={this.handleChange}
+                className="mb-4"
+                style={inputStyle}
+              />
+            </Form.Group>
+            <Row>
+              <Col>
+                <Link to="/login">
+                  <Button
+                    style={{
+                      border: "1px solid rgb(173, 173, 173)",
+                      backgroundColor: "rgb(71, 117, 62)",
+                      width: "100%",
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </Col>
+              <Col>
                 <Button
                   style={{
                     border: "1px solid rgb(173, 173, 173)",
                     backgroundColor: "rgb(71, 117, 62)",
                     width: "100%",
                   }}
+                  type="submit"
                 >
-                  Login
+                  Submit
                 </Button>
-              </Link>
-            </Col>
-            <Col>
-              <Button
-                style={{
-                  border: "1px solid rgb(173, 173, 173)",
-                  backgroundColor: "rgb(71, 117, 62)",
-                  width: "100%",
-                }}
-                type="submit"
-              >
-                Submit
-              </Button>
-            </Col>
-          </Row>
-        </Form>
+              </Col>
+            </Row>
+          </Form>
+        </div>
       </div>
     );
   }
@@ -164,4 +171,11 @@ const inputStyle = {
   borderBottom: "1.5px solid rgb(173, 173, 173)",
   color: "black",
   backgroundColor: "rgba(0, 0, 0, 0)",
+};
+
+const divStyle = {
+  boxShadow: "1px 1px 20px",
+  borderRadius: "10px",
+  padding: "30px",
+  backgroundColor: "white",
 };

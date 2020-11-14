@@ -58,71 +58,78 @@ export default class Login extends Component {
       );
     }
     return (
-      <div>
-        <Form
-          className="w-50 mx-auto"
-          style={{ maxWidth: "400px", marginTop: "100px" }}
-          onSubmit={this.handleSubmit}
-        >
-          <img
-            className="mb-2"
-            style={{ width: "75px", height: "75px", marginLeft: "38%" }}
-            src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/000/433/original/signin1.png?width=75"
-            alt="icon"
-          />
-          <p className="mb-4 text-center" style={{ fontSize: "30px" }}>
-            Login to your{" "}
-            <strong style={{ color: "rgb(71, 117, 62)" }}>Simply Budget</strong>{" "}
-            account
-          </p>
-          <Form.Group>
-            <Form.Control
-              id="email"
-              type="email"
-              placeholder="Enter email"
-              onChange={this.handleChange}
-              style={inputStyle}
+      <div
+        className="vw-100 vh-100"
+        style={{ paddingTop: "150px", backgroundColor: "rgb(71, 117, 62)" }}
+      >
+        <div style={divStyle} className="w-50 mx-auto">
+          <Form
+            className="w-50 mx-auto"
+            style={{ maxWidth: "400px"}}
+            onSubmit={this.handleSubmit}
+          >
+            <img
+              className="mb-2"
+              style={{ width: "75px", height: "75px", marginLeft: "38%" }}
+              src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/000/433/original/signin1.png?width=75"
+              alt="icon"
             />
-          </Form.Group>
+            <p className="mb-4 text-center" style={{ fontSize: "30px" }}>
+              Login to your{" "}
+              <strong style={{ color: "rgb(71, 117, 62)" }}>
+                Simply Budget
+              </strong>{" "}
+              account
+            </p>
+            <Form.Group>
+              <Form.Control
+                id="email"
+                type="email"
+                placeholder="Enter email"
+                onChange={this.handleChange}
+                style={inputStyle}
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Control
-              id="password"
-              type="password"
-              placeholder="Enter password"
-              onChange={this.handleChange}
-              className="mb-4"
-              style={inputStyle}
-            />
-          </Form.Group>
-          <Row>
-            <Col>
-              <Link to="/register">
+            <Form.Group>
+              <Form.Control
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                onChange={this.handleChange}
+                className="mb-4"
+                style={inputStyle}
+              />
+            </Form.Group>
+            <Row>
+              <Col>
+                <Link to="/register">
+                  <Button
+                    style={{
+                      border: "1px solid rgb(173, 173, 173)",
+                      backgroundColor: "rgb(71, 117, 62)",
+                      width: "100%",
+                    }}
+                  >
+                    Create account
+                  </Button>
+                </Link>
+              </Col>
+              <Col>
                 <Button
                   style={{
                     border: "1px solid rgb(173, 173, 173)",
                     backgroundColor: "rgb(71, 117, 62)",
                     width: "100%",
                   }}
+                  type="submit"
                 >
-                  Create an account
+                  Submit
                 </Button>
-              </Link>
-            </Col>
-            <Col>
-              <Button
-                style={{
-                  border: "1px solid rgb(173, 173, 173)",
-                  backgroundColor: "rgb(71, 117, 62)",
-                  width: "100%",
-                }}
-                type="submit"
-              >
-                Submit
-              </Button>
-            </Col>
-          </Row>
-        </Form>
+              </Col>
+            </Row>
+          </Form>
+        </div>
       </div>
     );
   }
@@ -135,4 +142,11 @@ const inputStyle = {
   borderBottom: "1.5px solid rgb(173, 173, 173)",
   color: "black",
   backgroundColor: "rgba(0, 0, 0, 0)",
+};
+
+const divStyle = {
+  boxShadow: "1px 1px 20px",
+  borderRadius: "10px",
+  padding: "30px",
+  backgroundColor: "white",
 };

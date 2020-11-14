@@ -12,11 +12,13 @@ export default class IncomeSetup extends Component {
     this.state = {
       income: "",
       next: false,
-      show: false
+      show: false,
     };
   }
 
-  close = () => { this.setState({ show: false }) };
+  close = () => {
+    this.setState({ show: false });
+  };
 
   handleChange = (e) => {
     e.preventDefault();
@@ -25,8 +27,8 @@ export default class IncomeSetup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(isNaN(this.state.income) || !this.state.income) {
-      return this.setState({show: true})
+    if (isNaN(this.state.income) || !this.state.income) {
+      return this.setState({ show: true });
     }
     axios
       .put(`http://localhost:8000/user/${localStorage.getItem("userId")}`, {
@@ -50,41 +52,55 @@ export default class IncomeSetup extends Component {
       );
     }
     return (
-      <div style={{ marginTop: "100px" }} className="w-50 mx-auto">
-        <div className="text-center">
-          <h4 className="mb-4">
-            Now that we've created an account
-            <br /> let's setup your{" "}
-            <strong style={{ color: "rgb(71, 117, 62)" }}>Simply Budget</strong>
-          </h4>
+      <div
+        className="vw-100 vh-100"
+        style={{ paddingTop: "150px", backgroundColor: "rgb(71, 117, 62)" }}
+      >
+        <div style={divStyle} className="w-50 mx-auto">
+          <div className="text-center">
+            <h4 className="mb-4">
+              Now that we've created an account
+              <br /> let's setup your{" "}
+              <strong style={{ color: "rgb(71, 117, 62)" }}>
+                Simply Budget
+              </strong>
+            </h4>
 
-          <p style={{ fontSize: "20px", marginBottom: "40px" }}>
-            Begin by entering in your monthly income
-          </p>
-        </div>
+            <p style={{ fontSize: "20px", marginBottom: "40px" }}>
+              Begin by entering in your monthly income
+            </p>
+          </div>
 
-        <Form
-          className="mx-auto"
-          style={{ maxWidth: "400px" }}
-          onSubmit={this.handleSubmit}
-        >
-          <TextInput
-            placeholder="Enter monthly income"
-            id="income"
-            handleChange={this.handleChange}
-          />
-          <Button
-            style={{
-              border: "1px solid rgb(173, 173, 173)",
-              backgroundColor: "rgb(71, 117, 62)",
-              width: "100%",
-            }}
-            type="submit"
+          <Form
+            className="mx-auto"
+            style={{ maxWidth: "400px" }}
+            onSubmit={this.handleSubmit}
           >
-            Next
-          </Button>
-        </Form>
+            <TextInput
+              placeholder="Enter monthly income"
+              id="income"
+              handleChange={this.handleChange}
+            />
+            <Button
+              style={{
+                border: "1px solid rgb(173, 173, 173)",
+                backgroundColor: "rgb(71, 117, 62)",
+                width: "100%",
+              }}
+              type="submit"
+            >
+              Next
+            </Button>
+          </Form>
+        </div>
       </div>
     );
   }
 }
+
+const divStyle = {
+  boxShadow: "1px 1px 20px",
+  borderRadius: "10px",
+  padding: "30px",
+  backgroundColor: "white",
+};

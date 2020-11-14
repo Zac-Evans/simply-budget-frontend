@@ -22,12 +22,6 @@ export default class App extends Component {
     }
     return (
       <Router>
-        <ul>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/income-setup">Setup</Link>
-        </ul>
-
         <Switch>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
