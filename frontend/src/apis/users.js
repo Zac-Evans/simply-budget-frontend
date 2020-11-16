@@ -31,7 +31,7 @@ const logout = () => {
 };
 
 const update = (income, email, first_name, last_name) => {
-  return axios.put(baseURL + `user/\${localStorage.getItem('userId')`, {
+  return axios.put(baseURL + `user/${localStorage.getItem("userId")}`, {
     email,
     first_name,
     last_name,

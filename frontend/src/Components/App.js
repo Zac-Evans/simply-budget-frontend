@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import { fetchCategories } from "../actions";
 import { connect } from "react-redux";
+import ProgressCircle from "./ProgressCircle/ProgressCircle";
+import ProgressCirclesContainer from "./ProgressCircle/ProgressCirclesContainer";
 
 class App extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <ProgressCirclesContainer />
+      </div>
+    );
   }
 }
 

@@ -8,7 +8,7 @@ const Sequelize = require("sequelize");
 // For bcrypt
 const saltRounds = 10;
 const bcrypt = require("bcrypt");
-const { eq } = require("sequelize/types/lib/operators");
+// const { eq } = require("sequelize/types/lib/operators");
 let userLoggedIn = false;
 
 function authenticationMiddleware(req, res, next) {
@@ -22,7 +22,7 @@ function authenticationMiddleware(req, res, next) {
 }
 
 //Grab all the specific User's categories
-router.get("user/:user_id/budget", (req, res) => {
+router.get("/user/:user_id/budget", (req, res) => {
   db.budget_categories
     .findAll({
       where: {
@@ -32,20 +32,10 @@ router.get("user/:user_id/budget", (req, res) => {
     .then((budget_categories) => res.send(budget_categories));
 });
 
-//create a budget category
-router.post("user/:user_id/budget/add", (req, res) => {
-  db.budget_categories
-    .create({
-      user_id: req.params.user_id,
-      category_name: req.body.category_name,
-      category_budget: req.body.category_budget,
-    })
-    .then((addedBudget) => res.send(addedBudget))
-    .catch((err) => console.log(err));
-});
 
-//see all purchases in a single category
-router.get("user/:user_id/budget/category/:category_id", (req, res) => {
+
+//Get a single category
+router.get("/user/:user_id/budget/category/:category_id", (req, res) => {
   db.budget_categories
     .findAll({
       where: {
@@ -57,7 +47,7 @@ router.get("user/:user_id/budget/category/:category_id", (req, res) => {
 });
 
 //Delete a category
-router.delete("user/:user_id/budget/category/:category_id", (req, res) => {
+router.delete("/user/:user_id/budget/category/:category_id", (req, res) => {
   db.budget_categories
     .destroy({
       where: {
@@ -71,7 +61,7 @@ router.delete("user/:user_id/budget/category/:category_id", (req, res) => {
 });
 
 //Update a category
-router.put("user/:user_id/budget/category/:category_id", (req, res) => {
+router.put("/user/:user_id/budget/category/:category_id", (req, res) => {
   db.budget_categories
     .update(
       {
@@ -243,7 +233,7 @@ router.get("user/:id/bills", (req, res) => {
 });
 
 // Get a single bill
-router.get("user/:user_id/bills/:id", (req, res) => {
+router.get("/user/:user_id/bills/:id", (req, res) => {
   db.bills
     .findAll({
       where: {
@@ -256,7 +246,7 @@ router.get("user/:user_id/bills/:id", (req, res) => {
 });
 
 // Update a bill
-router.put("user/:user_id/bills/:id/update", (req, res) => {
+router.put("/user/:user_id/bills/:id/update", (req, res) => {
   if (req.body.bill_amount && isNaN(req.body.bill_amount)) {
     res.send("Please enter a number");
     return;
@@ -280,7 +270,7 @@ router.put("user/:user_id/bills/:id/update", (req, res) => {
 });
 
 // Delete a bill
-router.delete("user/:user_id/bills/:id/delete", (req, res) => {
+router.delete("/user/:user_id/bills/:id/delete", (req, res) => {
   db.bills
     .destroy({
       where: {
@@ -300,7 +290,7 @@ router.get("/", (req, res) => {
 //PURCHASES
 
 //Get all of a specific user’s purchases
-router.get("user/:user_id/purchases", (req, res) => {
+router.get("/user/:user_id/purchases", (req, res) => {
   db.purchases
     .findAll({
       where: {
@@ -312,7 +302,7 @@ router.get("user/:user_id/purchases", (req, res) => {
 });
 
 //Get a single purchase
-router.get("user/:user_id/purchases/:purchase_id", (req, res) => {
+router.get("/user/:user_id/purchases/:purchase_id", (req, res) => {
   db.purchases
     .findAll({
       where: {
@@ -325,7 +315,7 @@ router.get("user/:user_id/purchases/:purchase_id", (req, res) => {
 });
 
 //Add a purchase
-router.post("user/:user_id/purchases/", (req, res) => {
+router.post("/user/:user_id/purchases/", (req, res) => {
   db.purchases
     .create({
       user_id: req.params.user_id,
@@ -352,7 +342,7 @@ router.get("user/:user_id/purchases/category/:category_id", (req, res) => {
 });
 
 //Delete a purchase
-router.delete("user/:user_id/purchases/:purchase_id", (req, res) => {
+router.delete("/user/:user_id/purchases/:purchase_id", (req, res) => {
   db.purchases
     .destroy({
       where: {
@@ -365,7 +355,7 @@ router.delete("user/:user_id/purchases/:purchase_id", (req, res) => {
 });
 
 //Update a purchase
-router.put("user/:user_id/purchases/:purchase_id", (req, res) => {
+router.put("/user/:user_id/purchases/:purchase_id", (req, res) => {
   db.purchases
     .update(
       {
@@ -386,7 +376,7 @@ router.put("user/:user_id/purchases/:purchase_id", (req, res) => {
 });
 
 //Search purchases by name
-router.get("user/:user_id/search-purchases", (req, res) => {
+router.get("/user/:user_id/search-purchases", (req, res) => {
   db.purchases
     .findAll({
       where: {
@@ -401,7 +391,7 @@ router.get("user/:user_id/search-purchases", (req, res) => {
 });
 
 //Get purchases by date range
-router.get("user/:user_id/search-dates", (req, res) => {
+router.get("/user/:user_id/search-dates", (req, res) => {
   console.log(req.query.start);
   db.purchases
     .findAll({
@@ -417,7 +407,7 @@ router.get("user/:user_id/search-dates", (req, res) => {
 });
 
 //Get by price range
-router.get("user/:user_id/search-prices", (req, res) => {
+router.get("/user/:user_id/search-prices", (req, res) => {
   db.purchases
     .findAll({
       where: {
