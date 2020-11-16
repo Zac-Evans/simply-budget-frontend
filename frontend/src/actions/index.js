@@ -1,27 +1,47 @@
-import backendCall from "../apis/backendCall";
+import API from "../apis/API";
+import _ from "lodash";
 
 //Fetch categories for specific user
-export const fetchCategories = (id) => async (dispatch) => {
-  const response = await backendCall.get(`/${id}/budget`);
+export const fetchCategories = (user_id) => async (dispatch) => {
+  const response = await API.get(`/user/${user_id}/budget`);
   dispatch({ type: "FETCH_CATEGORIES", payload: response.data });
 };
 
+// //Fetch specific category for specific user
+// export const fetchCategory = (user_id, category_id) => async (dispatch) => {
+//   const response = await API.get(
+//     `/user/${user_id}/budget/category/${category_id}`
+//   );
+//   dispatch({ type: "FETCH_CATEGORY", payload: response.data });
+// };
+
+export const fetchCategory = (user_id, category_id) => (dispatch) =>
+  _fetchCategory(user_id, category_id, dispatch);
+
+const _fetchCategory = _.memoize(async (user_id, category_id, dispatch) => {
+  const response = await API.get(
+    `/user/${user_id}/budget/category/${category_id}`
+  );
+
+  dispatch({ type: "FETCH_CATEGORY", payload: response.data });
+});
+
 //Fetch info on specific user
-export const fetchUser = (id) => async (dispatch) => {
-  const response = await backendCall.get(`/user/${id}`);
+export const fetchUser = (user_id) => async (dispatch) => {
+  const response = await API.get(`/user/${user_id}`);
   dispatch({ type: "FETCH_USERS", payload: response.data });
 };
 
 //Fetch all bills for a specific user
-export const fetchCategories = (id) => async (dispatch) => {
-  const response = await backendCall.get(`user/${id}/bills`);
+export const fetchBills = (user_id) => async (dispatch) => {
+  const response = await API.get(`user/${user_id}/bills`);
   dispatch({ type: "FETCH_BILLS", payload: response.data });
 };
 
 //Fetch all purchases for a specific user
-export const fetchCategories = () => async (dispatch) => {
-  const response = await backendCall.get("/1/budget");
-  dispatch({ type: "FETCH_CATEGORIES", payload: response.data });
+export const fetchPurchases = (user_id) => async (dispatch) => {
+  const response = await API.get(`user/${user_id}/purchases`);
+  dispatch({ type: "FETCH_PURCHASES", payload: response.data });
 };
 
 // //Action creator
