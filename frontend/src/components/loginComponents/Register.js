@@ -29,6 +29,9 @@ export default class Register extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { first_name, last_name, email, password } = this.state;
+    if(!first_name || !last_name || !email || !password) {
+      return this.setState({ show: true });
+    }
     axios
       .post("http://localhost:8000/register", {
         first_name: first_name,

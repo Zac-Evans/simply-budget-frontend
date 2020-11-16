@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import FailModal from "./Fail-Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -48,6 +48,9 @@ export default class Login extends Component {
   };
 
   render() {
+    if(this.state.loggedIn) {
+      return <Redirect push to="/dashboard" />
+    }
     if (this.state.show) {
       return (
         <FailModal

@@ -35,6 +35,9 @@ export default class CategorySetup extends Component {
     if (isNaN(this.state.category_budget) || !this.state.category_budget) {
       return this.setState({ show: true });
     }
+    if (!this.state.category_name) {
+      return this.setState({ show: true });
+    }
     axios
       .post(
         `http://localhost:8000/budget/add/${localStorage.getItem("userId")}`,
@@ -43,10 +46,7 @@ export default class CategorySetup extends Component {
           category_budget: this.state.category_budget,
         }
       )
-      .then(() => {
-        this.setState({ next: true });
-        window.location.reload();
-      })
+      .then(() => window.location.reload())
       .catch((err) => console.log(err));
   };
 
@@ -107,6 +107,17 @@ export default class CategorySetup extends Component {
             />
 
             {/* These are the back and next buttons */}
+            <Button
+              style={{
+                border: "1px solid rgb(173, 173, 173)",
+                backgroundColor: "rgb(71, 117, 62)",
+                width: "100%",
+              }}
+              type="submit"
+              className="mb-4"
+            >
+              Add this category
+            </Button>
             <Row className="mx-auto">
               {/* Back button */}
               <Col md={4}>
@@ -121,26 +132,8 @@ export default class CategorySetup extends Component {
                   Back
                 </Button>
               </Col>
-              {/* Add another button */}
-              <Col md={4}>
-                <Button
-                  style={{
-                    border: "1px solid rgb(173, 173, 173)",
-                    backgroundColor: "rgb(212, 212, 212)",
-                    width: "100%",
-                  }}
-                  type="submit"
-                >
-                  <img
-                    style={{ width: "25px", height: "25px" }}
-                    src="https://www.flaticon.com/svg/static/icons/svg/54/54443.svg"
-                    alt="Icon"
-                  />
-                </Button>
-                <small className="ml-4">Add more</small>
-              </Col>
               {/* Submit Button */}
-              <Col md={4}>
+              <Col md={{span: 4, offset: 4}}>
                 <Button
                   style={{
                     border: "1px solid rgb(173, 173, 173)",

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import TextInput from "./Text-Input";
+import NumberInput from "./Number-Input";
 import FailModal from "../loginComponents/Fail-Modal";
 
 export default class IncomeSetup extends Component {
@@ -76,7 +76,7 @@ export default class IncomeSetup extends Component {
             style={{ maxWidth: "400px" }}
             onSubmit={this.handleSubmit}
           >
-            <TextInput
+            <NumberInput
               placeholder="Enter monthly income"
               id="income"
               handleChange={this.handleChange}
