@@ -22,7 +22,7 @@ function authenticationMiddleware(req, res, next) {
 
 
 //Grab all the specific User's categories
-router.get("/:user_id/budget", (req,res) => {
+router.get("/budget/:user_id", (req,res) => {
   db.budget_categories.findAll( {
     where: {
       user_id: req.params.user_id
@@ -48,7 +48,7 @@ router.post("/budget/add/:id", (req, res) => {
         category_budget: req.body.category_budget,
         user_id: req.params.id
       })
-    .then((user) => res.json(user))
+    .then((budget) => res.json(budget))
     .catch((err) => res.send(err));
 });
 
