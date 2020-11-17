@@ -22,7 +22,6 @@ const _fetchCategory = _.memoize(async (user_id, category_id, dispatch) => {
   const response = await API.get(
     `/user/${user_id}/budget/category/${category_id}`
   );
-
   dispatch({ type: "FETCH_CATEGORY", payload: response.data });
 });
 

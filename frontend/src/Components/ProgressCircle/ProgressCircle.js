@@ -14,9 +14,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ChangingProgressProvider from "./ChangingProgressProvider";
 import { Col } from "react-bootstrap";
 import ProgressInfoBox from "./ProgressInfoBox";
+import { fadeInUp } from "react-animations";
+import Radium, { StyleRoot } from "radium";
 
 class ProgressCircle extends Component {
   render() {
+    const styles = {
+      fadeInUp: {
+        animation: "x 1s",
+        animationName: Radium.keyframes(fadeInUp, "fadeInUp"),
+      },
+    };
     if (this.props.category_name.length === 0) {
       console.log(this.state);
       return <div></div>;
@@ -35,55 +43,58 @@ class ProgressCircle extends Component {
           className=""
           style={{ minWidth: "100px" }}
         >
-          <h2 className="text-center" style={{ whiteSpace: "nowrap" }}>
-            {this.props.category_name}
-          </h2>
+          <StyleRoot style={styles.fadeInUp}>
+            <h2 className="text-center" style={{ whiteSpace: "nowrap" }}>
+              {this.props.category_name}
+            </h2>
 
-          <AnimatedProgressProvider
-            valueStart={0}
-            valueEnd={percentageSpent}
-            duration={1.4}
-            easingFunction={easeQuadInOut}
-          >
-            {(value) => {
-              const roundedValue = Math.round(value);
-              return (
-                <CircularProgressbar
-                  value={value}
-                  text={`${roundedValue}%`}
-                  background
-                  backgroundPadding={3}
-                  /* This is important to include, because if you're fully managing the
+            <AnimatedProgressProvider
+              valueStart={0}
+              valueEnd={percentageSpent}
+              duration={1.4}
+              easingFunction={easeQuadInOut}
+            >
+              {(value) => {
+                const roundedValue = Math.round(value);
+                return (
+                  <CircularProgressbar
+                    value={value}
+                    text={`${roundedValue}%`}
+                    background
+                    backgroundPadding={3}
+                    /* This is important to include, because if you're fully managing the
         animation yourself, you'll want to disable the CSS animation. */
-                  styles={
-                    roundedValue > 100
-                      ? buildStyles({
-                          pathTransition: "none",
-                          backgroundColor: "red",
-                          textColor: "#fff",
-                          pathColor: "#fff",
-                          trailColor: "grey",
-                        })
-                      : buildStyles({
-                          pathTransition: "none",
-                          backgroundColor: "rgb(71, 117, 62)",
-                          textColor: "#fff",
-                          pathColor: "#fff",
-                          trailColor: "grey",
-                        })
-                  }
-                />
-              );
-            }}
-          </AnimatedProgressProvider>
-          <ProgressInfoBox
-            key={this.props.categoryId}
-            categoryId={this.props.categoryId}
-            budget_remaining={this.props.budget_remaining}
-            category_budget={this.props.category_budget}
-            category_name={this.props.category_name}
-            budgetSpent={budgetSpent}
-          />
+                    styles={
+                      roundedValue > 100
+                        ? buildStyles({
+                            pathTransition: "none",
+                            backgroundColor: "red",
+                            textColor: "#fff",
+                            pathColor: "#fff",
+                            trailColor: "grey",
+                          })
+                        : buildStyles({
+                            pathTransition: "none",
+                            backgroundColor: "rgb(71, 117, 62)",
+                            textColor: "#fff",
+                            pathColor: "#fff",
+                            trailColor: "grey",
+                          })
+                    }
+                  />
+                );
+              }}
+            </AnimatedProgressProvider>
+
+            <ProgressInfoBox
+              key={this.props.categoryId}
+              categoryId={this.props.categoryId}
+              budget_remaining={this.props.budget_remaining}
+              category_budget={this.props.category_budget}
+              category_name={this.props.category_name}
+              budgetSpent={budgetSpent}
+            />
+          </StyleRoot>
         </Col>
       );
     }

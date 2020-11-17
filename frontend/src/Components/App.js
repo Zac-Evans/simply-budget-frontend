@@ -4,10 +4,14 @@ import { connect } from "react-redux";
 import ProgressCircle from "./ProgressCircle/ProgressCircle";
 import ProgressCirclesContainer from "./ProgressCircle/ProgressCirclesContainer";
 
+import BudgetProgressBar from "./ProgressCircle/IndividualBudgetProgressBar";
+
 class App extends Component {
   render() {
     return (
       <div>
+        <br />
+
         <ProgressCirclesContainer />
       </div>
     );
