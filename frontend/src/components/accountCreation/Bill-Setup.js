@@ -42,7 +42,7 @@ export default class BillSetup extends Component {
     }
     axios
       .post(
-        `http://localhost:8000/bills/create/${localStorage.getItem("userId")}`,
+        `http://localhost:8000/user/${localStorage.getItem("userId")}/bills/create`,
         {
           bill_name: this.state.bill_name,
           bill_amount: this.state.bill_amount,

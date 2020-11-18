@@ -40,7 +40,7 @@ export default class CategorySetup extends Component {
     }
     axios
       .post(
-        `http://localhost:8000/budget/add/${localStorage.getItem("userId")}`,
+        `http://localhost:8000/user/${localStorage.getItem("userId")}/budget/create`,
         {
           category_name: this.state.category_name,
           category_budget: this.state.category_budget,

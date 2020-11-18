@@ -21,6 +21,25 @@ function authenticationMiddleware(req, res, next) {
   }
 }
 
+//Create a category
+router.post("/user/:user_id/budget/create", (req, res) => {
+  if (!req.body.category_name) {
+    res.status(409).send("Please enter the budget name");
+  }
+  if (!req.body.category_budget || isNaN(req.body.category_budget)) {
+    res.status(409).send("Please enter budget amount");
+  }
+
+  db.budget_categories
+    .create({
+      category_name: req.body.category_name,
+      category_budget: req.body.category_budget,
+      user_id: req.params.user_id,
+    })
+    .then((user) => res.json(user))
+    .catch((err) => res.send(err));
+});
+
 //Grab all the specific User's categories
 router.get("/user/:user_id/budget", (req, res) => {
   db.budget_categories
