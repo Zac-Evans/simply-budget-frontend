@@ -12,9 +12,12 @@ import Income_Setup from "./components/accountCreation/Income-Setup";
 import Bill_Setup from "./components/accountCreation/Bill-Setup";
 import Category_Setup from "./components/accountCreation/Category-Setup";
 import ProgressCirclesContainer from "./components/ProgressCircle/ProgressCirclesContainer";
+import Dashboard from "./components/Dashboard";
+import Header from "./components/Header";
 
 export default class App extends Component {
   render() {
+    <Header />;
     if (!localStorage.getItem("userId")) {
       return (
         <Router>
@@ -34,6 +37,7 @@ export default class App extends Component {
           <Route path="/income-setup" component={Income_Setup} />
           <Route path="/bill-setup" component={Bill_Setup} />
           <Route path="/category-setup" component={Category_Setup} />
+          <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     );

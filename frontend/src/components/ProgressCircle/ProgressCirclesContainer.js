@@ -5,11 +5,11 @@ import ProgressCircle from "./ProgressCircle";
 import { Row } from "react-bootstrap";
 import IndividualBudgetProgressBar from "./IndividualBudgetProgressBar";
 import TotalProgressBar from "./TotalProgressBar";
+import Header from "../Header";
 
 class ProgressCirclesContainer extends Component {
   componentDidMount() {
-    //replace with sessionStorage.getItem('userId')
-    const userId = 1;
+    const userId = localStorage.getItem("userId");
     this.props.fetchCategories(userId);
   }
 
