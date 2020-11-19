@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchCategory } from "../../actions/";
 import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
@@ -10,7 +9,7 @@ import "react-circular-progressbar/dist/styles.css";
 // Animation
 import { easeQuadInOut } from "d3-ease";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import ChangingProgressProvider from "./ChangingProgressProvider";
 import { Col } from "react-bootstrap";
 import ProgressInfoBox from "./ProgressInfoBox";
@@ -26,7 +25,6 @@ class ProgressCircle extends Component {
       },
     };
     if (this.props.category_name.length === 0) {
-      console.log(this.state);
       return <div></div>;
     } else {
       const totalBudget = parseInt(this.props.category_budget);
@@ -36,12 +34,12 @@ class ProgressCircle extends Component {
 
       return (
         <Col
-          lg="3"
-          md="3"
-          sm="4"
-          xs="6"
-          className=""
-          style={{ minWidth: "100px" }}
+          lg="2"
+          md="2"
+          sm="5"
+          xs="12"
+          className="d-flex justify-content-center m-4"
+          style={{ minWidth: "250px" }}
         >
           <StyleRoot style={styles.fadeInUp}>
             <h2 className="text-center" style={{ whiteSpace: "nowrap" }}>

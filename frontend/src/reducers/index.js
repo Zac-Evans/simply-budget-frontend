@@ -3,12 +3,12 @@ import categoriesReducer from "./categoriesReducer";
 import categoryReducer from "./categoryReducer";
 import billsReducer from "./billsReducer";
 import purchasesReducer from "./purchasesReducer";
-import usersReducer from "./usersReducer";
+import userReducer from "./userReducer";
 
 export default combineReducers({
   categories: categoriesReducer,
   bills: billsReducer,
   purchases: purchasesReducer,
-  users: usersReducer,
+  user: userReducer,
   category: categoryReducer,
 });

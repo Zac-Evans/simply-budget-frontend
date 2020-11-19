@@ -23,16 +23,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       category_name: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       category_budget: {
         type: DataTypes.DOUBLE,
-        allowNull: true,
+        allowNull: false,
       },
 
       budget_remaining: {
         type: DataTypes.DOUBLE,
-        allowNull: true,
+        allowNull: false,
       },
     },
     {

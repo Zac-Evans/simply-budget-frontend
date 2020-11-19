@@ -1,11 +1,10 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import { ProgressBar } from "react-bootstrap";
 import { Spring, config } from "react-spring/renderprops";
 import { connect } from "react-redux";
 
 const IndividualBudgetProgressBar = (props) => {
-  console.log(props);
   const budgetSpent = props.totalBudget - props.budget_remaining;
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
 

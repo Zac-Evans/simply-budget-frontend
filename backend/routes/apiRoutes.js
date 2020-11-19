@@ -34,6 +34,7 @@ router.post("/user/:user_id/budget/create", (req, res) => {
     .create({
       category_name: req.body.category_name,
       category_budget: req.body.category_budget,
+      budget_remaining: req.body.budget_remaining,
       user_id: req.params.user_id,
     })
     .then((user) => res.json(user))
@@ -42,43 +43,6 @@ router.post("/user/:user_id/budget/create", (req, res) => {
 
 //Grab all the specific User's categories
 router.get("/user/:user_id/budget", (req, res) => {
-  db.budget_categories
-    .findAll({
-      where: {
-        user_id: req.params.user_id,
-      },
-    })
-    .then((budget_categories) => res.send(budget_categories));
-});
-
-//Get a single category
-router.get("/user/:user_id/budget/category/:category_id", (req, res) => {
-  db.budget_categories
-    .findAll({
-      where: {
-        user_id: req.params.user_id,
-        id: req.params.category_id,
-      },
-    })
-    .then((purchases) => res.send(purchases));
-});
-
-//Delete a category
-router.delete("/user/:user_id/budget/category/:category_id", (req, res) => {
-  db.budget_categories
-    .destroy({
-      where: {
-        user_id: req.params.user_id,
-        id: req.params.category_id,
-      },
-    })
-    .then(() => res.send("success"))
-
-    .catch(() => res.send("fail"));
-});
-
-//Grab all the specific User's categories
-router.get("/budget/:user_id", (req, res) => {
   db.budget_categories
     .findAll({
       where: {
@@ -365,7 +329,7 @@ router.get("/user/:user_id/purchases/:purchase_id", (req, res) => {
 
 //Add a purchase
 
-router.post("/user/:user_id/purchases/", (req, res) => {
+router.post("/user/:user_id/purchases/create", (req, res) => {
   db.purchases
     .create({
       user_id: req.params.user_id,

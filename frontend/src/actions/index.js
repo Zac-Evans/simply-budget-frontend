@@ -28,7 +28,7 @@ const _fetchCategory = _.memoize(async (user_id, category_id, dispatch) => {
 //Fetch info on specific user
 export const fetchUser = (user_id) => async (dispatch) => {
   const response = await API.get(`/user/${user_id}`);
-  dispatch({ type: "FETCH_USERS", payload: response.data });
+  dispatch({ type: "FETCH_USER", payload: response.data });
 };
 
 //Fetch all bills for a specific user
