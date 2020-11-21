@@ -101,6 +101,9 @@ class NewPurchaseForm extends Component {
           });
         }, 3100);
       })
+      .then(() => {
+        window.location.reload();
+      })
 
       .catch((error) => {
         console.log(error);

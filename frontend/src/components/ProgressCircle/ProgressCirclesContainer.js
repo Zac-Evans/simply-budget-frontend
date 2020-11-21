@@ -3,16 +3,13 @@ import { connect } from "react-redux";
 import { fetchCategories } from "../../actions/";
 import ProgressCircle from "./ProgressCircle";
 import { Row } from "react-bootstrap";
-import IndividualBudgetProgressBar from "./IndividualBudgetProgressBar";
 import TotalProgressBar from "./TotalProgressBar";
-import Header from "../Header";
 import { fadeInUp } from "react-animations";
 import Radium, { StyleRoot } from "radium";
-import { Fab, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import AddPurchaseCard from "../AddPurchaseCard";
 import AddCategoryCard from "../AddCategoryCard";
 import MoneySpentRecentlyCard from "../MoneySpentRecentlyCard";
-import AddIcon from "@material-ui/icons/Add";
 import NewCategoryCircle from "../NewCategoryCircle";
 
 class ProgressCirclesContainer extends Component {

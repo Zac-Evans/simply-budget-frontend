@@ -66,6 +66,7 @@ const ProgressInfoBox = (props) => {
     </div>
   );
 };
+
 const mapStateToProps = (state, ownProps) => {
   return {
     category: state.category,

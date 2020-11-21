@@ -4,6 +4,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import Logo from "../images/simply-logo-white.png";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
+import { Redirect } from "react-router-dom";
 
 // Todo: Login/Logout Button
 // Navigation Links
@@ -13,11 +14,25 @@ import { fetchUser } from "../actions";
 // categories budgets purchases user_settings
 
 class PageHeader extends Component {
+  constructor() {
+    super();
+    this.state = {
+      categoryClicked: false,
+      budgetClicked: false
+    }
+  }
+
   componentDidMount() {
     const userId = localStorage.getItem("userId");
 
     this.props.fetchUser(userId);
   }
+
+  logout = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   render() {
     return (
       <div>
@@ -38,11 +53,14 @@ class PageHeader extends Component {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto ">
-                <Nav.Link className="text-light" href="#features">
+                <Nav.Link href="/dashboard/categories" className="text-light">
                   Categories
                 </Nav.Link>
                 <Nav.Link className="text-light" href="#pricing">
                   Budgets
+                </Nav.Link>
+                <Nav.Link onClick={this.logout} className="text-light" href="#pricing">
+                  Logout
                 </Nav.Link>
               </Nav>
               <NavDropdown

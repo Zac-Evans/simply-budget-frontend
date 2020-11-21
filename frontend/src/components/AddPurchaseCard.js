@@ -1,18 +1,15 @@
 import React from "react";
 import {
-  Fab,
   Card,
   Typography,
   Button,
   CardContent,
   CardActions,
 } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import NewPurchaseForm from "./NewPurchaseForm";
-import { Fade } from "react-awesome-reveal";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
