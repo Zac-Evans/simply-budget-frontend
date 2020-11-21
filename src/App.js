@@ -29,6 +29,7 @@ export default class App extends Component {
             <Switch>
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
+              <Route exact path="/" component={Carouselapp} />
             </Switch>
             <Redirect push to="/login" />
           </Router>
