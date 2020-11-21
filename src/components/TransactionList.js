@@ -56,6 +56,7 @@ class TransactionList extends Component {
   render() {
     const rows = this.props.purchases.map((purchase) => {
       let date = new Date(purchase.createdAt).toLocaleDateString("en-US");
+      console.log(date);
       createData(
         purchase.id,
         date,
@@ -65,8 +66,7 @@ class TransactionList extends Component {
         purchase.budget_category.budget_remaining
       );
     });
-    console.log(DateTime.fromISO(this.props.purchases.purchase_name).toJSDate);
-    console.log(rows);
+
     return (
       <TableContainer component={Paper}>
         {this.props.purchases && (
