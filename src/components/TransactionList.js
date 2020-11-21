@@ -55,11 +55,13 @@ class TransactionList extends Component {
 
   render() {
     const rows = this.props.purchases.map((purchase) => {
-      let date = new Date(purchase.createdAt).toLocaleDateString("en-US");
+      let purchaseDate = new Date(purchase.createdAt).toLocaleDateString(
+        "en-US"
+      );
       console.log(date);
       createData(
         purchase.id,
-        date,
+        purchaseDate,
         purchase.purchase_name,
         purchase.price,
         purchase.budget_category.category_name,
