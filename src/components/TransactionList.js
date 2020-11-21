@@ -35,6 +35,7 @@ function createData(
   transactionName,
   transactionAmount,
   budgetCategory,
+  notes,
   budgetRemaining
 ) {
   return {
@@ -43,6 +44,7 @@ function createData(
     transactionName,
     transactionAmount,
     budgetCategory,
+    notes,
     budgetRemaining,
   };
 }
@@ -64,6 +66,7 @@ class TransactionList extends Component {
         purchase.purchase_name,
         purchase.price,
         purchase.budget_category.category_name,
+        purchase.purchase_notes,
         purchase.budget_category.budget_remaining
       );
     });
@@ -90,7 +93,7 @@ class TransactionList extends Component {
                     {row.date}
                   </StyledTableCell>
                   <StyledTableCell>{row.transactionName}</StyledTableCell>
-
+                  <StyledTableCell>{row.notes}</StyledTableCell>
                   <StyledTableCell align="center">
                     {row.transactionAmount}
                   </StyledTableCell>
