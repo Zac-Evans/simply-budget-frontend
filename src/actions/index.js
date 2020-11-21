@@ -21,15 +21,24 @@ export const fetchPurchasesWithCategory = (user_id) => async (dispatch) => {
 //   dispatch({ type: "FETCH_CATEGORY", payload: response.data });
 // };
 
-export const fetchCategory = (user_id, category_id) => (dispatch) =>
-  _fetchCategory(user_id, category_id, dispatch);
-
-const _fetchCategory = _.memoize(async (user_id, category_id, dispatch) => {
+export const fetchPurchasesWithCategory = (user_id, category_id) => async (
+  dispatch
+) => {
   const response = await API.get(
     `/user/${user_id}/budget/category/${category_id}`
   );
   dispatch({ type: "FETCH_CATEGORY", payload: response.data });
-});
+};
+
+// export const fetchCategory = (user_id, category_id) => (dispatch) =>
+//   _fetchCategory(user_id, category_id, dispatch);
+
+// const _fetchCategory = _.memoize(async (user_id, category_id, dispatch) => {
+//   const response = await API.get(
+//     `/user/${user_id}/budget/category/${category_id}`
+//   );
+//   dispatch({ type: "FETCH_CATEGORY", payload: response.data });
+// });
 
 //Fetch info on specific user
 export const fetchUser = (user_id) => async (dispatch) => {

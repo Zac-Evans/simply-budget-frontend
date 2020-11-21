@@ -29,7 +29,7 @@ export default class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     axios
-      .post("http://localhost:8000/login", {
+      .post("https://simply-budget-backend.herokuapp.com/login", {
         email: email,
         password: password,
       })
@@ -48,8 +48,8 @@ export default class Login extends Component {
   };
 
   render() {
-    if(this.state.loggedIn) {
-      return <Redirect push to="/dashboard" />
+    if (this.state.loggedIn) {
+      return <Redirect push to="/dashboard" />;
     }
     if (this.state.show) {
       return (
@@ -68,7 +68,7 @@ export default class Login extends Component {
         <div style={divStyle} className="w-50 mx-auto">
           <Form
             className="w-50 mx-auto"
-            style={{ maxWidth: "400px"}}
+            style={{ maxWidth: "400px" }}
             onSubmit={this.handleSubmit}
           >
             <img

@@ -31,9 +31,14 @@ export default class IncomeSetup extends Component {
       return this.setState({ show: true });
     }
     axios
-      .put(`http://localhost:8000/user/${localStorage.getItem("userId")}`, {
-        income: this.state.income,
-      })
+      .put(
+        `https://simply-budget-backend.herokuapp.com/user/${localStorage.getItem(
+          "userId"
+        )}`,
+        {
+          income: this.state.income,
+        }
+      )
       .then(() => this.setState({ next: true }))
       .catch((err) => console.log(err));
   };

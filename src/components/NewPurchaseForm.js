@@ -66,15 +66,18 @@ class NewPurchaseForm extends Component {
     }
 
     axios
-      .post(`http://localhost:8000/user/${userId}/purchases/create`, {
-        category_id: this.state.category_id,
-        purchase_name: this.state.purchase_name,
-        purchase_notes: this.state.purchase_notes,
-        price: parseInt(this.state.price),
-      })
+      .post(
+        `https://simply-budget-backend.herokuapp.com/user/${userId}/purchases/create`,
+        {
+          category_id: this.state.category_id,
+          purchase_name: this.state.purchase_name,
+          purchase_notes: this.state.purchase_notes,
+          price: parseInt(this.state.price),
+        }
+      )
       .then(
         axios.put(
-          `http://localhost:8000/user/${userId}/budget/category/${this.state.category_id}`,
+          `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/category/${this.state.category_id}`,
           {
             budget_remaining: this.state.budget_remaining - this.state.price,
           }

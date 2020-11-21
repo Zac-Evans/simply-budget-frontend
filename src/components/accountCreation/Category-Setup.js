@@ -41,7 +41,7 @@ export default class CategorySetup extends Component {
     }
     axios
       .post(
-        `http://localhost:8000/user/${localStorage.getItem(
+        `https://simply-budget-backend.herokuapp.com/user/${localStorage.getItem(
           "userId"
         )}/budget/create`,
         {

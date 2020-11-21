@@ -33,11 +33,14 @@ class NewCategoryForm extends Component {
       }, 2000);
     }
     axios
-      .post(`http://localhost:8000/user/${userId}/budget/create`, {
-        category_name: this.state.category_name,
-        category_budget: this.state.category_budget,
-        budget_remaining: this.state.category_budget,
-      })
+      .post(
+        `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/create`,
+        {
+          category_name: this.state.category_name,
+          category_budget: this.state.category_budget,
+          budget_remaining: this.state.category_budget,
+        }
+      )
       .then((response) => {
         if (this.state.Showing) return;
 

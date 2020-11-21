@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8000/";
+const baseURL = "https://simply-budget-backend.herokuapp.com/";
 
 const register = (email, password, first_name, last_name, income) => {
   return axios.post(baseURL + "register", {
