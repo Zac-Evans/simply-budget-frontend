@@ -71,7 +71,7 @@ class TransactionList extends Component {
 
     return (
       <TableContainer component={Paper}>
-        {this.props.purchases && (
+        {this.props.purchases[0] && (
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
