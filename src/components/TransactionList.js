@@ -58,8 +58,7 @@ class TransactionList extends Component {
       let purchaseDate = new Date(purchase.createdAt).toLocaleDateString(
         "en-US"
       );
-
-      createData(
+      return createData(
         purchase.id,
         purchaseDate,
         purchase.purchase_name,
