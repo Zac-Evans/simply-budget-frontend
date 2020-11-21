@@ -57,7 +57,7 @@ class TransactionList extends Component {
     const rows = this.props.purchases.map((purchase) =>
       createData(
         purchase.id,
-        Date(purchase.createdAt).toLocaleDateString(),
+        Date(purchase.createdAt).toLocaleDateString("en-US"),
         purchase.purchase_name,
         purchase.price,
         purchase.budget_category.category_name,
