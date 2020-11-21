@@ -21,9 +21,7 @@ export const fetchPurchasesWithCategory = (user_id) => async (dispatch) => {
 //   dispatch({ type: "FETCH_CATEGORY", payload: response.data });
 // };
 
-export const fetchPurchasesWithCategory = (user_id, category_id) => async (
-  dispatch
-) => {
+export const fetchCategory = (user_id, category_id) => async (dispatch) => {
   const response = await API.get(
     `/user/${user_id}/budget/category/${category_id}`
   );
