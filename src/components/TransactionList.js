@@ -54,16 +54,17 @@ class TransactionList extends Component {
   }
 
   render() {
-    const rows = this.props.purchases.map((purchase) =>
+    const rows = this.props.purchases.map((purchase) => {
+      let date = new Date(purchase.createdAt).toLocaleDateString("en-US");
       createData(
         purchase.id,
-        Date(purchase.createdAt).toLocaleDateString("en-US"),
+        date,
         purchase.purchase_name,
         purchase.price,
         purchase.budget_category.category_name,
         purchase.budget_category.budget_remaining
-      )
-    );
+      );
+    });
     console.log(DateTime.fromISO(this.props.purchases.purchase_name).toJSDate);
     console.log(rows);
     return (
