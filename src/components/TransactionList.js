@@ -79,8 +79,10 @@ class TransactionList extends Component {
               <TableRow>
                 <StyledTableCell align="left">Date</StyledTableCell>
                 <StyledTableCell align="left">Transaction</StyledTableCell>
+                <StyledTableCell align="left">Notes</StyledTableCell>
                 <StyledTableCell align="center">Amount</StyledTableCell>
                 <StyledTableCell align="left">Category</StyledTableCell>
+
                 <StyledTableCell align="right">
                   Remaining Budget
                 </StyledTableCell>

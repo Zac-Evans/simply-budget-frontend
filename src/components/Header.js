@@ -23,7 +23,10 @@ class PageHeader extends Component {
       <div>
         {this.props.user && (
           <Navbar
-            style={{ fontSize: "25px", backgroundColor: "#264653 " }}
+            style={{
+              fontSize: "25px",
+              backgroundColor: "#264653 ",
+            }}
             collapseOnSelect
             expand="lg"
             bg="dark"

@@ -36,8 +36,8 @@ class ProgressCircle extends Component {
         <Col
           lg="2"
           md="2"
-          sm="5"
-          xs="12"
+          sm="4"
+          xs="4"
           className="d-flex justify-content-center m-4"
           style={{ minWidth: "250px" }}
         >
@@ -83,7 +83,6 @@ class ProgressCircle extends Component {
                 );
               }}
             </AnimatedProgressProvider>
-
             <ProgressInfoBox
               key={this.props.categoryId}
               categoryId={this.props.categoryId}

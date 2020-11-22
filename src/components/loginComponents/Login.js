@@ -62,8 +62,11 @@ export default class Login extends Component {
     }
     return (
       <div
-        className="vw-100 vh-100"
-        style={{ paddingTop: "150px", backgroundColor: "rgb(71, 117, 62)" }}
+        className="vh-100"
+        style={{
+          paddingTop: "10%",
+          backgroundColor: "rgb(71, 117, 62)",
+        }}
       >
         <div style={divStyle} className="mx-auto">
           <Form
@@ -78,10 +81,10 @@ export default class Login extends Component {
               alt="icon"
             />
             <p className="mb-4 text-center" style={{ fontSize: "30px" }}>
-              Login to your{" "}
+              Login to your
               <strong style={{ color: "rgb(71, 117, 62)" }}>
                 Simply Budget
-              </strong>{" "}
+              </strong>
               account
             </p>
             <Form.Group>
@@ -100,7 +103,7 @@ export default class Login extends Component {
                 type="password"
                 placeholder="Enter password"
                 onChange={this.handleChange}
-                className="mb-4"
+                className=""
                 style={inputStyle}
               />
             </Form.Group>

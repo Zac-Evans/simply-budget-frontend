@@ -38,7 +38,7 @@ const ProgressInfoBox = (props) => {
           <hr style={{ borderBottom: "3px solid white", marginTop: 7 }} />
           {props.budgetRemaining < 0 ? (
             <div className="d-flex justify-content-between">
-              <h5 className="text-warning">Remaining: </h5>
+              <h6 className="text-warning">Remaining: </h6>
               <h5 className="text-warning">
                 $
                 <animated.span>
@@ -50,7 +50,7 @@ const ProgressInfoBox = (props) => {
             </div>
           ) : (
             <div className="d-flex justify-content-between">
-              <h5>Remaining:</h5>
+              <h6>Remaining:</h6>
               <h5>
                 $
                 <animated.span>
