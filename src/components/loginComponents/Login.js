@@ -65,9 +65,9 @@ export default class Login extends Component {
         className="vw-100 vh-100"
         style={{ paddingTop: "150px", backgroundColor: "rgb(71, 117, 62)" }}
       >
-        <div style={divStyle} className="w-50 mx-auto">
+        <div style={divStyle} className="mx-auto">
           <Form
-            className="w-50 mx-auto"
+            className="mx-auto"
             style={{ maxWidth: "400px" }}
             onSubmit={this.handleSubmit}
           >
@@ -151,5 +151,6 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
+  maxWidth: "400px",
   backgroundColor: "white",
 };
