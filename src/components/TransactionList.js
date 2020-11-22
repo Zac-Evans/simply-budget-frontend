@@ -36,7 +36,8 @@ function createData(
   transactionAmount,
   budgetCategory,
   notes,
-  budgetRemaining
+  budgetRemaining,
+  purchaseMonth
 ) {
   return {
     id,
@@ -46,6 +47,7 @@ function createData(
     budgetCategory,
     notes,
     budgetRemaining,
+    purchaseMonth,
   };
 }
 
@@ -56,7 +58,10 @@ class TransactionList extends Component {
   }
 
   render() {
+    // console.log()
+    console.log(DateTime.local().month);
     const rows = this.props.purchases.map((purchase) => {
+      let purchaseMonth = new Date(purchase.createdAt).getMonth();
       let purchaseDate = new Date(purchase.createdAt).toLocaleDateString(
         "en-US"
       );
@@ -67,10 +72,18 @@ class TransactionList extends Component {
         purchase.price,
         purchase.budget_category.category_name,
         purchase.purchase_notes,
-        purchase.budget_category.budget_remaining
+        purchase.budget_category.budget_remaining,
+        purchaseMonth
       );
     });
+    const thisMonthTransactions = [];
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].purchaseMonth == DateTime.local().month - 1) {
+        thisMonthTransactions.push(rows[i]);
+      }
+    }
 
+    console.log(thisMonthTransactions);
     return (
       <TableContainer component={Paper}>
         {this.props.purchases[0] && (
@@ -89,7 +102,7 @@ class TransactionList extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {thisMonthTransactions.map((row) => (
                 <StyledTableRow key={row.id}>
                   <StyledTableCell component="th" scope="row" align="left">
                     {row.date}
