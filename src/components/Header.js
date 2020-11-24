@@ -18,6 +18,10 @@ class PageHeader extends Component {
 
     this.props.fetchUser(userId);
   }
+  logout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
   render() {
     return (
       <div>
@@ -67,8 +71,8 @@ class PageHeader extends Component {
                   Something
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
+                <NavDropdown.Item href="#logout" onClick={this.logout}>
+                  Logout
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav></Nav>
