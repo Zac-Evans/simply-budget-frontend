@@ -21,10 +21,10 @@ export default function CarouselApp() {
       <Carousel
         pause="hover"
         touch="true"
-        className="mx-auto"
+        className="mx-auto my-auto"
         style={{
           maxWidth: "1600px",
-
+          marginBottom: "-20vh",
           position: "fixed",
         }}
       >
