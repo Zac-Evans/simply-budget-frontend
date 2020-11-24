@@ -15,25 +15,29 @@ export default function CarouselApp() {
         pause="hover"
         touch="true"
         className="mx-auto"
-        style={{ marginTop: "-187px", maxWidth: "1200px" }}
+        style={{
+          marginTop: "-187px",
+          maxWidth: "1200px",
+          position: "relative",
+        }}
       >
         <Carousel.Item className="p-4">
-          <Row style={{ marginTop: "90px" }}>
+          <Row>
             <Col
               xs="12"
-              sm="12"
+              sm="6"
               md="6"
               lg="6"
               className="d-flex justify-content-center"
             >
               <Image
-                fluid
+                style={{ width: "50vw" }}
                 src="https://www.flaticon.com/svg/static/icons/svg/2910/2910922.svg"
               />
             </Col>
             <Col
               xs="12"
-              sm="12"
+              sm="5"
               md="5"
               lg="5"
               className="align-self-center d-flex flex-column"
@@ -69,22 +73,22 @@ export default function CarouselApp() {
           </Row>
         </Carousel.Item>
         <Carousel.Item className="p-4">
-          <Row style={{ marginTop: "90px" }}>
+          <Row>
             <Col
               xs="12"
-              sm="12"
+              sm="6"
               md="6"
               lg="6"
               className="d-flex justify-content-center"
             >
               <Image
-                fluid
+                style={{ width: "50vw" }}
                 src="https://www.flaticon.com/svg/static/icons/svg/3004/3004164.svg"
               />
             </Col>
             <Col
               xs="12"
-              sm="12"
+              sm="5"
               md="5"
               lg="5"
               className="align-self-center d-flex flex-column justify-content-center"
@@ -119,22 +123,22 @@ export default function CarouselApp() {
           </Row>
         </Carousel.Item>
         <Carousel.Item className="p-4">
-          <Row style={{ marginTop: "90px" }}>
+          <Row>
             <Col
               xs="12"
-              sm="12"
+              sm="6"
               md="6"
               lg="6"
               className="d-flex justify-content-center"
             >
               <Image
-                fluid
+                style={{ width: "50vw" }}
                 src="https://www.flaticon.com/svg/static/icons/svg/2942/2942269.svg"
               />
             </Col>
             <Col
               xs="12"
-              sm="12"
+              sm="5"
               md="5"
               lg="5"
               className="align-self-center d-flex flex-column justify-content-center"
