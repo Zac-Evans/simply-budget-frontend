@@ -43,8 +43,8 @@ class PageHeader extends Component {
               />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto ">
+            <Navbar.Collapse id="responsive-navbar-nav ">
+              <Nav className="mr-auto ml-3">
                 <Nav.Link className="text-light" href="/dashboard/categories">
                   Budgets
                 </Nav.Link>

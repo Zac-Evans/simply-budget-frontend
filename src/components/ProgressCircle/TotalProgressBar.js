@@ -9,12 +9,12 @@ import { DateTime } from "luxon";
 const TotalBudgetProgressBar = (props) => {
   const budgetSpent = props.totalBudget - props.budget_remaining;
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
-  const fontSizer = { fontSize: "calc(14px + 1vw)", color: "black" };
+  const fontSizer = { fontSize: "calc(16px + 1vw)", color: "black" };
 
   return (
     <div>
       <div className="ml-4 mr-4 mt-1 mb-1">
-        <h1 className="text-center m-4">
+        <h1 className="text-center m-4" style={{ fontSize: "80px" }}>
           <Fade direction="up">
             <b>{DateTime.local().monthLong}</b>
           </Fade>
@@ -53,7 +53,7 @@ const TotalBudgetProgressBar = (props) => {
                 now={progress.value}
                 label={
                   <Row
-                    className="d-flex justify-content-between position-absolute w-75 ml-2"
+                    className="d-flex justify-content-between position-absolute w-75 ml-4"
                     style={{ maxWidth: "1150px" }}
                   >
                     <Fade direction="left" delay="100" triggerOnce>
