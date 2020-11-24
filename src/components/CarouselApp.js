@@ -24,7 +24,6 @@ export default function CarouselApp() {
         className="mx-auto"
         style={{
           maxWidth: "1600px",
-          position: "fixed",
         }}
       >
         <Carousel.Item className="">
