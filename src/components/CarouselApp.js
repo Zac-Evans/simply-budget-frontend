@@ -9,15 +9,15 @@ import HeaderCarousel from "./HeaderCarousel";
 
 export default function CarouselApp() {
   return (
-    <div style={{ backgroundColor: "#47753e" }}>
+    <div style={{ backgroundColor: "#47753e" }} className="vh-100">
       <HeaderCarousel />
       <Carousel
         pause="hover"
         touch="true"
-        className="vh-100 mx-auto"
+        className="mx-auto"
         style={{ marginTop: "-187px", maxWidth: "1200px" }}
       >
-        <Carousel.Item className="p-4 mt-4">
+        <Carousel.Item className="p-4">
           <Row style={{ marginTop: "90px" }}>
             <Col
               xs="12"
