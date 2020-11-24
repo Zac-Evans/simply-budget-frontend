@@ -29,20 +29,6 @@ export default class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  // handleLogin = (e) => {
-  //   if (this.state.loggedIn) {
-  //     window.location.href = "/dashboard";
-  //   } else if (this.state.show) {
-  //     return (
-  //       <FailModal
-  //         errText="Username or Password did not match"
-  //         close={this.close}
-  //         show={this.state.show}
-  //       />
-  //     );
-  //   }
-  // };
-
   // This handles the form submit
   handleSubmit = (e) => {
     e.preventDefault();
@@ -68,18 +54,15 @@ export default class Login extends Component {
   };
 
   render() {
-    // if (this.state.loggedIn) {
-    //   return <Redirect push to="/dashboard" />;
-    // }
-    // if (this.state.show) {
-    //   return (
-    //     <FailModal
-    //       errText="Username or Password did not match"
-    //       close={this.close}
-    //       show={this.state.show}
-    //     />
-    //   );
-    // }
+    if (this.state.show) {
+      return (
+        <FailModal
+          errText="Username or Password did not match"
+          close={this.close}
+          show={this.state.show}
+        />
+      );
+    }
     return (
       <div
         className="vh-100"
@@ -149,7 +132,6 @@ export default class Login extends Component {
                     width: "100%",
                   }}
                   type="submit"
-                  onClick={this.handleLogin}
                 >
                   Submit
                 </Button>
