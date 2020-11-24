@@ -16,7 +16,7 @@ export default function CarouselApp() {
         touch="true"
         className="mx-auto"
         style={{
-          marginTop: "-187px",
+          marginTop: "-100px",
           maxWidth: "1200px",
           position: "relative",
         }}
@@ -31,7 +31,7 @@ export default function CarouselApp() {
               className="d-flex justify-content-center"
             >
               <Image
-                style={{ width: "50vw" }}
+                style={{ width: "50vw", height: "40vh" }}
                 src="https://www.flaticon.com/svg/static/icons/svg/2910/2910922.svg"
               />
             </Col>
@@ -58,14 +58,10 @@ export default function CarouselApp() {
                 href="/login"
                 className="d-flex justify-content-center position-sticky m-4"
               >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className="position-fixed "
-                >
-                  <h2 className="d-flex my-auto">
+                <Button type="submit" variant="contained">
+                  <h3 className="d-flex my-auto">
                     <b>Get started</b>
-                  </h2>
+                  </h3>
                 </Button>
               </a>
               {/* </Carousel.Caption> */}
@@ -82,7 +78,7 @@ export default function CarouselApp() {
               className="d-flex justify-content-center"
             >
               <Image
-                style={{ width: "50vw" }}
+                style={{ width: "50vw", height: "40vh" }}
                 src="https://www.flaticon.com/svg/static/icons/svg/3004/3004164.svg"
               />
             </Col>
@@ -109,14 +105,10 @@ export default function CarouselApp() {
                 href="/login"
                 className="d-flex justify-content-center position-sticky m-4"
               >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className="position-fixed "
-                >
-                  <h2 className="d-flex my-auto">
+                <Button type="submit" variant="contained">
+                  <h3 className="d-flex my-auto">
                     <b>Get started</b>
-                  </h2>
+                  </h3>
                 </Button>
               </a>
             </Col>
@@ -132,7 +124,7 @@ export default function CarouselApp() {
               className="d-flex justify-content-center"
             >
               <Image
-                style={{ width: "50vw" }}
+                style={{ width: "50vw", height: "40vh" }}
                 src="https://www.flaticon.com/svg/static/icons/svg/2942/2942269.svg"
               />
             </Col>
@@ -160,14 +152,10 @@ export default function CarouselApp() {
                 href="/login"
                 className="d-flex justify-content-center position-sticky m-4"
               >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className="position-fixed "
-                >
-                  <h2 className="d-flex my-auto">
+                <Button type="submit" variant="contained">
+                  <h3 className="d-flex my-auto">
                     <b>Get started</b>
-                  </h2>
+                  </h3>
                 </Button>
               </a>
             </Col>
