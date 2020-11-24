@@ -26,7 +26,10 @@ export default function CarouselApp() {
               lg="6"
               className="d-flex justify-content-center"
             >
-              <Image src="https://www.flaticon.com/svg/static/icons/svg/2910/2910922.svg" />
+              <Image
+                width="500vw"
+                src="https://www.flaticon.com/svg/static/icons/svg/2910/2910922.svg"
+              />
             </Col>
             <Col
               xs="12"
@@ -34,21 +37,10 @@ export default function CarouselApp() {
               md="5"
               lg="5"
               className="align-self-center d-flex flex-column"
-              // style={{ paddingRight: "70px", paddingLeft: "70px" }}
             >
-              {/* <div className="d-flex mx-auto justify-content-center pr-4">
-                <Image
-                  style={{
-                    width: "50vw",
-                    maxWidth: "900px",
-                    paddingRight: "100px",
-                  }}
-                  src={Logo}
-                />
-              </div> */}
               <h3
                 style={{
-                  fontSize: "80px",
+                  fontSize: "clamp(50px, 5vw, 80px)",
                   textAlign: "left",
                 }}
                 className="d-flex align-self-center text-white"
@@ -85,7 +77,10 @@ export default function CarouselApp() {
               lg="6"
               className="d-flex justify-content-center"
             >
-              <Image src="https://www.flaticon.com/svg/static/icons/svg/3004/3004164.svg" />
+              <Image
+                width="400vw"
+                src="https://www.flaticon.com/svg/static/icons/svg/3004/3004164.svg"
+              />
             </Col>
             <Col
               xs="12"
@@ -96,7 +91,7 @@ export default function CarouselApp() {
             >
               <h3
                 style={{
-                  fontSize: "80px",
+                  fontSize: "clamp(50px, 5vw, 80px)",
                   textAlign: "left",
                 }}
                 className="d-flex align-self-center text-white"
@@ -132,7 +127,10 @@ export default function CarouselApp() {
               lg="6"
               className="d-flex justify-content-center"
             >
-              <Image src="https://www.flaticon.com/svg/static/icons/svg/2942/2942269.svg" />
+              <Image
+                width="400vw"
+                src="https://www.flaticon.com/svg/static/icons/svg/2942/2942269.svg"
+              />
             </Col>
             <Col
               xs="12"
@@ -143,7 +141,7 @@ export default function CarouselApp() {
             >
               <h3
                 style={{
-                  fontSize: "80px",
+                  fontSize: "clamp(50px, 5vw, 80px)",
                   textAlign: "left",
                 }}
                 className="d-flex align-self-center text-white"

@@ -41,24 +41,27 @@ class HeaderCarousel extends Component {
           }}
           collapseOnSelect
           expand="lg"
-          className="d-flex justify-content-between"
+          className="d-flex justify-content-between mb-4"
         >
           <Navbar.Brand href="/dashboard">
             <img
-              height="140"
-              className="d-inline-block align-top mt-4 mb-4 ml-4"
+              width="190vw"
+              className="d-inline-block align-top mt-4 mb-4"
               src={Logo}
             />
           </Navbar.Brand>
           {localStorage.getItem("userId") ? (
             <Button
               variant="outlined"
-              className="text-white mt-4 mb-4 mr-4"
+              className="text-white mt-4 mb-4"
               style={{ border: "solid 1px white" }}
               type="submit"
               href="/dashboard"
             >
-              <h3 className="my-auto">
+              <h3
+                className="my-auto"
+                style={{ fontSize: "clamp(16px, 5vw, 30px)" }}
+              >
                 <b>Dashboard</b>
               </h3>
             </Button>
