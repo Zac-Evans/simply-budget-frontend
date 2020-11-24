@@ -9,16 +9,14 @@ import HeaderCarousel from "./HeaderCarousel";
 
 export default function CarouselApp() {
   return (
-    <div style={{ backgroundColor: "#47753e" }} className="vh-100">
+    <div style={{ backgroundColor: "#47753e" }}>
       <HeaderCarousel />
       <Carousel
         pause="hover"
         touch="true"
-        className="mx-auto"
+        className="mx-auto h-100"
         style={{
-          marginTop: "-100px",
           maxWidth: "1200px",
-          position: "relative",
         }}
       >
         <Carousel.Item className="p-4">
@@ -44,7 +42,7 @@ export default function CarouselApp() {
             >
               <h3
                 style={{
-                  fontSize: "clamp(50px, 5vw, 80px)",
+                  fontSize: "clamp(30px, 5vh, 80px)",
                   textAlign: "left",
                 }}
                 className="d-flex align-self-center text-white"
@@ -59,7 +57,10 @@ export default function CarouselApp() {
                 className="d-flex justify-content-center position-sticky m-4"
               >
                 <Button type="submit" variant="contained">
-                  <h3 className="d-flex my-auto">
+                  <h3
+                    className="d-flex my-auto"
+                    style={{ fontSize: "clamp(10px, 5vh, 30px)" }}
+                  >
                     <b>Get started</b>
                   </h3>
                 </Button>
@@ -91,7 +92,7 @@ export default function CarouselApp() {
             >
               <h3
                 style={{
-                  fontSize: "clamp(50px, 5vw, 80px)",
+                  fontSize: "clamp(30px, 5vh, 80px)",
                   textAlign: "left",
                 }}
                 className="d-flex align-self-center text-white"
@@ -106,7 +107,10 @@ export default function CarouselApp() {
                 className="d-flex justify-content-center position-sticky m-4"
               >
                 <Button type="submit" variant="contained">
-                  <h3 className="d-flex my-auto">
+                  <h3
+                    className="d-flex my-auto"
+                    style={{ fontSize: "clamp(10px, 5vh, 30px)" }}
+                  >
                     <b>Get started</b>
                   </h3>
                 </Button>
@@ -137,7 +141,7 @@ export default function CarouselApp() {
             >
               <h3
                 style={{
-                  fontSize: "clamp(50px, 5vw, 80px)",
+                  fontSize: "clamp(30px, 5vh, 80px)",
                   textAlign: "left",
                 }}
                 className="d-flex align-self-center text-white"
@@ -153,7 +157,10 @@ export default function CarouselApp() {
                 className="d-flex justify-content-center position-sticky m-4"
               >
                 <Button type="submit" variant="contained">
-                  <h3 className="d-flex my-auto">
+                  <h3
+                    className="d-flex my-auto"
+                    style={{ fontSize: "clamp (10px, 5vh, 30px)" }}
+                  >
                     <b>Get started</b>
                   </h3>
                 </Button>
