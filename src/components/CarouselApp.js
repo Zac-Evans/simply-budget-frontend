@@ -9,16 +9,16 @@ import HeaderCarousel from "./HeaderCarousel";
 
 export default function CarouselApp() {
   return (
-    <div>
+    <div style={{ backgroundColor: "#47753e" }}>
       <HeaderCarousel />
       <Carousel
         pause="hover"
         touch="true"
-        className="vh-100"
-        style={{ marginTop: "-214px" }}
+        className="vh-100 mx-auto"
+        style={{ marginTop: "-187px", maxWidth: "1200px" }}
       >
-        <Carousel.Item className="p-4">
-          <Row>
+        <Carousel.Item className="p-4 mt-4">
+          <Row style={{ marginTop: "90px" }}>
             <Col
               xs="12"
               sm="12"
@@ -27,7 +27,7 @@ export default function CarouselApp() {
               className="d-flex justify-content-center"
             >
               <Image
-                width="500vw"
+                fluid
                 src="https://www.flaticon.com/svg/static/icons/svg/2910/2910922.svg"
               />
             </Col>
@@ -69,7 +69,7 @@ export default function CarouselApp() {
           </Row>
         </Carousel.Item>
         <Carousel.Item className="p-4">
-          <Row>
+          <Row style={{ marginTop: "90px" }}>
             <Col
               xs="12"
               sm="12"
@@ -78,7 +78,7 @@ export default function CarouselApp() {
               className="d-flex justify-content-center"
             >
               <Image
-                width="400vw"
+                fluid
                 src="https://www.flaticon.com/svg/static/icons/svg/3004/3004164.svg"
               />
             </Col>
@@ -119,7 +119,7 @@ export default function CarouselApp() {
           </Row>
         </Carousel.Item>
         <Carousel.Item className="p-4">
-          <Row>
+          <Row style={{ marginTop: "90px" }}>
             <Col
               xs="12"
               sm="12"
@@ -128,7 +128,7 @@ export default function CarouselApp() {
               className="d-flex justify-content-center"
             >
               <Image
-                width="400vw"
+                fluid
                 src="https://www.flaticon.com/svg/static/icons/svg/2942/2942269.svg"
               />
             </Col>

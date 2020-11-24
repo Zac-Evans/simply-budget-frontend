@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
 import Logo from "../images/simply-logo-white.png";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
@@ -44,9 +44,10 @@ class HeaderCarousel extends Component {
           className="d-flex justify-content-between mb-4"
         >
           <Navbar.Brand href="/dashboard">
-            <img
-              width="190vw"
-              className="d-inline-block align-top mt-4 mb-4"
+            <Image
+              fluid
+              style={{ width: "30vw", maxWidth: "300px" }}
+              className="align-top mt-4 mb-4"
               src={Logo}
             />
           </Navbar.Brand>
