@@ -9,7 +9,10 @@ import HeaderCarousel from "./HeaderCarousel";
 
 export default function CarouselApp() {
   return (
-    <div style={{ backgroundColor: "#47753e" }} className="vh-100">
+    <div
+      style={{ backgroundColor: "#47753e" }}
+      className="d-flex flex-column vh-100"
+    >
       <HeaderCarousel />
       <Carousel
         pause="hover"
