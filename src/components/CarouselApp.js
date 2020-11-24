@@ -13,7 +13,7 @@ export default function CarouselApp() {
       style={{
         backgroundColor: "#47753e",
         width: "auto",
-        minHeight: "'100vh",
+        minHeight: "100vh",
       }}
       className="d-flex flex-column"
     >
@@ -24,7 +24,6 @@ export default function CarouselApp() {
         className="mx-auto"
         style={{
           maxWidth: "1600px",
-          marginTop: "-15vh",
           position: "fixed",
         }}
       >
