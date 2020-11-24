@@ -19,7 +19,7 @@ export default function CarouselApp() {
         touch="true"
         className="mx-auto h-100"
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1600px",
         }}
       >
         <Carousel.Item className="p-4">
