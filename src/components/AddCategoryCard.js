@@ -47,7 +47,7 @@ const AddCategoryCard = () => {
         <Card className="d-flex flex-column align-items-center">
           <CardContent className="d-flex flex-column align-items-center">
             <Typography variant="h5" component="h2">
-              Organize your budget
+              <b>Organize your budget</b>
             </Typography>
             <Typography className="text-center" color="textSecondary">
               Create categories for your monthly spending.
@@ -60,7 +60,7 @@ const AddCategoryCard = () => {
 
           <CardActions>
             <Button variant="contained" onClick={handleOpen}>
-              Create a new category
+              <b>Create a new category</b>
             </Button>
           </CardActions>
         </Card>

@@ -46,9 +46,6 @@ class PageHeader extends Component {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto ">
                 <Nav.Link className="text-light" href="/dashboard/categories">
-                  Categories
-                </Nav.Link>
-                <Nav.Link className="text-light" href="budgets">
                   Budgets
                 </Nav.Link>
                 <Nav.Link className="text-light" href="transactions">
@@ -58,24 +55,19 @@ class PageHeader extends Component {
               <NavDropdown
                 title={
                   <p style={{ color: "white", float: "left" }}>
-                    Hello, {this.props.user.first_name}
+                    <b>Hello, {this.props.user.first_name}!</b>
                   </p>
                 }
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
+                <NavDropdown.Item href="#edit-information">
+                  Edit my information
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#logout" onClick={this.logout}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav></Nav>
             </Navbar.Collapse>
           </Navbar>
         )}

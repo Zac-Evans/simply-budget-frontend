@@ -15,6 +15,8 @@ import MoneySpentRecentlyCard from "../MoneySpentRecentlyCard";
 import AddIcon from "@material-ui/icons/Add";
 import NewCategoryCircle from "../NewCategoryCircle";
 import TransactionList from "../TransactionList";
+import { Circle, Heart } from "react-spinners-css";
+import { Fade } from "react-awesome-reveal";
 
 class ProgressCirclesContainer extends Component {
   componentDidMount() {
@@ -45,7 +47,13 @@ class ProgressCirclesContainer extends Component {
 
     return (
       <div className="mb-4">
-        {addedRemainingBudget && (
+        {!addedRemainingBudget ? (
+          <div className="d-flex vh-100 align-items-center justify-content-center">
+            <Fade>
+              <Circle size={250} color="#47753e" />
+            </Fade>
+          </div>
+        ) : (
           <div>
             <TotalProgressBar
               totalBudget={addedBudget}
@@ -53,7 +61,7 @@ class ProgressCirclesContainer extends Component {
             />
             <Row className="d-flex justify-content-around">
               <AddPurchaseCard />
-              <MoneySpentRecentlyCard />
+              {/* <MoneySpentRecentlyCard /> */}
               <AddCategoryCard />
             </Row>
             {/* <div>
@@ -92,7 +100,6 @@ class ProgressCirclesContainer extends Component {
             </Paper>
           </div>
         )}
-        <TransactionList />
       </div>
     );
   }

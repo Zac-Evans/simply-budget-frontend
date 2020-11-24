@@ -21,7 +21,6 @@ import TrashIcon from "../images/trash-icon.svg";
 // the edit form
 import EditForm from "./EditForm";
 import DeleteForm from "./DeleteForm";
-
 // This is for the modal styling
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -36,11 +35,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
-
 const Categories = (props) => {
   // Modal styling
   const classes = useStyles();
-
   // Table styling
   const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -58,7 +55,6 @@ const Categories = (props) => {
       },
     },
   }))(TableRow);
-
   // Function to create table data
   function createData(id, categoryName, categoryBudget, budgetRemaining) {
     return {
@@ -68,7 +64,6 @@ const Categories = (props) => {
       budgetRemaining,
     };
   }
-
   const rows = props.categories.map((category) => {
     return createData(
       category.id,
@@ -77,33 +72,27 @@ const Categories = (props) => {
       category.budget_remaining
     );
   });
-
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const [categoryId, setCategoryId] = React.useState("");
-
   const handleClose = () => {
     setOpen(false);
     setOpen1(false);
   };
-
   window.onload = () => {
     const userId = localStorage.getItem("userId");
     props.fetchCategories(userId);
   };
-
   const edit = (e) => {
     e.preventDefault();
     setCategoryId(e.target.id);
     setOpen(true);
   };
-
   const deleteCat = (e) => {
     e.preventDefault();
     setCategoryId(e.target.id);
     setOpen1(true);
   };
-
   return (
     <div>
       <h1 className="text-center my-3">My Categories</h1>
@@ -167,7 +156,6 @@ const Categories = (props) => {
           <EditForm categoryId={categoryId} />
         </div>
       </Modal>
-
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -187,9 +175,7 @@ const Categories = (props) => {
     </div>
   );
 };
-
 const mapStateToProps = (state) => {
   return { categories: state.categories };
 };
-
 export default connect(mapStateToProps, { fetchCategories })(Categories);

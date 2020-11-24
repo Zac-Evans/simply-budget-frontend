@@ -45,7 +45,7 @@ const AddPurchaseCard = () => {
         <Card className="d-flex flex-column align-items-center">
           <CardContent className="d-flex flex-column align-items-center">
             <Typography variant="h5" component="h2">
-              Stay on track
+              <b>Stay on track</b>
             </Typography>
             <Typography className="text-center" color="textSecondary">
               Log your transactions throughout the month.
@@ -58,7 +58,7 @@ const AddPurchaseCard = () => {
 
           <CardActions>
             <Button variant="contained" onClick={handleOpen}>
-              Add a new transaction
+              <b>Add a new transaction</b>
             </Button>
           </CardActions>
         </Card>
