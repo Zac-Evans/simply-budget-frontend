@@ -53,15 +53,15 @@ const TotalBudgetProgressBar = (props) => {
                 now={progress.value}
                 label={
                   <Row
-                    className="d-flex justify-content-between position-absolute w-75 ml-4"
+                    className="d-flex justify-content-between position-absolute w-75 ml-"
                     style={{ maxWidth: "1150px" }}
                   >
-                    <Fade direction="left" delay="100" triggerOnce>
+                    <Fade direction="up" delay="100" triggerOnce>
                       <h4 style={fontSizer}>
                         <b>{Math.round(progress.value)}%</b>
                       </h4>
                     </Fade>
-                    <Fade direction="right" delay="150" triggerOnce>
+                    <Fade direction="up" delay="150" triggerOnce>
                       <h4 style={fontSizer}>
                         <b> ${props.budget_remaining} remaining</b>
                       </h4>

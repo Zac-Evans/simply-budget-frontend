@@ -36,9 +36,23 @@ class PageHeader extends Component {
           expand="lg"
           bg="dark"
         >
-          <Navbar.Brand href="/dashboard">
-            <img height="140" className="d-inline-block align-top" src={Logo} />
-          </Navbar.Brand>
+          {localStorage.getItem("userId") ? (
+            <Navbar.Brand href="/dashboard">
+              <img
+                height="140"
+                className="d-inline-block align-top"
+                src={Logo}
+              />
+            </Navbar.Brand>
+          ) : (
+            <Navbar.Brand href="/">
+              <img
+                height="140"
+                className="d-inline-block align-top"
+                src={Logo}
+              />
+            </Navbar.Brand>
+          )}
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav ">
             <Nav className="mr-auto ml-3">

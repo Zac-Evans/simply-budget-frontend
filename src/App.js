@@ -25,13 +25,32 @@ export default class App extends Component {
     if (!localStorage.getItem("userId")) {
       return (
         <div>
-          {window.location.pathname !== "/" && <Header />}
+          {window.location.pathname !== "/" &&
+            window.location.pathname !== "/login" && <Header />}
+
           <Router>
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/" component={CarouselApp} />
-              {/* <Redirect push to="/login" /> */}
+              <Route path="/income-setup">
+                <Redirect to="/login" />
+              </Route>
+              <Route path="/bill-setup">
+                <Redirect to="/login" />
+              </Route>
+              <Route path="/category-setup">
+                <Redirect to="/login" />
+              </Route>
+              <Route exact path="/dashboard">
+                <Redirect push to="/login" />
+              </Route>
+              <Route exact path="/dashboard/transactions">
+                <Redirect to="/login" />
+              </Route>
+              <Route exact path="/dashboard/categories">
+                <Redirect to="/login" />
+              </Route>
             </Switch>
           </Router>
         </div>

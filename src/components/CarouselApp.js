@@ -10,19 +10,25 @@ import HeaderCarousel from "./HeaderCarousel";
 export default function CarouselApp() {
   return (
     <div
-      style={{ backgroundColor: "#47753e" }}
-      className="d-flex flex-column vh-100"
+      style={{
+        backgroundColor: "#47753e",
+        width: "auto",
+        minHeight: "'100vh",
+      }}
+      className="d-flex flex-column"
     >
       <HeaderCarousel />
       <Carousel
         pause="hover"
         touch="true"
-        className="mx-auto h-100"
+        className="mx-auto"
         style={{
           maxWidth: "1600px",
+          marginTop: "-15vh",
+          position: "fixed",
         }}
       >
-        <Carousel.Item className="p-4">
+        <Carousel.Item className="">
           <Row>
             <Col
               xs="12"
@@ -55,10 +61,7 @@ export default function CarouselApp() {
               <h4 className="text-center text-white">
                 Make your budget and stick to it
               </h4>
-              <a
-                href="/login"
-                className="d-flex justify-content-center position-sticky m-4"
-              >
+              <a href="/login" className="d-flex justify-content-center  m-4">
                 <Button type="submit" variant="contained">
                   <h3
                     className="d-flex my-auto"
@@ -72,7 +75,7 @@ export default function CarouselApp() {
             </Col>
           </Row>
         </Carousel.Item>
-        <Carousel.Item className="p-4">
+        <Carousel.Item className="">
           <Row>
             <Col
               xs="12"
@@ -121,7 +124,7 @@ export default function CarouselApp() {
             </Col>
           </Row>
         </Carousel.Item>
-        <Carousel.Item className="p-4">
+        <Carousel.Item className="">
           <Row>
             <Col
               xs="12"
@@ -162,7 +165,7 @@ export default function CarouselApp() {
                 <Button type="submit" variant="contained">
                   <h3
                     className="d-flex my-auto"
-                    style={{ fontSize: "clamp (10px, 5vh, 30px)" }}
+                    style={{ fontSize: "clamp(10px, 5vh, 30px)" }}
                   >
                     <b>Get started</b>
                   </h3>

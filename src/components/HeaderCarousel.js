@@ -27,10 +27,9 @@ class HeaderCarousel extends Component {
     return (
       <div
         style={{
-          fontSize: "25px",
           backgroundColor: "#47753e",
           position: "relative",
-          zIndex: 100,
+          zIndex: "100",
         }}
       >
         <Navbar
@@ -43,13 +42,13 @@ class HeaderCarousel extends Component {
           expand="lg"
           className="d-flex justify-content-between "
         >
-          <Navbar.Brand href="/dashboard">
-            <Image width="150px" className="align-top mt-4" src={Logo} />
+          <Navbar.Brand>
+            <Image width="150px" className="align-top" src={Logo} />
           </Navbar.Brand>
           {localStorage.getItem("userId") ? (
             <Button
               variant="outlined"
-              className="text-white mt-4 "
+              className="text-white"
               style={{ border: "solid 1px white" }}
               type="submit"
               href="/dashboard"
@@ -64,12 +63,15 @@ class HeaderCarousel extends Component {
           ) : (
             <Button
               variant="outlined"
-              className="text-white mt-4 mb-4 mr-4"
+              className="text-white"
               style={{ border: "solid 1px white" }}
               type="submit"
               href="/login"
             >
-              <h3 className="my-auto">
+              <h3
+                className="my-auto"
+                style={{ fontSize: "clamp(16px, 5vw, 30px)" }}
+              >
                 <b>Login</b>
               </h3>
             </Button>

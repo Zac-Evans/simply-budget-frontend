@@ -53,7 +53,7 @@ class ProgressCirclesContainer extends Component {
             style={{ marginTop: "-190px" }}
           >
             <Fade>
-              <Circle size={250} color="#47753e" />
+              <Circle size={150} color="#47753e" />
             </Fade>
           </div>
         ) : (

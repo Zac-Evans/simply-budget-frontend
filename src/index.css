@@ -22,10 +22,11 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+
   background-color: rgb(0, 0, 0, 0);
 }
 
-.footer,
+/* .footer,
 .push {
   line-height: 1.5;
-}
+} */
