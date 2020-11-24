@@ -4,6 +4,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import Logo from "../images/simply-logo-white.png";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
+import { Button } from "@material-ui/core";
 
 // Todo: Login/Logout Button
 // Navigation Links
@@ -24,34 +25,45 @@ class PageHeader extends Component {
   };
   render() {
     return (
-      <div>
-        {this.props.user && (
-          <Navbar
-            style={{
-              fontSize: "25px",
-              backgroundColor: "#264653 ",
-            }}
-            collapseOnSelect
-            expand="lg"
-            bg="dark"
-          >
-            <Navbar.Brand href="/dashboard">
-              <img
-                height="140"
-                className="d-inline-block align-top"
-                src={Logo}
-              />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav ">
-              <Nav className="mr-auto ml-3">
-                <Nav.Link className="text-light" href="/dashboard/categories">
-                  Budgets
-                </Nav.Link>
-                <Nav.Link className="text-light" href="transactions">
-                  Transactions
-                </Nav.Link>
-              </Nav>
+      <div className="w-100">
+        <Navbar
+          style={{
+            fontSize: "25px",
+            backgroundColor: "#264653 ",
+            position: "relative",
+          }}
+          collapseOnSelect
+          expand="lg"
+          bg="dark"
+        >
+          <Navbar.Brand href="/dashboard">
+            <img height="140" className="d-inline-block align-top" src={Logo} />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav ">
+            <Nav className="mr-auto ml-3">
+              <Nav.Link className="my-auto" href="/dashboard">
+                <Button
+                  style={{
+                    color: "white",
+                    border: "2px solid #47753e",
+                    backgroundColor: "rgb(71, 117, 62, .5)",
+                    textTransform: "capitalize",
+                  }}
+                  variant="outlined"
+                >
+                  <h4 className="my-auto">Dashboard</h4>
+                </Button>
+              </Nav.Link>
+              <Nav.Link className="text-light" href="/dashboard/categories">
+                Budgets
+              </Nav.Link>
+              <Nav.Link className="text-light" href="/dashboard/transactions">
+                Transactions
+              </Nav.Link>
+            </Nav>
+
+            {this.props.user && (
               <NavDropdown
                 title={
                   <p style={{ color: "white", float: "left" }}>
@@ -68,9 +80,9 @@ class PageHeader extends Component {
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
-            </Navbar.Collapse>
-          </Navbar>
-        )}
+            )}
+          </Navbar.Collapse>
+        </Navbar>
       </div>
     );
   }

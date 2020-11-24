@@ -46,9 +46,12 @@ class ProgressCirclesContainer extends Component {
     };
 
     return (
-      <div className="mb-4">
+      <div className=" m-0 p-0 w-100">
         {!addedRemainingBudget ? (
-          <div className="d-flex vh-100 align-items-center justify-content-center">
+          <div
+            className="d-flex vh-100 align-items-center justify-content-center"
+            style={{ marginTop: "-190px" }}
+          >
             <Fade>
               <Circle size={250} color="#47753e" />
             </Fade>

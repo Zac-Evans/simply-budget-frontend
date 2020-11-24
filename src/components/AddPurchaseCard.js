@@ -41,28 +41,30 @@ const AddPurchaseCard = () => {
   };
   return (
     <div className="d-flex justify-content-center m-4">
-      <a>
-        <Card className="d-flex flex-column align-items-center">
-          <CardContent className="d-flex flex-column align-items-center">
-            <Typography variant="h5" component="h2">
-              <b>Stay on track</b>
-            </Typography>
-            <Typography className="text-center" color="textSecondary">
-              Log your transactions throughout the month.
-            </Typography>
-            <img
-              src="https://img.icons8.com/cute-clipart/200/000000/money.png"
-              width="100px"
-            />
-          </CardContent>
+      <Card className="d-flex flex-column align-items-center">
+        <CardContent
+          className="d-flex flex-column align-items-center"
+          onClick={handleOpen}
+        >
+          <Typography variant="h5" component="h2">
+            <b>Stay on track</b>
+          </Typography>
+          <Typography className="text-center" color="textSecondary">
+            Log your transactions throughout the month.
+          </Typography>
+          <img
+            src="https://img.icons8.com/cute-clipart/200/000000/money.png"
+            width="100px"
+          />
+        </CardContent>
 
-          <CardActions>
-            <Button variant="contained" onClick={handleOpen}>
-              <b>Add a new transaction</b>
-            </Button>
-          </CardActions>
-        </Card>
-      </a>
+        <CardActions>
+          <Button variant="contained" onClick={handleOpen}>
+            <b>Add a new transaction</b>
+          </Button>
+        </CardActions>
+      </Card>
+
       {/* <Fade> */}
       <Modal
         aria-labelledby="spring-modal-title"

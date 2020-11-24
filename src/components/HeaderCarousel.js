@@ -51,29 +51,29 @@ class HeaderCarousel extends Component {
             />
           </Navbar.Brand>
           {localStorage.getItem("userId") ? (
-            <a href="/dashboard">
-              <Button
-                variant="outlined"
-                className="text-white mt-4 mb-4 mr-4"
-                style={{ border: "solid 1px white" }}
-              >
-                <h3 className="my-auto">
-                  <b>Dashboard</b>
-                </h3>
-              </Button>
-            </a>
+            <Button
+              variant="outlined"
+              className="text-white mt-4 mb-4 mr-4"
+              style={{ border: "solid 1px white" }}
+              type="submit"
+              href="/dashboard"
+            >
+              <h3 className="my-auto">
+                <b>Dashboard</b>
+              </h3>
+            </Button>
           ) : (
-            <a href="/login">
-              <Button
-                variant="outlined"
-                className="text-white mt-4 mb-4 mr-4"
-                style={{ border: "solid 1px white" }}
-              >
-                <h3 className="my-auto">
-                  <b>Login</b>
-                </h3>
-              </Button>
-            </a>
+            <Button
+              variant="outlined"
+              className="text-white mt-4 mb-4 mr-4"
+              style={{ border: "solid 1px white" }}
+              type="submit"
+              href="/login"
+            >
+              <h3 className="my-auto">
+                <b>Login</b>
+              </h3>
+            </Button>
           )}
         </Navbar>
       </div>

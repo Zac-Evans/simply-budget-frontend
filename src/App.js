@@ -25,7 +25,7 @@ export default class App extends Component {
     if (!localStorage.getItem("userId")) {
       return (
         <div>
-          <Header />
+          {window.location.pathname !== "/" && <Header />}
           <Router>
             <Switch>
               <Route exact path="/register" component={Register} />
@@ -39,7 +39,8 @@ export default class App extends Component {
     }
     return (
       <div>
-        <Header />
+        {window.location.pathname !== "/" && <Header />}
+
         <Router>
           <Switch>
             <Route exact path="/" component={CarouselApp} />
@@ -49,7 +50,11 @@ export default class App extends Component {
             <Route path="/bill-setup" component={Bill_Setup} />
             <Route path="/category-setup" component={Category_Setup} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route path="/transactions" component={TransactionList} />
+            <Route
+              exact
+              path="/dashboard/transactions"
+              component={TransactionList}
+            />
             <Route exact path="/dashboard/categories" component={Categories} />
           </Switch>
         </Router>

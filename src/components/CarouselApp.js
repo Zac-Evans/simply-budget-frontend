@@ -15,7 +15,7 @@ export default function CarouselApp() {
         pause="hover"
         touch="true"
         className="vh-100"
-        style={{ marginTop: "-166px" }}
+        style={{ marginTop: "-214px" }}
       >
         <Carousel.Item className="p-4">
           <Row>
@@ -67,9 +67,9 @@ export default function CarouselApp() {
                   variant="contained"
                   className="position-fixed "
                 >
-                  <h3 className="d-flex my-auto">
+                  <h2 className="d-flex my-auto">
                     <b>Get started</b>
-                  </h3>
+                  </h2>
                 </Button>
               </a>
               {/* </Carousel.Caption> */}
@@ -115,9 +115,9 @@ export default function CarouselApp() {
                   variant="contained"
                   className="position-fixed "
                 >
-                  <h3 className="d-flex my-auto">
+                  <h2 className="d-flex my-auto">
                     <b>Get started</b>
-                  </h3>
+                  </h2>
                 </Button>
               </a>
             </Col>

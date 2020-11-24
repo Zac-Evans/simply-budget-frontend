@@ -15,7 +15,7 @@ const TotalBudgetProgressBar = (props) => {
     <div>
       <div className="ml-4 mr-4 mt-1 mb-1">
         <h1 className="text-center m-4" style={{ fontSize: "80px" }}>
-          <Fade direction="up">
+          <Fade direction="up" triggerOnce>
             <b>{DateTime.local().monthLong}</b>
           </Fade>
         </h1>
