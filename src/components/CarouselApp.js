@@ -25,7 +25,7 @@ export default function CarouselApp() {
         style={{
           maxWidth: "1600px",
          marginTop: "-15vh",
-         /* position: "fixed",*/
+         position: "fixed",
         }}
       >
         <Carousel.Item className="">
