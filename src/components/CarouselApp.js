@@ -24,7 +24,7 @@ export default function CarouselApp() {
         className="mx-auto"
         style={{
           maxWidth: "1600px",
-          marginTop: "-15vh",
+
           position: "fixed",
         }}
       >
