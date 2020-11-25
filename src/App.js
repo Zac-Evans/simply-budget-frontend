@@ -17,7 +17,8 @@ import Header from "./components/Header";
 import { Container } from "@material-ui/core";
 import "./css/App.css";
 import TransactionList from "./components/TransactionList";
-import CarouselApp from "./components/CarouselApp";
+import Carouselapp from "./components/Carousel";
+import Account from "./components/loginComponents/Account";
 import Categories from "./components/Categories";
 
 export default class App extends Component {
@@ -68,6 +69,7 @@ export default class App extends Component {
             <Route path="/income-setup" component={Income_Setup} />
             <Route path="/bill-setup" component={Bill_Setup} />
             <Route path="/category-setup" component={Category_Setup} />
+            <Route path="/dashboard/account" component={Account} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route
               exact
