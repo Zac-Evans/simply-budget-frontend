@@ -26,11 +26,6 @@ export default class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleChange = (e) => {
-    e.preventDefault();
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
   // This handles the form submit
   handleSubmit = (e) => {
     e.preventDefault();

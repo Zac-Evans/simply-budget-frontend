@@ -65,7 +65,7 @@ export default class Register extends Component {
     }
 
     if (this.state.loggedIn) {
-      return <Redirect push to="/income-setup" />;
+      window.location.href = "/income-setup";
     }
 
     return (

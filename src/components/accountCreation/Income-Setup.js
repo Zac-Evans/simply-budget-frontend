@@ -45,7 +45,7 @@ export default class IncomeSetup extends Component {
 
   render() {
     if (this.state.next) {
-      return <Redirect push to="/bill-setup" />;
+      return <Redirect push to="/category-setup" />;
     }
     if (this.state.show) {
       return (
