@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  CircularProgressbar,
-  CircularProgressbarWithChildren,
-  buildStyles,
-} from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-// Animation
 import { easeQuadInOut } from "d3-ease";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import ChangingProgressProvider from "./ChangingProgressProvider";
+
 import { Col } from "react-bootstrap";
 import ProgressInfoBox from "./ProgressInfoBox";
 import { fadeInUp } from "react-animations";

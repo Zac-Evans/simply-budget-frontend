@@ -12,9 +12,10 @@ export default function CarouselApp() {
     <div
       style={{
         backgroundColor: "#47753e",
-        width: "auto",
+        width: "100vw",
+        position: "fixed",
       }}
-      className="d-flex flex-column  vh-100"
+      className="d-flex flex-column vh-100"
     >
       <HeaderCarousel />
 
@@ -24,6 +25,7 @@ export default function CarouselApp() {
         className="mx-auto"
         style={{
           maxWidth: "1600px",
+          marginTop: "-20vh",
         }}
       >
         <Carousel.Item className="">
