@@ -1,4 +1,30 @@
-# Getting Started with Create React App
+# Simply Budget
+
+## Motivation
+
+> “We must consult our means rather than our wishes.” ― George Washington
+
+We wanted to make a  budgeting app that stores user data online and can be accessed anywhere. It would also be user friendly and easy to read. Users can create an account, add transactions and budgets and keep track of their spending month to month. This app was created as a part of the DigitalCrafts 26 week Flex full stack program. The capstone project of the course which required us to use a full stack of front end, back end, and database technologies.
+
+
+# Screenshots
+Screenshot of Simply Budget Dashboard
+
+# Tech/framework used
+Front end - React with bootstrap, router
+
+Back End - Node.js, PostgreSQL, express, netlify
+
+# Features
+Create an account and keep your budgets safe wherever you go
+Add budgets and transactions to visualize your spending
+spending circles help visualize how much you have left to spend in your monthly budget
+
+# Code Example
+ 
+
+# Installation
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +94,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Credits
+David Sullivan 
+Spencer Forman 
+Zac Evans 
+
+
