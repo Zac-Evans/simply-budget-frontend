@@ -1,10 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Carousel, Col, Container, Image, Row } from "react-bootstrap";
+import { Carousel, Col, Image, Row } from "react-bootstrap";
 import "../index.css";
 import { Button } from "@material-ui/core";
-import Logo from "../images/simply-logo-white.png";
-import Header from "./Header";
 import HeaderCarousel from "./HeaderCarousel";
 
 export default function CarouselApp() {
