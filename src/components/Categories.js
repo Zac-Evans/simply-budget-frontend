@@ -99,105 +99,107 @@ const Categories = (props) => {
   };
   return (
     <div>
-      {!props.categories[0] ? (
-        <div
-          className="d-flex vh-100 align-items-center justify-content-center"
-          style={{ marginTop: "-190px" }}
-        >
-          <Fade>
-            <Circle size={250} color="#47753e" />
-          </Fade>
-        </div>
-      ) : (
-        <div>
-          <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
-            My budgets
-          </h1>
-          <TableContainer
-            style={{ maxWidth: "700px", margin: "auto" }}
-            className="mt-3"
-            component={Paper}
+      <TableContainer component={Paper}>
+        {!props.categories[0] ? (
+          <div
+            className="d-flex vh-100 align-items-center justify-content-center"
+            style={{ marginTop: "-190px" }}
           >
-            <Table aria-label="customized table">
-              <TableHead>
-                <TableRow style={{ backgroundColor: "#264653" }}>
-                  <StyledTableCell align="left">Category</StyledTableCell>
-                  <StyledTableCell align="center">Budget</StyledTableCell>
-                  <StyledTableCell align="center">
-                    Remaining Budget
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    Edit/Remove Budget
-                  </StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <StyledTableRow key={row.id}>
-                    <StyledTableCell align="left">
-                      {row.categoryName}
+            <Fade>
+              <Circle size={250} color="#47753e" />
+            </Fade>
+          </div>
+        ) : (
+          <div>
+            <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
+              My budgets
+            </h1>
+            <TableContainer
+              style={{ maxWidth: "700px", margin: "auto" }}
+              className="mt-3"
+              component={Paper}
+            >
+              <Table aria-label="customized table">
+                <TableHead>
+                  <TableRow style={{ backgroundColor: "#264653" }}>
+                    <StyledTableCell align="left">Category</StyledTableCell>
+                    <StyledTableCell align="center">Budget</StyledTableCell>
+                    <StyledTableCell align="center">
+                      Remaining Budget
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      {row.categoryBudget}
+                      Edit/Remove Budget
                     </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {row.budgetRemaining}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Button onClick={edit}>
-                        <img src={EditIcon} id={row.id} />
-                      </Button>
-                      <Button onClick={deleteCat}>
-                        <img
-                          id={row.id}
-                          style={{
-                            width: "32px",
-                            height: "32px",
-                            margin: "auto",
-                          }}
-                          src={TrashIcon}
-                        />
-                      </Button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <Modal
-            aria-labelledby="spring-modal-title"
-            aria-describedby="spring-modal-description"
-            className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <div className={classes.paper}>
-              <EditForm categoryId={categoryId} />
-            </div>
-          </Modal>
-          <Modal
-            aria-labelledby="spring-modal-title"
-            aria-describedby="spring-modal-description"
-            className={classes.modal}
-            open={open1}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <div className={classes.paper}>
-              <DeleteForm categoryId={categoryId} />
-            </div>
-          </Modal>
-        </div>
-      )}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <StyledTableRow key={row.id}>
+                      <StyledTableCell align="left">
+                        {row.categoryName}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {row.categoryBudget}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {row.budgetRemaining}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Button onClick={edit}>
+                          <img src={EditIcon} id={row.id} />
+                        </Button>
+                        <Button onClick={deleteCat}>
+                          <img
+                            id={row.id}
+                            style={{
+                              width: "32px",
+                              height: "32px",
+                              margin: "auto",
+                            }}
+                            src={TrashIcon}
+                          />
+                        </Button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <Modal
+              aria-labelledby="spring-modal-title"
+              aria-describedby="spring-modal-description"
+              className={classes.modal}
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <div className={classes.paper}>
+                <EditForm categoryId={categoryId} />
+              </div>
+            </Modal>
+            <Modal
+              aria-labelledby="spring-modal-title"
+              aria-describedby="spring-modal-description"
+              className={classes.modal}
+              open={open1}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <div className={classes.paper}>
+                <DeleteForm categoryId={categoryId} />
+              </div>
+            </Modal>
+          </div>
+        )}
+      </TableContainer>
     </div>
   );
 };

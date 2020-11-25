@@ -68,7 +68,7 @@ export default class Login extends Component {
     return (
       <div
         style={{
-          paddingTop: "10%",
+          paddingTop: "2%",
           backgroundColor: "rgb(71, 117, 62)",
           minHeight: "100vh",
         }}
@@ -172,5 +172,6 @@ const divStyle = {
   height: "60vh",
   maxHeight: "400px",
   maxWidth: "600px",
+  minHeight: "300px",
   backgroundColor: "white",
 };

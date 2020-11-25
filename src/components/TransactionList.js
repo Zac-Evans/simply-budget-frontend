@@ -12,24 +12,15 @@ import { fetchPurchasesWithCategory } from "../actions";
 import { DateTime } from "luxon";
 import { Fade } from "react-awesome-reveal";
 import { Circle } from "react-spinners-css";
-
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
+import Button from "@material-ui/core/Button";
+// The icons
+import EditIcon from "../images/edit-icon.png";
+import TrashIcon from "../images/trash-icon.svg";
+// the edit form
+import EditForm from "./EditForm";
+import DeleteForm from "./DeleteForm";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
 
 function createData(
   id,
@@ -54,6 +45,12 @@ function createData(
 }
 
 class TransactionList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { open: false, open1: false };
+  }
+
   componentDidMount() {
     const userId = localStorage.getItem("userId");
     this.props.fetchPurchasesWithCategory(userId);
@@ -80,14 +77,33 @@ class TransactionList extends Component {
     });
     const thisMonthTransactions = [];
     for (let i = 0; i < rows.length; i++) {
-      if (rows[i].purchaseMonth == DateTime.local().month - 1) {
+      if (rows[i].purchaseMonth === DateTime.local().month - 1) {
         thisMonthTransactions.push(rows[i]);
       }
     }
+    const edit = (e) => {
+      e.preventDefault();
+
+      this.setState({ open: true });
+    };
+    const deleteCat = (e) => {
+      e.preventDefault();
+
+      this.setState({ open1: true });
+    };
+    const handleClose = () => {
+      this.setState({ open: false, open1: false });
+    };
+
+    const headerStyle = {
+      backgroundColor: "rgb(48,48,48)",
+      height: "10px",
+      color: "white",
+    };
 
     console.log(thisMonthTransactions);
     return (
-      <TableContainer component={Paper}>
+      <TableContainer>
         {!this.props.purchases[0] ? (
           <div className="d-flex vh-100 align-items-center justify-content-center">
             <Fade>
@@ -99,41 +115,95 @@ class TransactionList extends Component {
             </Fade>
           </div>
         ) : (
-          <Table aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="left">Date</StyledTableCell>
-                <StyledTableCell align="left">Transaction</StyledTableCell>
-                <StyledTableCell align="left">Notes</StyledTableCell>
-                <StyledTableCell align="center">Amount</StyledTableCell>
-                <StyledTableCell align="left">Category</StyledTableCell>
+          <div>
+            <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
+              My Purchases
+            </h1>
+            <Paper
+              style={{
+                border: "2px solid #000",
+                margin: "auto",
+              }}
+            >
+              <Table aria-label="customized table">
+                <TableHead>
+                  <TableRow style={{ backgroundColor: "#264653" }}>
+                    <TableCell style={headerStyle}>Date</TableCell>
+                    <TableCell style={headerStyle}>Transaction</TableCell>
+                    <TableCell style={headerStyle}>Notes</TableCell>
+                    <TableCell style={headerStyle}>Amount</TableCell>
+                    <TableCell style={headerStyle}>Category</TableCell>
 
-                <StyledTableCell align="right">
-                  Remaining Budget
-                </StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {thisMonthTransactions.map((row) => (
-                <StyledTableRow key={row.id}>
-                  <StyledTableCell component="th" scope="row" align="left">
-                    {row.date}
-                  </StyledTableCell>
-                  <StyledTableCell>{row.transactionName}</StyledTableCell>
-                  <StyledTableCell>{row.notes}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    {row.transactionAmount}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {row.budgetCategory}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.budgetRemaining}
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
+                    <TableCell style={headerStyle}>Remaining</TableCell>
+                    <TableCell style={headerStyle} align="center">
+                      Edit/Delete
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {thisMonthTransactions.map((row) => (
+                    <TableRow key={row.id}>
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell>{row.transactionName}</TableCell>
+                      <TableCell>{row.notes}</TableCell>
+                      <TableCell>{row.transactionAmount}</TableCell>
+                      <TableCell>{row.budgetCategory}</TableCell>
+                      <TableCell>{row.budgetRemaining}</TableCell>
+
+                      <TableCell align="center">
+                        <Button onClick={edit}>
+                          <img src={EditIcon} id={row.id} />
+                        </Button>
+                        <Button onClick={deleteCat}>
+                          <img
+                            id={row.id}
+                            style={{
+                              width: "32px",
+                              height: "32px",
+                              margin: "auto",
+                            }}
+                            src={TrashIcon}
+                          />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
+            <Modal
+              aria-labelledby="spring-modal-title"
+              aria-describedby="spring-modal-description"
+              // className={classes.modal}
+              open={this.state.open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <div>
+                <EditForm />
+              </div>
+            </Modal>
+            <Modal
+              aria-labelledby="spring-modal-title"
+              aria-describedby="spring-modal-description"
+              // className={classes.modal}
+              open={this.state.open1}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <div>
+                <DeleteForm />
+              </div>
+            </Modal>
+          </div>
         )}
       </TableContainer>
     );
