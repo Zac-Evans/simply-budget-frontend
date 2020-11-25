@@ -23,6 +23,7 @@ import EditForm from "./EditForm";
 import DeleteForm from "./DeleteForm";
 import { Fade } from "react-awesome-reveal";
 import { Circle } from "react-spinners-css";
+import IndividualBudgetProgressBar from "./ProgressCircle/IndividualBudgetProgressBar";
 
 // This is for the modal styling
 const useStyles = makeStyles((theme) => ({
@@ -97,6 +98,8 @@ const Categories = (props) => {
     setCategoryId(e.target.id);
     setOpen1(true);
   };
+
+  console.log(props.categories);
   return (
     <div>
       <TableContainer component={Paper}>
@@ -200,6 +203,17 @@ const Categories = (props) => {
           </div>
         )}
       </TableContainer>
+      <div>
+        {props.categories.map((category) => (
+          <IndividualBudgetProgressBar
+            key={category.id}
+            categoryId={category.id}
+            budget_remaining={category.budget_remaining}
+            category_budget={category.category_budget}
+            category_name={category.category_name}
+          />
+        ))}
+      </div>
     </div>
   );
 };

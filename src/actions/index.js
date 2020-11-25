@@ -56,6 +56,11 @@ export const fetchPurchases = (user_id) => async (dispatch) => {
   dispatch({ type: "FETCH_PURCHASES", payload: response.data });
 };
 
+export const fetchPurchase = (user_id, purchase_id) => async (dispatch) => {
+  const response = await API.get(`user/${user_id}/purchases/${purchase_id}`);
+  dispatch({ type: "FETCH_PURCHASE", payload: response.data });
+};
+
 // //Action creator
 // export const selectCategory = (category) => {
 //   //Return an action

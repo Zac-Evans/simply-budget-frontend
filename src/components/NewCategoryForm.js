@@ -105,7 +105,7 @@ class NewCategoryForm extends Component {
             className="m-2"
           />
           <Form.Row>
-            <Form.Group
+            {/* <Form.Group
               className="text-center"
               as={Col}
               controlId="formGridCategoryName"
@@ -126,14 +126,14 @@ class NewCategoryForm extends Component {
             </Form.Group>
             <h6 className="d-flex align-self-center m-2">
               <b>OR</b>
-            </h6>
+            </h6> */}
             <Form.Group
               className="text-center"
               as={Col}
               controlId="formGridCustomCategory"
             >
               <Form.Label>
-                <b>*Custom Category</b>
+                <b>*Category Name</b>
               </Form.Label>
               <Form.Control
                 value={this.state.category_name}

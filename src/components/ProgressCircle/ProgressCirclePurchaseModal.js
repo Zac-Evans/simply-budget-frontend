@@ -21,7 +21,6 @@ import EditForm from "./EditForm";
 import DeleteForm from "./DeleteForm";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
-import EditFormPurchases from "./EditFormPurchases";
 
 function createData(
   id,
@@ -49,7 +48,7 @@ class TransactionList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { open: false, open1: false, purchaseId: "" };
+    this.state = { open: false, open1: false };
   }
 
   componentDidMount() {
@@ -58,6 +57,8 @@ class TransactionList extends Component {
   }
 
   render() {
+    // console.log()
+    console.log(DateTime.local().month);
     const rows = this.props.purchases.map((purchase) => {
       let purchaseMonth = new Date(purchase.createdAt).getMonth();
       let purchaseDate = new Date(purchase.createdAt).toLocaleDateString(
@@ -83,12 +84,12 @@ class TransactionList extends Component {
     const edit = (e) => {
       e.preventDefault();
 
-      this.setState({ open: true, purchaseId: e.target.id });
+      this.setState({ open: true });
     };
     const deleteCat = (e) => {
       e.preventDefault();
 
-      this.setState({ open1: true, purchaseId: e.target.id });
+      this.setState({ open1: true });
     };
     const handleClose = () => {
       this.setState({ open: false, open1: false });
@@ -100,100 +101,111 @@ class TransactionList extends Component {
       color: "white",
     };
 
+    console.log(thisMonthTransactions);
     return (
       <TableContainer>
         {this.props.purchases[0] ? (
-          <div>
-            <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
-              My Purchases
-            </h1>
-            <Paper
-              style={{
-                border: "2px solid #000",
-                margin: "auto",
-                maxWidth: "900px",
-              }}
-            >
-              <Table aria-label="customized table">
-                <TableHead>
-                  <TableRow style={{ backgroundColor: "#264653" }}>
-                    <TableCell style={headerStyle}>Date</TableCell>
-                    <TableCell style={headerStyle}>Transaction</TableCell>
-                    <TableCell style={headerStyle}>Notes</TableCell>
-                    <TableCell style={headerStyle}>Amount</TableCell>
-                    <TableCell style={headerStyle}>Category</TableCell>
+          this.props.purchases[0] ? (
+            <div>
+              <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
+                My Purchases
+              </h1>
+              <Paper
+                style={{
+                  border: "2px solid #000",
+                  margin: "auto",
+                  maxWidth: "900px",
+                }}
+              >
+                <Table aria-label="customized table">
+                  <TableHead>
+                    <TableRow style={{ backgroundColor: "#264653" }}>
+                      <TableCell style={headerStyle}>Date</TableCell>
+                      <TableCell style={headerStyle}>Transaction</TableCell>
+                      <TableCell style={headerStyle}>Notes</TableCell>
+                      <TableCell style={headerStyle}>Amount</TableCell>
+                      <TableCell style={headerStyle}>Category</TableCell>
 
-                    <TableCell style={headerStyle}>Remaining</TableCell>
-                    <TableCell style={headerStyle} align="center">
-                      Edit/Delete
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {thisMonthTransactions.map((row) => (
-                    <TableRow key={row.id}>
-                      <TableCell>{row.date}</TableCell>
-                      <TableCell>{row.transactionName}</TableCell>
-                      <TableCell>{row.notes}</TableCell>
-                      <TableCell>{row.transactionAmount}</TableCell>
-                      <TableCell>{row.budgetCategory}</TableCell>
-                      <TableCell>{row.budgetRemaining}</TableCell>
-
-                      <TableCell align="center">
-                        <Button onClick={edit}>
-                          <img src={EditIcon} id={row.id} />
-                        </Button>
-                        <Button onClick={deleteCat}>
-                          <img
-                            id={row.id}
-                            style={{
-                              width: "32px",
-                              height: "32px",
-                              margin: "auto",
-                            }}
-                            src={TrashIcon}
-                          />
-                        </Button>
+                      <TableCell style={headerStyle}>Remaining</TableCell>
+                      <TableCell style={headerStyle} align="center">
+                        Edit/Delete
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Paper>
-            <Modal
-              className="d-flex justify-content-center align-items-center"
-              aria-labelledby="spring-modal-title"
-              aria-describedby="spring-modal-description"
-              // className={classes.modal}
-              open={this.state.open}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
+                  </TableHead>
+                  <TableBody>
+                    {thisMonthTransactions.map((row) => (
+                      <TableRow key={row.id}>
+                        <TableCell>{row.date}</TableCell>
+                        <TableCell>{row.transactionName}</TableCell>
+                        <TableCell>{row.notes}</TableCell>
+                        <TableCell>{row.transactionAmount}</TableCell>
+                        <TableCell>{row.budgetCategory}</TableCell>
+                        <TableCell>{row.budgetRemaining}</TableCell>
+
+                        <TableCell align="center">
+                          <Button onClick={edit}>
+                            <img src={EditIcon} id={row.id} />
+                          </Button>
+                          <Button onClick={deleteCat}>
+                            <img
+                              id={row.id}
+                              style={{
+                                width: "32px",
+                                height: "32px",
+                                margin: "auto",
+                              }}
+                              src={TrashIcon}
+                            />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Paper>
+              <Modal
+                aria-labelledby="spring-modal-title"
+                aria-describedby="spring-modal-description"
+                // className={classes.modal}
+                open={this.state.open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <div>
+                  <EditForm />
+                </div>
+              </Modal>
+              <Modal
+                aria-labelledby="spring-modal-title"
+                aria-describedby="spring-modal-description"
+                // className={classes.modal}
+                open={this.state.open1}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <div>
+                  <DeleteForm />
+                </div>
+              </Modal>
+            </div>
+          ) : (
+            <div
+              className="d-flex vh-100 align-items-center justify-content-center"
+              style={{ marginTop: "-190px" }}
             >
-              <div>
-                <EditFormPurchases purchaseId={this.state.purchaseId} />
-              </div>
-            </Modal>
-            <Modal
-              aria-labelledby="spring-modal-title"
-              aria-describedby="spring-modal-description"
-              // className={classes.modal}
-              open={this.state.open1}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <div>
-                <DeleteForm />
-              </div>
-            </Modal>
-          </div>
+              <Fade>
+                <Circle size={250} color="#47753e" />
+              </Fade>
+            </div>
+          )
         ) : (
           <div>
             <h1 className="text-center my-4" style={{ fontSize: "70px" }}>

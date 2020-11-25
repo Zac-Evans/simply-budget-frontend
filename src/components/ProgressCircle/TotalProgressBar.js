@@ -36,12 +36,32 @@ const TotalBudgetProgressBar = (props) => {
           {(progress) =>
             budgetPercentage > 100 ? (
               <div>
-                <h6>{progress.value}%</h6>
                 <ProgressBar
                   animated
-                  style={{ height: "70px", border: "2px solid black" }}
+                  style={{
+                    height: "70px",
+                    border: "2px solid black",
+                    minWidth: "300px",
+                  }}
                   variant="danger"
                   now={progress.value}
+                  label={
+                    <Row
+                      className="d-flex justify-content-between position-absolute w-75 ml-3"
+                      style={{ maxWidth: "1150px" }}
+                    >
+                      <Fade direction="up" delay="100" triggerOnce>
+                        <h4 style={fontSizer}>
+                          <b>{Math.round(progress.value)}%</b>
+                        </h4>
+                      </Fade>
+                      <Fade direction="up" delay="150" triggerOnce>
+                        <h4 style={fontSizer}>
+                          <b> ${props.budget_remaining} remaining</b>
+                        </h4>
+                      </Fade>
+                    </Row>
+                  }
                 />
               </div>
             ) : (
