@@ -11,13 +11,11 @@ import Register from "./components/loginComponents/Register";
 import Income_Setup from "./components/accountCreation/Income-Setup";
 import Bill_Setup from "./components/accountCreation/Bill-Setup";
 import Category_Setup from "./components/accountCreation/Category-Setup";
-import ProgressCirclesContainer from "./components/ProgressCircle/ProgressCirclesContainer";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
-import { Container } from "@material-ui/core";
 import "./css/App.css";
 import TransactionList from "./components/TransactionList";
-import Carouselapp from "./components/Carousel";
+import CarouselApp from "./components/CarouselApp";
 import Account from "./components/loginComponents/Account";
 import Categories from "./components/Categories";
 
