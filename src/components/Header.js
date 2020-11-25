@@ -4,6 +4,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import Logo from "../images/simply-logo-white.png";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
+import { Button } from "@material-ui/core";
 
 // Todo: Login/Logout Button
 // Navigation Links
@@ -18,19 +19,24 @@ class PageHeader extends Component {
 
     this.props.fetchUser(userId);
   }
+  logout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
   render() {
     return (
-      <div>
-        {this.props.user && (
-          <Navbar
-            style={{
-              fontSize: "25px",
-              backgroundColor: "#264653 ",
-            }}
-            collapseOnSelect
-            expand="lg"
-            bg="dark"
-          >
+      <div className="w-100">
+        <Navbar
+          style={{
+            fontSize: "25px",
+            backgroundColor: "#264653 ",
+            position: "relative",
+          }}
+          collapseOnSelect
+          expand="lg"
+          bg="dark"
+        >
+          {localStorage.getItem("userId") ? (
             <Navbar.Brand href="/dashboard">
               <img
                 height="140"
@@ -38,43 +44,59 @@ class PageHeader extends Component {
                 src={Logo}
               />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto ">
-                <Nav.Link className="text-light" href="categories">
-                  Categories
-                </Nav.Link>
-                <Nav.Link className="text-light" href="budgets">
-                  Budgets
-                </Nav.Link>
-                <Nav.Link className="text-light" href="transactions">
-                  Transactions
-                </Nav.Link>
-              </Nav>
+          ) : (
+            <Navbar.Brand href="/">
+              <img
+                height="140"
+                className="d-inline-block align-top"
+                src={Logo}
+              />
+            </Navbar.Brand>
+          )}
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav ">
+            <Nav className="mr-auto ml-3">
+              <Nav.Link className="my-auto" href="/dashboard">
+                <Button
+                  style={{
+                    color: "white",
+                    border: "2px solid #47753e",
+                    backgroundColor: "rgb(71, 117, 62, .5)",
+                    textTransform: "capitalize",
+                  }}
+                  variant="outlined"
+                >
+                  <h4 className="my-auto">Dashboard</h4>
+                </Button>
+              </Nav.Link>
+              <Nav.Link className="text-light" href="/dashboard/categories">
+                Budgets
+              </Nav.Link>
+              <Nav.Link className="text-light" href="/dashboard/transactions">
+                Transactions
+              </Nav.Link>
+            </Nav>
+
+            {this.props.user && (
               <NavDropdown
                 title={
                   <p style={{ color: "white", float: "left" }}>
-                    Hello, {this.props.user.first_name}
+                    <b>Hello, {this.props.user.first_name}!</b>
                   </p>
                 }
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
+                <NavDropdown.Item href="#edit-information">
+                  Edit my information
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
+                <NavDropdown.Item href="#logout" onClick={this.logout}>
+                  Logout
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav></Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        )}
+            )}
+          </Navbar.Collapse>
+        </Navbar>
       </div>
     );
   }

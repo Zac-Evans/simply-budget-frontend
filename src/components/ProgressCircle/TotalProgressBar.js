@@ -4,18 +4,27 @@ import { Col, ProgressBar, Row } from "react-bootstrap";
 import { Spring, config } from "react-spring/renderprops";
 import { connect } from "react-redux";
 import { Fade } from "react-awesome-reveal";
+import { DateTime } from "luxon";
 
 const TotalBudgetProgressBar = (props) => {
   const budgetSpent = props.totalBudget - props.budget_remaining;
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
-  const fontSizer = { fontSize: "calc(14px + 1vw)", color: "black" };
+  const fontSizer = { fontSize: "calc(16px + 1vw)", color: "black" };
 
   return (
     <div>
       <div className="ml-4 mr-4 mt-1 mb-1">
+        <h1 className="text-center m-4" style={{ fontSize: "6vw" }}>
+          <Fade direction="up" triggerOnce>
+            <b>{DateTime.local().monthLong}</b>
+          </Fade>
+        </h1>
+        <hr />
         <h2 className="text-center">
           Total monthly budget: ${props.totalBudget}
         </h2>
+        <p>Monthly Income</p>
+        <p>Monthly Spending</p>
         <Spring
           to={{ value: budgetPercentage.toFixed(0) }}
           from={{ value: 0 }}
@@ -44,15 +53,15 @@ const TotalBudgetProgressBar = (props) => {
                 now={progress.value}
                 label={
                   <Row
-                    className="d-flex justify-content-between position-absolute w-75 ml-2"
+                    className="d-flex justify-content-between position-absolute w-75 ml-"
                     style={{ maxWidth: "1150px" }}
                   >
-                    <Fade direction="left" delay="100">
+                    <Fade direction="up" delay="100" triggerOnce>
                       <h4 style={fontSizer}>
                         <b>{Math.round(progress.value)}%</b>
                       </h4>
                     </Fade>
-                    <Fade direction="right" delay="150">
+                    <Fade direction="up" delay="150" triggerOnce>
                       <h4 style={fontSizer}>
                         <b> ${props.budget_remaining} remaining</b>
                       </h4>

@@ -14,7 +14,7 @@ export default class CategorySetup extends Component {
     super();
     this.state = {
       category_name: "",
-      category_budget: "",
+      category_budget: "0",
       next: false,
       back: false,
       show: false,

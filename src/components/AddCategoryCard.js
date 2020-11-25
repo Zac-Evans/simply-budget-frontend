@@ -43,28 +43,30 @@ const AddCategoryCard = () => {
 
   return (
     <div className="d-flex justify-content-center m-4">
-      <a>
-        <Card className="d-flex flex-column align-items-center">
-          <CardContent className="d-flex flex-column align-items-center">
-            <Typography variant="h5" component="h2">
-              Organize your budget
-            </Typography>
-            <Typography className="text-center" color="textSecondary">
-              Create categories for your monthly spending.
-            </Typography>
-            <img
-              src="https://img.icons8.com/cute-clipart/200/000000/money-box.png"
-              width="100px"
-            />
-          </CardContent>
+      <Card className="d-flex flex-column align-items-center">
+        <CardContent
+          className="d-flex flex-column align-items-center"
+          onClick={handleOpen}
+        >
+          <Typography variant="h5" component="h2">
+            <b>Organize your budget</b>
+          </Typography>
+          <Typography className="text-center" color="textSecondary">
+            Create categories for your monthly spending.
+          </Typography>
+          <img
+            src="https://img.icons8.com/cute-clipart/200/000000/money-box.png"
+            width="100px"
+          />
+        </CardContent>
 
-          <CardActions>
-            <Button variant="contained" onClick={handleOpen}>
-              Create a new category
-            </Button>
-          </CardActions>
-        </Card>
-      </a>{" "}
+        <CardActions>
+          <Button variant="contained" onClick={handleOpen}>
+            <b>Create a new category</b>
+          </Button>
+        </CardActions>
+      </Card>
+
       {/* <Fade> */}
       <Modal
         aria-labelledby="spring-modal-title"

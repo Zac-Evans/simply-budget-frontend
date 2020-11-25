@@ -10,6 +10,8 @@ import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
 import { fetchPurchasesWithCategory } from "../actions";
 import { DateTime } from "luxon";
+import { Fade } from "react-awesome-reveal";
+import { Circle } from "react-spinners-css";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -86,7 +88,17 @@ class TransactionList extends Component {
     console.log(thisMonthTransactions);
     return (
       <TableContainer component={Paper}>
-        {this.props.purchases[0] && (
+        {!this.props.purchases[0] ? (
+          <div className="d-flex vh-100 align-items-center justify-content-center">
+            <Fade>
+              <Circle
+                size={250}
+                color="#47753e"
+                style={{ marginTop: "-190px" }}
+              />
+            </Fade>
+          </div>
+        ) : (
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>

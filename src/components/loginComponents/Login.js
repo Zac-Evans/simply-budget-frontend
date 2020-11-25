@@ -6,6 +6,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Logo from "../../images/simply-logo-white.png";
+import { clamp } from "lodash";
 
 export default class Login extends Component {
   constructor() {
@@ -24,6 +26,11 @@ export default class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  handleChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
   // This handles the form submit
   handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +43,7 @@ export default class Login extends Component {
       .then((res) => {
         this.setState({ loggedIn: true });
         localStorage.setItem("userId", res.data[0].id);
+        window.location.href = "/dashboard";
       })
       .catch(() => {
         this.setState({ show: true });
@@ -48,9 +56,6 @@ export default class Login extends Component {
   };
 
   render() {
-    if (this.state.loggedIn) {
-      return <Redirect push to="/dashboard" />;
-    }
     if (this.state.show) {
       return (
         <FailModal
@@ -62,29 +67,39 @@ export default class Login extends Component {
     }
     return (
       <div
-        className="vh-100"
         style={{
           paddingTop: "10%",
           backgroundColor: "rgb(71, 117, 62)",
+          minHeight: "100vh",
         }}
       >
-        <div style={divStyle} className="mx-auto">
-          <Form
-            className="mx-auto"
-            style={{ maxWidth: "400px" }}
-            onSubmit={this.handleSubmit}
-          >
-            <img
-              className="mb-2"
-              style={{ width: "75px", height: "75px", marginLeft: "38%" }}
-              src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/000/433/original/signin1.png?width=75"
-              alt="icon"
-            />
-            <p className="mb-4 text-center" style={{ fontSize: "30px" }}>
+        <div className="d-flex justify-content-around">
+          <Col>
+            <Link to="/">
+              <h5 className="text-white p-3">← Back</h5>
+            </Link>
+          </Col>
+          <Col className="d-flex justify-content-center">
+            <img height="80vh" className="mb-4" src={Logo} />
+          </Col>
+          <Col />
+        </div>
+
+        <div style={divStyle} className="mx-auto pb-4">
+          <Form className="mx-auto " onSubmit={this.handleSubmit}>
+            <div className="d-flex justify-content-center">
+              <img
+                style={{ height: "10vh", maxHeight: "70px" }}
+                src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/000/433/original/signin1.png?width=75"
+                alt="icon"
+              />
+            </div>
+            <p
+              className="mb-4 text-center"
+              style={{ fontSize: "clamp(16px,5vh,30px)" }}
+            >
               Login to your
-              <strong style={{ color: "rgb(71, 117, 62)" }}>
-                Simply Budget
-              </strong>
+              <b style={{ color: "rgb(71, 117, 62)" }}> Simply Budget </b>
               account
             </p>
             <Form.Group>
@@ -154,6 +169,8 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
-  maxWidth: "400px",
+  height: "60vh",
+  maxHeight: "400px",
+  maxWidth: "600px",
   backgroundColor: "white",
 };
