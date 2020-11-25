@@ -49,6 +49,9 @@ export default class App extends Component {
               <Route exact path="/dashboard/transactions">
                 <Redirect to="/login" />
               </Route>
+              <Route exact path="/dashboard/account">
+                <Redirect to="/login" />
+              </Route>
               <Route exact path="/dashboard/categories">
                 <Redirect to="/login" />
               </Route>
