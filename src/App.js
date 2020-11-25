@@ -11,13 +11,12 @@ import Register from "./components/loginComponents/Register";
 import Income_Setup from "./components/accountCreation/Income-Setup";
 import Bill_Setup from "./components/accountCreation/Bill-Setup";
 import Category_Setup from "./components/accountCreation/Category-Setup";
-import ProgressCirclesContainer from "./components/ProgressCircle/ProgressCirclesContainer";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
-import { Container } from "@material-ui/core";
 import "./css/App.css";
 import TransactionList from "./components/TransactionList";
 import CarouselApp from "./components/CarouselApp";
+import Account from "./components/loginComponents/Account";
 import Categories from "./components/Categories";
 
 export default class App extends Component {
@@ -48,6 +47,9 @@ export default class App extends Component {
               <Route exact path="/dashboard/transactions">
                 <Redirect to="/login" />
               </Route>
+              <Route exact path="/dashboard/account">
+                <Redirect to="/login" />
+              </Route>
               <Route exact path="/dashboard/categories">
                 <Redirect to="/login" />
               </Route>
@@ -68,6 +70,7 @@ export default class App extends Component {
             <Route path="/income-setup" component={Income_Setup} />
             <Route path="/bill-setup" component={Bill_Setup} />
             <Route path="/category-setup" component={Category_Setup} />
+            <Route path="/dashboard/account" component={Account} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route
               exact
