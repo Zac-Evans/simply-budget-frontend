@@ -86,8 +86,8 @@ class PageHeader extends Component {
                 }
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item href="#edit-information">
-                  Edit my information
+                <NavDropdown.Item href="/dashboard/account">
+                  Account Info
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#logout" onClick={this.logout}>

@@ -38,6 +38,7 @@ const AddPurchaseCard = () => {
 
   const handleClose = () => {
     setOpen(false);
+    window.location.reload();
   };
   return (
     <div className="d-flex justify-content-center m-4">
