@@ -40,7 +40,7 @@ class HeaderCarousel extends Component {
           }}
           collapseOnSelect
           expand="lg"
-          className="d-flex justify-content-between "
+          className="d-flex justify-content-between"
         >
           <Navbar.Brand>
             <Image width="150px" className="align-top" src={Logo} />
@@ -81,31 +81,7 @@ class HeaderCarousel extends Component {
     );
   }
 }
-// <div className="navbar navbar-expand-lg navbar-light bg-light ">
-//   <div className="flex-row d-flex justify-content-between align-items-center">
-//     <img src="https://www.freelogodesign.org/file/app/client/thumb/ffd6f41f-b835-40e8-aa8a-286a98d9f197_200x200.png?1605370896563"></img>
-//     <div className="align-center">
-//       <a className="navbar-brand" href="">
-//         Categories{" "}
-//       </a>
-//       <a className="navbar-brand" href="">
-//         Budgets{" "}
-//       </a>
-//       <a className="navbar-brand" href="">
-//         Purchases{" "}
-//       </a>
-//       <a className="navbar-brand" href="">
-//         User Settings{" "}
-//       </a>
-//     </div>
-
-//     <div>
-//       <a href="sign-in.html" class="btn btn-secondary sign-up-btn">
-//         Sign Out
-//       </a>
-//     </div>
-//   </div>
-// </div>
+//
 
 const mapStateToProps = (state) => {
   return { user: state.user[0] };

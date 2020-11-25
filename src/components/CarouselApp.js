@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Carousel, Col, Image, Row } from "react-bootstrap";
+import { Carousel, Col, Container, Image, Row } from "react-bootstrap";
 import "../index.css";
 import { Button } from "@material-ui/core";
 import Logo from "../images/simply-logo-white.png";
@@ -13,19 +13,17 @@ export default function CarouselApp() {
       style={{
         backgroundColor: "#47753e",
         width: "auto",
-        minHeight: "100vh",
       }}
-      className="d-flex flex-column"
+      className="d-flex flex-column  vh-100"
     >
       <HeaderCarousel />
+
       <Carousel
         pause="hover"
         touch="true"
-        className="mx-auto my-auto"
+        className="mx-auto"
         style={{
           maxWidth: "1600px",
-
-          position: "fixed",
         }}
       >
         <Carousel.Item className="">
