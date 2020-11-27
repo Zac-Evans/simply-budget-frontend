@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import { Button } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -108,7 +108,7 @@ class NewCategoryForm extends Component {
             width="100px"
             className="m-2"
           />
-          <Form.Row>
+          <Form.Row className="d-flex justify-content-center">
             {/* <Form.Group
               className="text-center"
               as={Col}
@@ -149,10 +149,10 @@ class NewCategoryForm extends Component {
             </Form.Group>
           </Form.Row>
           <hr />
-          <Form.Row className="d-flex justify-content-start">
+          <Form.Row className="d-flex justify-content-center">
             <Form.Group>
               <FontAwesomeIcon
-                className="text-center m-4"
+                className="text-center mr-2 mt-3"
                 style={{ fontSize: "60px" }}
                 icon={faCoffee}
               />
@@ -169,14 +169,24 @@ class NewCategoryForm extends Component {
               />
             </Form.Group>
           </Form.Row>
-
-          <Button
-            variant="contained"
-            type="submit"
-            onClick={this.handleCategorySubmit}
-          >
-            Create Budget Category
-          </Button>
+          <Row className="d-flex justify-content-center">
+            <Button
+              className="m-4"
+              variant="contained"
+              type="submit"
+              onClick={this.handleCategorySubmit}
+            >
+              Add
+            </Button>
+            <Button
+              className="m-4"
+              variant="contained"
+              type="submit"
+              color="secondary"
+            >
+              Cancel
+            </Button>
+          </Row>
           <p className="mt-3 mb-0">* required</p>
           {renderSnackBar()}
         </Form>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col, Tooltip, OverlayTrigger } from "react-bootstrap";
+import { Form, Col, Tooltip, OverlayTrigger, Row } from "react-bootstrap";
 import { Button } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -102,7 +102,12 @@ class NewPurchaseForm extends Component {
             price: "",
             purchase_notes: "",
           });
-        }, 3100);
+        }, 3500);
+      })
+      .then(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       })
 
       .catch((error) => {
@@ -193,7 +198,7 @@ class NewPurchaseForm extends Component {
               controlId="formGridCustomCategory"
             >
               <Form.Label>
-                <b>*Transaction Name</b>
+                <b>*Purchase</b>
               </Form.Label>
               <Form.Control
                 value={this.state.purchase_name}
@@ -205,31 +210,39 @@ class NewPurchaseForm extends Component {
             </Form.Group>
           </Form.Row>
           <hr />
-          <Form.Row className="d-flex justify-content-start">
-            <Form.Group>
+          <Form.Group>
+            <Row className="d-flex">
+              {/* <Form.Group>
               <FontAwesomeIcon
                 className="text-center m-4"
                 style={{ fontSize: "60px" }}
                 icon={faCoffee}
               />
-            </Form.Group>
+            </Form.Group> */}
 
-            <Form.Group controlId="formGridAddress1">
-              <Form.Label>
-                <b className="ml-3">*Amount</b>
-              </Form.Label>
-              <Form inline>
-                <Form.Label>$</Form.Label>
+              <Col className="col-3">
+                <b className="ml-3">*Amount:</b>
+              </Col>
+              <Col
+                className="text-right p-0 col-3 float-right align-text-bottom"
+                style={{
+                  marginRight: "-15px",
+                  marginBottom: "-35px",
+                }}
+              >
+                $
+              </Col>
+              <Col className="col-6">
                 <Form.Control
                   placeholder="20"
                   name="price"
-                  className="float-right"
+                  className="text-left m-0 p-0"
                   value={this.state.price}
                   onChange={this.handleChange}
                 />
-              </Form>
-            </Form.Group>
-          </Form.Row>
+              </Col>
+            </Row>
+          </Form.Group>
 
           <Form.Group
             style={{ width: "300px" }}
@@ -246,21 +259,26 @@ class NewPurchaseForm extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button
-            variant="contained"
-            type="button"
-            onClick={this.handlePurchaseSubmit}
-          >
-            Add Transaction
-          </Button>
-          {/* <Button
-            className="m-4"
-            variant="contained"
-            type="submit"
-            color="secondary"
-          >
-            Cancel
-          </Button> */}
+
+          <Form.Group className="d-flex justify-content-start">
+            <Button
+              variant="contained"
+              type="button"
+              className="m-4"
+              onClick={this.handlePurchaseSubmit}
+            >
+              Add
+            </Button>
+            <Button
+              className="m-4"
+              variant="contained"
+              type="submit"
+              color="secondary"
+            >
+              Cancel
+            </Button>
+          </Form.Group>
+
           <p className="mt-3 mb-0">* required</p>
           {renderSnackBar()}
         </Form>
