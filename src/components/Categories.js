@@ -21,9 +21,10 @@ import TrashIcon from "../images/trash-icon.svg";
 // the edit form
 import EditForm from "./EditForm";
 import DeleteForm from "./DeleteForm";
-import { Fade } from "react-awesome-reveal";
-import { Circle } from "react-spinners-css";
+// import { Fade } from "react-awesome-reveal";
+// import { Circle } from "react-spinners-css";
 import IndividualBudgetProgressBar from "./ProgressCircle/IndividualBudgetProgressBar";
+import NewCategoryCircle from "./NewCategoryCircle";
 
 // This is for the modal styling
 const useStyles = makeStyles((theme) => ({
@@ -99,20 +100,57 @@ const Categories = (props) => {
     setOpen1(true);
   };
 
-  console.log(props.categories);
   return (
     <div>
       <TableContainer component={Paper}>
         {!props.categories[0] ? (
-          <div
-            className="d-flex vh-100 align-items-center justify-content-center"
-            style={{ marginTop: "-190px" }}
-          >
-            <Fade>
-              <Circle size={250} color="#47753e" />
-            </Fade>
+          <div>
+            <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
+              My Budgets
+            </h1>
+            <Paper
+              style={{
+                border: "2px solid #000",
+                margin: "auto",
+                maxWidth: "900px",
+              }}
+            >
+              {" "}
+              <TableContainer
+                style={{ maxWidth: "700px", margin: "auto" }}
+                className="mt-3"
+                component={Paper}
+              >
+                <Table aria-label="customized table">
+                  <TableHead>
+                    <TableRow style={{ backgroundColor: "#264653" }}>
+                      <StyledTableCell align="left">Category</StyledTableCell>
+                      <StyledTableCell align="center">Budget</StyledTableCell>
+                      <StyledTableCell align="center">
+                        Remaining Budget
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        Edit/Remove Budget
+                      </StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                </Table>
+              </TableContainer>
+              <h1 className="text-center p-4">Nothing here!</h1>
+              <div className="d-flex justify-content-center">
+                <NewCategoryCircle />
+              </div>
+            </Paper>
           </div>
         ) : (
+          // <div
+          //   className="d-flex vh-100 align-items-center justify-content-center"
+          //   style={{ marginTop: "-190px" }}
+          // >
+          //   <Fade>
+          //     <Circle size={250} color="#47753e" />
+          //   </Fade>
+          // </div>
           <div>
             <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
               My budgets

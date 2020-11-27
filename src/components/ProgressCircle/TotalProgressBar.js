@@ -24,7 +24,7 @@ const TotalBudgetProgressBar = (props) => {
         </h1>
         <hr />
         <h2 className="text-center">
-          Total monthly budget: ${props.totalBudget}
+          Total monthly budget: ${props.totalBudget ? props.totalBudget : 0}
         </h2>
         <p>Monthly Income</p>
         <p>Monthly Spending</p>
@@ -81,12 +81,21 @@ const TotalBudgetProgressBar = (props) => {
                   >
                     <Fade direction="up" delay="100" triggerOnce>
                       <h4 style={fontSizer}>
-                        <b>{Math.round(progress.value)}%</b>
+                        <b>
+                          {Math.round(progress.value)
+                            ? Math.round(progress.value)
+                            : 0}
+                          %
+                        </b>
                       </h4>
                     </Fade>
                     <Fade direction="up" delay="150" triggerOnce>
                       <h4 style={fontSizer}>
-                        <b> ${props.budget_remaining} remaining</b>
+                        <b>
+                          {props.budget_remaining
+                            ? "$" + props.budget_remaining + " remaining"
+                            : ""}
+                        </b>
                       </h4>
                     </Fade>
                   </Row>

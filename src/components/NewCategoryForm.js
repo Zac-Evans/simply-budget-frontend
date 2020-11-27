@@ -32,6 +32,8 @@ class NewCategoryForm extends Component {
         this.setState({ Show: false, Showing: false });
       }, 2000);
     }
+    e.preventDefault();
+    console.log(this.state);
     axios
       .post(
         `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/create`,
@@ -41,7 +43,7 @@ class NewCategoryForm extends Component {
           budget_remaining: this.state.category_budget,
         }
       )
-      .then((response) => {
+      .then(() => {
         if (this.state.Showing) return;
 
         e.preventDefault();
@@ -61,19 +63,21 @@ class NewCategoryForm extends Component {
             price: "",
             purchase_notes: "",
           });
-        }, 3100).catch((error) => {
-          console.log(error);
-        });
+        }, 3500);
+      })
+      .then(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   render() {
     const renderSnackBar = () => {
-      if (
-        !this.state.category_name ||
-        !this.state.category_budget ||
-        !this.state.budget_remaining
-      ) {
+      if (!this.state.category_name || !this.state.category_budget) {
         return (
           <ReactSnackBar
             Icon={<span>🦄</span>}
@@ -90,7 +94,7 @@ class NewCategoryForm extends Component {
             value="Show"
             Show={this.state.Show}
           >
-            Transaction added!
+            Budget added!
           </ReactSnackBar>
         );
       }
@@ -98,7 +102,7 @@ class NewCategoryForm extends Component {
     return (
       <div>
         <Form className=" m-4 d-flex flex-column align-items-center">
-          <h3>Create New Category</h3>
+          <h3>Create New Budget</h3>
           <img
             src="https://img.icons8.com/cute-clipart/200/000000/money-box.png"
             width="100px"
@@ -133,14 +137,14 @@ class NewCategoryForm extends Component {
               controlId="formGridCustomCategory"
             >
               <Form.Label>
-                <b>*Category Name</b>
+                <b>*Budget Name</b>
               </Form.Label>
               <Form.Control
                 value={this.state.category_name}
                 onChange={this.handleChange}
                 type="text"
                 name="category_name"
-                placeholder="Clothes"
+                placeholder="Coffee"
               />
             </Form.Group>
           </Form.Row>
@@ -156,7 +160,7 @@ class NewCategoryForm extends Component {
 
             <Form.Group controlId="formGridAddress1">
               <Form.Label>
-                <b>*Monthly Budget</b>
+                <b>*Monthly Allowance</b>
               </Form.Label>
               <Form.Control
                 placeholder="$100"
@@ -171,7 +175,7 @@ class NewCategoryForm extends Component {
             type="submit"
             onClick={this.handleCategorySubmit}
           >
-            Create Category
+            Create Budget Category
           </Button>
           <p className="mt-3 mb-0">* required</p>
           {renderSnackBar()}

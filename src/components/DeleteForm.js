@@ -12,7 +12,7 @@ class DeleteForm extends Component {
         `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/category/${this.props.categoryId}`
       )
       .then((response) => console.log(response))
-      // .then(() => window.location.reload())
+      .then(() => window.location.reload())
       .catch((error) => console.log(error));
   };
   render() {
