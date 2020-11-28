@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import FailModal from "./Fail-Modal";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Logo from "../../images/simply-logo-white.png";
 
 export default class Register extends Component {
   constructor() {
@@ -70,27 +71,44 @@ export default class Register extends Component {
 
     return (
       <div
-        className="vw-100 vh-100"
-        style={{ paddingTop: "150px", backgroundColor: "rgb(71, 117, 62)" }}
+        style={{
+          paddingTop: "2%",
+          paddingBottom: "2%",
+          backgroundColor: "rgb(71, 117, 62)",
+          minHeight: "100vh",
+        }}
       >
-        <div style={divStyle} className="w-50 mx-auto">
+        <div className="d-flex justify-content-around">
+          <Col>
+            <Link to="/login">
+              <h5 className="text-white p-3">← Back</h5>
+            </Link>
+          </Col>
+          <Col className="d-flex justify-content-center">
+            <img height="80vh" className="mb-4" src={Logo} />
+          </Col>
+          <Col />
+        </div>
+        <div style={divStyle} className="mx-auto">
           <Form
-            className="w-50 mx-auto"
+            className=" mx-auto"
             style={{ maxWidth: "400px" }}
             onSubmit={this.handleSubmit}
           >
-            <img
-              className="mb-2"
-              style={{ width: "75px", height: "75px", marginLeft: "38%" }}
-              src="https://cdn0.iconfinder.com/data/icons/cosmetic-store/25/Register-512.png"
-              alt="icon"
-            />
-            <p className="mb-4 text-center" style={{ fontSize: "30px" }}>
+            <div className="d-flex justify-content-center">
+              <img
+                className="m-2"
+                style={{ height: "10vh", maxHeight: "50px" }}
+                src="https://cdn0.iconfinder.com/data/icons/cosmetic-store/25/Register-512.png"
+                alt="icon"
+              />
+            </div>
+            <p
+              className="mb-4 text-center"
+              style={{ fontSize: "clamp(16px,2.5vh,24px)" }}
+            >
               Create a{" "}
-              <strong style={{ color: "rgb(71, 117, 62)" }}>
-                Simply Budget
-              </strong>{" "}
-              account
+              <b style={{ color: "rgb(71, 117, 62)" }}>Simply Budget</b> account
             </p>
             <Form.Group>
               <Form.Control
@@ -135,19 +153,6 @@ export default class Register extends Component {
             </Form.Group>
             <Row>
               <Col>
-                <Link to="/login">
-                  <Button
-                    style={{
-                      border: "1px solid rgb(173, 173, 173)",
-                      backgroundColor: "rgb(71, 117, 62)",
-                      width: "100%",
-                    }}
-                  >
-                    Login
-                  </Button>
-                </Link>
-              </Col>
-              <Col>
                 <Button
                   style={{
                     border: "1px solid rgb(173, 173, 173)",
@@ -180,5 +185,8 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
+
+  maxWidth: "600px",
+  minHeight: "300px",
   backgroundColor: "white",
 };

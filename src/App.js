@@ -25,7 +25,8 @@ export default class App extends Component {
       return (
         <div>
           {window.location.pathname !== "/" &&
-            window.location.pathname !== "/login" && <Header />}
+            window.location.pathname !== "/login" &&
+            window.location.pathname !== "/register" && <Header />}
 
           <Router>
             <Switch>

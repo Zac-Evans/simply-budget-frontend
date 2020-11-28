@@ -64,6 +64,7 @@ export default class Login extends Component {
       <div
         style={{
           paddingTop: "2%",
+          paddingBottom: "2%",
           backgroundColor: "rgb(71, 117, 62)",
           minHeight: "100vh",
         }}
@@ -91,7 +92,7 @@ export default class Login extends Component {
             </div>
             <p
               className="mb-4 text-center"
-              style={{ fontSize: "clamp(16px,5vh,30px)" }}
+              style={{ fontSize: "clamp(16px,3vh,24px)" }}
             >
               Login to your
               <b style={{ color: "rgb(71, 117, 62)" }}> Simply Budget </b>
@@ -117,31 +118,37 @@ export default class Login extends Component {
                 style={inputStyle}
               />
             </Form.Group>
-            <Row>
-              <Col>
-                <Link to="/register">
-                  <Button
-                    style={{
-                      border: "1px solid rgb(173, 173, 173)",
-                      backgroundColor: "rgb(71, 117, 62)",
-                      width: "100%",
-                    }}
-                  >
-                    Create account
-                  </Button>
-                </Link>
-              </Col>
+            <Row className="text-center d-flex justify-content-center m-2">
               <Col>
                 <Button
                   style={{
                     border: "1px solid rgb(173, 173, 173)",
                     backgroundColor: "rgb(71, 117, 62)",
-                    width: "100%",
+                    width: "70%",
                   }}
                   type="submit"
                 >
                   Submit
                 </Button>
+              </Col>
+            </Row>
+            <Row className="text-center d-flex justify-content-center">
+              <b className="m-2">OR</b>
+            </Row>
+
+            <Row className="text-center d-flex justify-content-center m-2">
+              <Col>
+                <Link to="/register">
+                  <Button
+                    style={{
+                      border: "1px solid rgb(173, 173, 173)",
+                      backgroundColor: "#00a367",
+                      width: "70%",
+                    }}
+                  >
+                    Create account
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Form>
@@ -164,9 +171,10 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
-  height: "60vh",
-  maxHeight: "400px",
+  height: "70vh",
+  maxHeight: "450px",
   maxWidth: "600px",
-  minHeight: "300px",
+  minHeight: "400px",
+
   backgroundColor: "white",
 };

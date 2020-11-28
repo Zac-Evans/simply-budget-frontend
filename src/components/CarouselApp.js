@@ -59,7 +59,10 @@ export default function CarouselApp() {
               <h4 className="text-center text-white">
                 Make your budget and stick to it
               </h4>
-              <a href="/login" className="d-flex justify-content-center  m-4">
+              <a
+                href="/register"
+                className="d-flex justify-content-center  m-4"
+              >
                 <Button type="submit" variant="contained">
                   <h3
                     className="d-flex my-auto"
@@ -107,7 +110,7 @@ export default function CarouselApp() {
                 Get ahead, live better
               </h4>
               <a
-                href="/login"
+                href="/register"
                 className="d-flex justify-content-center position-sticky m-4"
               >
                 <Button type="submit" variant="contained">
@@ -157,7 +160,7 @@ export default function CarouselApp() {
                 Set goals and manage your spending
               </h4>
               <a
-                href="/login"
+                href="/register"
                 className="d-flex justify-content-center position-sticky m-4"
               >
                 <Button type="submit" variant="contained">
