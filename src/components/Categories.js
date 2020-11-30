@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
   },
 }));
 
@@ -249,9 +248,9 @@ const Categories = (props) => {
           />
         ))}
       </div>
-      <Row className="d-flex justify-content-center">
-        <AddCategoryCard />
-        <AddPurchaseCard />
+      <Row className="d-flex justify-content-center m-0 p-0">
+        <AddCategoryCard className="p-0 m-0" />
+        <AddPurchaseCard className="p-0 m-0" />
       </Row>
     </TableContainer>
   );

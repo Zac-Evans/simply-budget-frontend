@@ -18,7 +18,7 @@ const IndividualBudgetProgressBar = (props) => {
         border: "3px solid rgb(71, 117, 62)",
         margin: "-5px",
       }}
-      className="p-2 mx-auto"
+      className="mx-auto"
       elevation="24"
     >
       <div className="mx-auto mt-1 mb-1" style={{ maxWidth: "700px" }}>
@@ -29,40 +29,46 @@ const IndividualBudgetProgressBar = (props) => {
         >
           {(progress) =>
             budgetPercentage > 100 ? (
-              <Row>
-                <h4 className="text-center p-2">{props.category_name}</h4>
-                <ProgressBar
-                  animated
-                  style={{
-                    height: "40px",
-                    border: "2px solid black",
-                    minWidth: "200px",
-                  }}
-                  variant="danger"
-                  now={progress.value}
-                  label={
-                    <Row
-                      className="d-flex justify-content-between position-absolute w-75 ml-3"
-                      style={{ maxWidth: "650px" }}
-                    >
-                      <Fade direction="up" delay="100" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b>{Math.round(progress.value)}%</b>
-                        </h4>
-                      </Fade>
-                      <Fade direction="up" delay="150" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b> ${props.budget_remaining} remaining</b>
-                        </h4>
-                      </Fade>
-                    </Row>
-                  }
-                />
+              <Row className="m-0 p-0">
+                <Col className="col-3">
+                  <h5 className="text-center text-light">
+                    {props.category_name}
+                  </h5>
+                </Col>
+                <Col>
+                  <ProgressBar
+                    animated
+                    style={{
+                      height: "40px",
+                      border: "2px solid black",
+                      minWidth: "200px",
+                    }}
+                    variant="danger"
+                    now={progress.value}
+                    label={
+                      <Row
+                        className="d-flex justify-content-between position-absolute w-75 ml-3"
+                        style={{ maxWidth: "650px" }}
+                      >
+                        <Fade direction="up" delay="100" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b>{Math.round(progress.value)}%</b>
+                          </h4>
+                        </Fade>
+                        <Fade direction="up" delay="150" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b> ${props.budget_remaining} remaining</b>
+                          </h4>
+                        </Fade>
+                      </Row>
+                    }
+                  />
+                </Col>
               </Row>
             ) : (
-              <Row>
+              <Row className="p-0 m-0">
                 <Col className="col-3">
-                  <h5 className="text-center text-light p-2">
+                  <h5 className="text-center text-light">
                     {props.category_name}
                   </h5>
                 </Col>

@@ -69,6 +69,7 @@ class TransactionList extends Component {
       purchaseId: "",
       selectedMonth: DateTime.local().month - 1,
       selectedYear: DateTime.local().year,
+      selectedCategory: 0,
       noPurchases: false,
     };
   }
@@ -102,7 +103,7 @@ class TransactionList extends Component {
     for (let i = 0; i < rows.length; i++) {
       if (
         rows[i].purchaseMonth === this.state.selectedMonth &&
-        rows[i].purchaseYear == this.state.selectedYear
+        rows[i].purchaseYear === this.state.selectedYear
       ) {
         thisMonthTransactions.push(rows[i]);
       }
@@ -114,6 +115,10 @@ class TransactionList extends Component {
 
     const handleYearChange = (e) => {
       this.setState({ selectedYear: e.target.value });
+    };
+
+    const handleCategoryChange = (e) => {
+      this.setState({ selectedCategory: e.target.value });
     };
 
     const edit = (e) => {
@@ -136,11 +141,12 @@ class TransactionList extends Component {
       color: "white",
     };
 
+    console.log(this.props);
     return (
-      <div className="vw-100">
+      <div>
         {!this.state.noPurchases ? (
-          <TableContainer>
-            <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
+          <TableContainer className="m-0 p-0">
+            <h1 className="text-center" style={{ fontSize: "60px" }}>
               Purchases
             </h1>
             <Paper
@@ -211,6 +217,35 @@ class TransactionList extends Component {
                     <MenuItem value={2013}>2013</MenuItem>
                     <MenuItem value={2012}>2012</MenuItem>
                     <MenuItem value={2011}>2011</MenuItem>
+                  </Select>
+                  <FormHelperText></FormHelperText>
+                </FormControl>
+                <FormControl className="my-2 mx-4" style={{ width: "150px" }}>
+                  <InputLabel
+                    id="demo-simple-select-helper-label"
+                    className="text-light"
+                  >
+                    Category
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={this.state.selectedCategory}
+                    onChange={handleCategoryChange}
+                    className="text-light"
+                  >
+                    <MenuItem value={0}>All</MenuItem>
+                    {this.props.purchases
+                      .map((purchase) => ({
+                        id: purchase.budget_category.id,
+                        // categoryName: purchase.budget_category.category_name,
+                      }))
+                      .filter((value, index, arr) => {
+                        return arr.indexOf(value.id === index.id);
+                      })
+                      .map((item) => (
+                        <MenuItem value={item.id}>{item.id}</MenuItem>
+                      ))}
                   </Select>
                   <FormHelperText></FormHelperText>
                 </FormControl>
@@ -345,7 +380,7 @@ class TransactionList extends Component {
             <Paper
               style={{
                 border: "2px solid #000",
-                margin: "auto",
+                // margin: "auto",
                 maxWidth: "900px",
               }}
             >
@@ -369,7 +404,7 @@ class TransactionList extends Component {
             </Paper>
           </TableContainer>
         )}
-        <Row className="d-flex justify-content-center">
+        <Row className="d-flex justify-content-center m-0 p-0">
           <AddPurchaseCard />
           <AddCategoryCard />
         </Row>
