@@ -1,16 +1,26 @@
 import React from "react";
-import { ProgressBar, Row } from "react-bootstrap";
+import { ProgressBar, Row, Col } from "react-bootstrap";
 import { Spring, config } from "react-spring/renderprops";
 import { connect } from "react-redux";
 import { Fade } from "react-awesome-reveal";
+import { Paper } from "@material-ui/core";
 
 const IndividualBudgetProgressBar = (props) => {
   const budgetSpent = props.totalBudget - props.budget_remaining;
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
-  const fontSizer = { fontSize: "calc(12px + 1vw)", color: "black" };
+  const fontSizer = { fontSize: "clamp(16px, 1vw, 24px)", color: "black" };
   console.log(props);
   return (
-    <div>
+    <Paper
+      style={{
+        backgroundColor: "rgb(71, 117, 62)",
+        maxWidth: "700px",
+        border: "3px solid rgb(71, 117, 62)",
+        margin: "-5px",
+      }}
+      className="p-2 mx-auto"
+      elevation="24"
+    >
       <div className="mx-auto mt-1 mb-1" style={{ maxWidth: "700px" }}>
         <Spring
           to={{ value: budgetPercentage.toFixed(0) }}
@@ -19,14 +29,14 @@ const IndividualBudgetProgressBar = (props) => {
         >
           {(progress) =>
             budgetPercentage > 100 ? (
-              <div>
+              <Row>
                 <h4 className="text-center p-2">{props.category_name}</h4>
                 <ProgressBar
                   animated
                   style={{
                     height: "40px",
                     border: "2px solid black",
-                    minWidth: "300px",
+                    minWidth: "200px",
                   }}
                   variant="danger"
                   now={progress.value}
@@ -48,43 +58,49 @@ const IndividualBudgetProgressBar = (props) => {
                     </Row>
                   }
                 />
-              </div>
+              </Row>
             ) : (
-              <div>
-                <h4 className="text-center p-2">{props.category_name}</h4>
-                <ProgressBar
-                  animated
-                  style={{
-                    height: "40px",
-                    border: "2px solid black",
-                    minWidth: "300px",
-                  }}
-                  variant="success"
-                  now={progress.value}
-                  label={
-                    <Row
-                      className="d-flex justify-content-between position-absolute w-75 ml-3"
-                      style={{ maxWidth: "650px" }}
-                    >
-                      <Fade direction="up" delay="100" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b>{Math.round(progress.value)}%</b>
-                        </h4>
-                      </Fade>
-                      <Fade direction="up" delay="150" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b> ${props.budget_remaining} remaining</b>
-                        </h4>
-                      </Fade>
-                    </Row>
-                  }
-                />
-              </div>
+              <Row>
+                <Col className="col-3">
+                  <h5 className="text-center text-light p-2">
+                    {props.category_name}
+                  </h5>
+                </Col>
+                <Col>
+                  <ProgressBar
+                    animated
+                    style={{
+                      height: "40px",
+                      border: "2px solid black",
+                      minWidth: "200px",
+                    }}
+                    variant="success"
+                    now={progress.value}
+                    label={
+                      <Row
+                        className="d-flex justify-content-between position-absolute w-75 ml-3"
+                        style={{ maxWidth: "650px" }}
+                      >
+                        <Fade direction="up" delay="100" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b>{Math.round(progress.value)}%</b>
+                          </h4>
+                        </Fade>
+                        <Fade direction="up" delay="150" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b> ${props.budget_remaining} remaining</b>
+                          </h4>
+                        </Fade>
+                      </Row>
+                    }
+                  />
+                </Col>
+              </Row>
             )
           }
         </Spring>
       </div>
-    </div>
+    </Paper>
   );
 };
 

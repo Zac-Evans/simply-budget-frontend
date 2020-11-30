@@ -234,7 +234,7 @@ class NewPurchaseForm extends Component {
               </Col>
               <Col className="col-6" style={{ marginTop: "-7px" }}>
                 <Form.Control
-                  placeholder="20"
+                  placeholder="20.00"
                   name="price"
                   className="text-left m-0 p-0"
                   value={this.state.price}

@@ -26,13 +26,24 @@ class DeleteForm extends Component {
             className="m-2"
             alt="Piggy"
           />
-          <Button
-            variant="contained"
-            type="submit"
-            onClick={this.handleDeleteSubmit}
-          >
-            Save
-          </Button>
+          <Form.Group className="d-flex justify-content-center">
+            <Button
+              className="m-4"
+              variant="contained"
+              type="submit"
+              onClick={this.handleDeleteSubmit}
+            >
+              Save
+            </Button>
+            <Button
+              className="m-4"
+              variant="contained"
+              type="submit"
+              color="secondary"
+            >
+              Back
+            </Button>
+          </Form.Group>
         </Form>
       </div>
     );

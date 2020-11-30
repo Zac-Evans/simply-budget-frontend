@@ -12,7 +12,6 @@ class NewCategoryForm extends Component {
   }
   componentDidMount = () => {
     this.props.fetchPurchase(userId, this.props.purchaseId);
-    console.log(this.props.category);
   };
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -34,14 +33,13 @@ class NewCategoryForm extends Component {
       .catch((error) => console.log(error));
   };
   render() {
-    console.log(this.props.purchase[0]);
     if (!this.props.purchase[0]) {
       return "Loading...";
     } else {
       return (
         <div>
           <Paper style={{ border: "2px solid #000" }} className="p-3">
-            <Form className=" m-4 d-flex flex-column align-items-center">
+            <Form className="m-4 d-flex flex-column align-items-center">
               <h3>Edit Purchase</h3>
               <img
                 src="https://img.icons8.com/cute-clipart/200/000000/money-box.png"
@@ -91,13 +89,24 @@ class NewCategoryForm extends Component {
                   </Col>
                 </Row>
               </Form.Group>
-              <Button
-                variant="contained"
-                type="submit"
-                onClick={this.handleCategorySubmit}
-              >
-                Save
-              </Button>
+              <Form.Group className="d-flex justify-content-center">
+                <Button
+                  className="m-4"
+                  variant="contained"
+                  type="submit"
+                  onClick={this.handleCategorySubmit}
+                >
+                  Save
+                </Button>
+                <Button
+                  className="m-4"
+                  variant="contained"
+                  type="submit"
+                  color="secondary"
+                >
+                  Back
+                </Button>
+              </Form.Group>
             </Form>
           </Paper>
         </div>

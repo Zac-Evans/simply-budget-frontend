@@ -1,6 +1,6 @@
 import React from "react";
 import { ProgressBar, Row } from "react-bootstrap";
-import { Spring, config } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
 import { connect } from "react-redux";
 import { Fade } from "react-awesome-reveal";
 
@@ -8,7 +8,7 @@ const IndividualBudgetProgressBarTransactions = (props) => {
   const budgetSpent = props.totalBudget - props.budget_remaining;
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
   const fontSizer = { fontSize: "12px", color: "black" };
-  console.log(props);
+
   return (
     <div>
       <div className="mx-auto mt-1 mb-1" style={{ maxWidth: "700px" }}>
@@ -26,7 +26,7 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                 <ProgressBar
                   animated
                   style={{
-                    height: "20px",
+                    height: "25px",
                     border: "2px solid black",
                     margin: "5px",
                   }}
@@ -59,7 +59,7 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                 <ProgressBar
                   animated
                   style={{
-                    height: "20px",
+                    height: "25px",
                     border: "2px solid black",
                     minWidth: "300px",
                     marginLeft: "5px",

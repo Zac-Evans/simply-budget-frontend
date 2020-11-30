@@ -15,6 +15,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import { Row } from "react-bootstrap";
 // The icons
 import EditIcon from "../images/edit-icon.png";
 import TrashIcon from "../images/trash-icon.svg";
@@ -25,6 +26,8 @@ import DeleteForm from "./DeleteForm";
 // import { Circle } from "react-spinners-css";
 import IndividualBudgetProgressBar from "./ProgressCircle/IndividualBudgetProgressBar";
 import NewCategoryCircle from "./NewCategoryCircle";
+import AddCategoryCard from "./AddCategoryCard";
+import AddPurchaseCard from "./AddPurchaseCard";
 
 // This is for the modal styling
 const useStyles = makeStyles((theme) => ({
@@ -74,8 +77,8 @@ const Categories = (props) => {
     return createData(
       category.id,
       category.category_name,
-      category.category_budget,
-      category.budget_remaining
+      "$" + category.category_budget.toFixed(2),
+      "$" + category.budget_remaining.toFixed(2)
     );
   });
   const [open, setOpen] = React.useState(false);
@@ -101,60 +104,19 @@ const Categories = (props) => {
   };
 
   return (
-    <div>
-      <TableContainer component={Paper}>
-        {!props.categories[0] ? (
-          <div>
-            <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
-              My Budgets
-            </h1>
-            <Paper
-              style={{
-                border: "2px solid #000",
-                margin: "auto",
-                maxWidth: "900px",
-              }}
-            >
-              {" "}
-              <TableContainer
-                style={{ maxWidth: "700px", margin: "auto" }}
-                className="mt-3"
-                component={Paper}
-              >
-                <Table aria-label="customized table">
-                  <TableHead>
-                    <TableRow style={{ backgroundColor: "#264653" }}>
-                      <StyledTableCell align="left">Category</StyledTableCell>
-                      <StyledTableCell align="center">Budget</StyledTableCell>
-                      <StyledTableCell align="center">
-                        Remaining Budget
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        Edit/Remove Budget
-                      </StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                </Table>
-              </TableContainer>
-              <h1 className="text-center p-4">Nothing here!</h1>
-              <div className="d-flex justify-content-center">
-                <NewCategoryCircle />
-              </div>
-            </Paper>
-          </div>
-        ) : (
-          // <div
-          //   className="d-flex vh-100 align-items-center justify-content-center"
-          //   style={{ marginTop: "-190px" }}
-          // >
-          //   <Fade>
-          //     <Circle size={250} color="#47753e" />
-          //   </Fade>
-          // </div>
-          <div>
-            <h1 className="text-center my-4" style={{ fontSize: "70px" }}>
-              My budgets
-            </h1>
+    <TableContainer>
+      {!props.categories[0] ? (
+        <div>
+          <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
+            Budgets
+          </h1>
+          <Paper
+            style={{
+              border: "2px solid #000",
+              margin: "auto",
+              maxWidth: "900px",
+            }}
+          >
             <TableContainer
               style={{ maxWidth: "700px", margin: "auto" }}
               className="mt-3"
@@ -173,75 +135,110 @@ const Categories = (props) => {
                     </StyledTableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.id}>
-                      <StyledTableCell align="left">
-                        {row.categoryName}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {row.categoryBudget}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {row.budgetRemaining}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        <Button onClick={edit}>
-                          <img src={EditIcon} id={row.id} />
-                        </Button>
-                        <Button onClick={deleteCat}>
-                          <img
-                            id={row.id}
-                            style={{
-                              width: "32px",
-                              height: "32px",
-                              margin: "auto",
-                            }}
-                            src={TrashIcon}
-                          />
-                        </Button>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
               </Table>
             </TableContainer>
-            <Modal
-              aria-labelledby="spring-modal-title"
-              aria-describedby="spring-modal-description"
-              className={classes.modal}
-              open={open}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <div className={classes.paper}>
-                <EditForm categoryId={categoryId} />
-              </div>
-            </Modal>
-            <Modal
-              aria-labelledby="spring-modal-title"
-              aria-describedby="spring-modal-description"
-              className={classes.modal}
-              open={open1}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <div className={classes.paper}>
-                <DeleteForm categoryId={categoryId} />
-              </div>
-            </Modal>
-          </div>
-        )}
-      </TableContainer>
-      <div>
+            <h1 className="text-center p-4">Nothing here!</h1>
+            <Row className="d-flex justify-content-center">
+              <AddCategoryCard />
+              <AddPurchaseCard />
+            </Row>
+          </Paper>
+        </div>
+      ) : (
+        // <div
+        //   className="d-flex vh-100 align-items-center justify-content-center"
+        //   style={{ marginTop: "-190px" }}
+        // >
+        //   <Fade>
+        //     <Circle size={250} color="#47753e" />
+        //   </Fade>
+        // </div>
+        <div>
+          <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
+            Budgets
+          </h1>
+          <TableContainer
+            style={{ maxWidth: "700px", margin: "auto" }}
+            className="mt-3"
+            component={Paper}
+          >
+            <Table aria-label="customized table">
+              <TableHead>
+                <TableRow style={{ backgroundColor: "#264653" }}>
+                  <StyledTableCell align="left">Budget</StyledTableCell>
+                  <StyledTableCell align="center">Allowance</StyledTableCell>
+                  <StyledTableCell align="center">Remaining</StyledTableCell>
+                  <StyledTableCell align="center">Edit/Remove</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <StyledTableRow key={row.id}>
+                    <StyledTableCell align="left">
+                      {row.categoryName}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.categoryBudget}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.budgetRemaining}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Button onClick={edit}>
+                        <img src={EditIcon} id={row.id} />
+                      </Button>
+                      <Button onClick={deleteCat}>
+                        <img
+                          id={row.id}
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            margin: "auto",
+                          }}
+                          src={TrashIcon}
+                        />
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Modal
+            aria-labelledby="spring-modal-title"
+            aria-describedby="spring-modal-description"
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <div className={classes.paper}>
+              <EditForm categoryId={categoryId} />
+            </div>
+          </Modal>
+          <Modal
+            aria-labelledby="spring-modal-title"
+            aria-describedby="spring-modal-description"
+            className={classes.modal}
+            open={open1}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <div className={classes.paper}>
+              <DeleteForm categoryId={categoryId} />
+            </div>
+          </Modal>
+        </div>
+      )}
+      <div className="mt-4">
         {props.categories.map((category) => (
           <IndividualBudgetProgressBar
             key={category.id}
@@ -252,7 +249,11 @@ const Categories = (props) => {
           />
         ))}
       </div>
-    </div>
+      <Row className="d-flex justify-content-center">
+        <AddCategoryCard />
+        <AddPurchaseCard />
+      </Row>
+    </TableContainer>
   );
 };
 const mapStateToProps = (state) => {
