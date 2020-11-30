@@ -137,7 +137,7 @@ class TransactionList extends Component {
     };
 
     return (
-      <div>
+      <div className="vw-100">
         {!this.state.noPurchases ? (
           <TableContainer>
             <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
