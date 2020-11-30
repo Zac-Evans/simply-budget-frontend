@@ -225,6 +225,7 @@ class TransactionList extends Component {
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel1a-content"
                           id="panel1a-header"
+                          className="mb-0 pb-0"
                         >
                           <div className="d-inline w-100">
                             <Row>
@@ -246,7 +247,8 @@ class TransactionList extends Component {
                             </Row>
                           </div>
                         </AccordionSummary>
-                        <AccordionDetails className="d-flex justify-content-center p-0 m-0">
+                        <hr className="p-0 m-0" />
+                        <AccordionDetails className="d-flex justify-content-center p-0 m-0 bg-light">
                           <div className="d-flex justify-content-center p-0 m-0">
                             <Row>
                               <Col className="d-flex justify-content-center">
