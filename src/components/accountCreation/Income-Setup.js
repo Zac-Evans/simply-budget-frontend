@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button, Col } from "react-bootstrap";
 import NumberInput from "./Number-Input";
 import FailModal from "../loginComponents/Fail-Modal";
+import Logo from "../../images/simply-logo-white.png";
 
 export default class IncomeSetup extends Component {
   constructor() {
@@ -58,14 +59,28 @@ export default class IncomeSetup extends Component {
     }
     return (
       <div
-        className="vw-100 vh-100"
-        style={{ paddingTop: "150px", backgroundColor: "rgb(71, 117, 62)" }}
+        style={{
+          paddingTop: "2%",
+          paddingBottom: "2%",
+          backgroundColor: "rgb(71, 117, 62)",
+          minHeight: "100vh",
+        }}
       >
-        <div style={divStyle} className="w-50 mx-auto">
+        <div className="d-flex justify-content-around">
+          <Col>
+            <Link to="/register">
+              <h5 className="text-white p-3">← Back</h5>
+            </Link>
+          </Col>
+          <Col className="d-flex justify-content-center">
+            <img height="80vh" className="mb-4" src={Logo} />
+          </Col>
+          <Col />
+        </div>
+        <div style={divStyle} className="mx-auto">
           <div className="text-center">
             <h4 className="mb-4">
-              Now that we've created an account
-              <br /> let's setup your{" "}
+              <br /> Let's setup your{" "}
               <strong style={{ color: "rgb(71, 117, 62)" }}>
                 Simply Budget
               </strong>
@@ -107,5 +122,7 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
+  maxWidth: "600px",
+  minHeight: "300px",
   backgroundColor: "white",
 };

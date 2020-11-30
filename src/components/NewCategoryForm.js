@@ -65,11 +65,11 @@ class NewCategoryForm extends Component {
           });
         }, 3500);
       })
-      .then(() => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-      })
+      // .then(() => {
+      //   setTimeout(() => {
+      //     window.location.reload();
+      //   }, 3000);
+      // })
       .catch((error) => {
         console.log(error);
       });
@@ -173,7 +173,7 @@ class NewCategoryForm extends Component {
             <Button
               className="m-4"
               variant="contained"
-              type="submit"
+              // type="submit"
               onClick={this.handleCategorySubmit}
             >
               Add
@@ -184,7 +184,7 @@ class NewCategoryForm extends Component {
               type="submit"
               color="secondary"
             >
-              Cancel
+              Back
             </Button>
           </Row>
           <p className="mt-3 mb-0">* required</p>

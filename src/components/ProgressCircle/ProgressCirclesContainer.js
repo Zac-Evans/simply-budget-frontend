@@ -45,7 +45,7 @@ class ProgressCirclesContainer extends Component {
         {!this.props.categories[0] ? (
           <div>
             <Fade className="text-center m-2" direction="up" triggerOnce>
-              <h1>Create a new budget category to get started!</h1>
+              <h1>Create a new budget to get started!</h1>
             </Fade>
             <Row className="d-flex justify-content-around">
               <AddPurchaseCard />

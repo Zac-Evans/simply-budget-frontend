@@ -15,7 +15,6 @@ import { Circle } from "react-spinners-css";
 import Button from "@material-ui/core/Button";
 // The icons
 import EditIcon from "../images/edit-icon.png";
-import NotesIcon from "../images/notes-icon.png";
 import TrashIcon from "../images/trash-icon.svg";
 // the edit form
 import EditForm from "./EditForm";
@@ -23,18 +22,6 @@ import DeleteForm from "./DeleteForm";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import EditFormPurchases from "./EditFormPurchases";
-import { Row, Col } from "react-bootstrap";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import IndividualBudgetProgressBarTransactions from "./ProgressCircle/IndividualBudgetProgressBarTransactions";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 
 function createData(
   id,
@@ -44,8 +31,7 @@ function createData(
   budgetCategory,
   notes,
   budgetRemaining,
-  purchaseMonth,
-  categoryBudget
+  purchaseMonth
 ) {
   return {
     id,
@@ -56,7 +42,6 @@ function createData(
     notes,
     budgetRemaining,
     purchaseMonth,
-    categoryBudget,
   };
 }
 
@@ -86,8 +71,7 @@ class TransactionList extends Component {
         purchase.budget_category.category_name,
         purchase.purchase_notes,
         purchase.budget_category.budget_remaining,
-        purchaseMonth,
-        purchase.budget_category.category_budget
+        purchaseMonth
       );
     });
     const thisMonthTransactions = [];
@@ -115,7 +99,7 @@ class TransactionList extends Component {
       height: "10px",
       color: "white",
     };
-    console.log(this.props.purchases);
+
     return (
       <TableContainer>
         {this.props.purchases[0] ? (
@@ -125,13 +109,13 @@ class TransactionList extends Component {
               style={{
                 border: "2px solid #000",
                 margin: "auto",
-                maxWidth: "700px",
+                maxWidth: "900px",
               }}
             >
               <Table aria-label="customized table">
-                <TableHead style={headerStyle}>
+                <TableHead>
                   <TableRow style={{ backgroundColor: "#264653" }}>
-                    {/* <TableCell style={headerStyle}>Date</TableCell>
+                    <TableCell style={headerStyle}>Date</TableCell>
                     <TableCell style={headerStyle}>Transaction</TableCell>
                     <TableCell style={headerStyle}>Notes</TableCell>
                     <TableCell style={headerStyle}>Amount</TableCell>
@@ -140,90 +124,36 @@ class TransactionList extends Component {
                     <TableCell style={headerStyle}>Remaining</TableCell>
                     <TableCell style={headerStyle} align="center">
                       Edit/Delete
-                    </TableCell> */}
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {thisMonthTransactions.map((row) => (
-                    <div key="row.id" style={{ border: "1px solid black" }}>
-                      <Accordion style={{ display: "block" }}>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <div className="d-inline w-100">
-                            <Row>
-                              <Col>
-                                Budget - <b>{row.budgetCategory}</b>
-                              </Col>
-                              <Col className="text-right">
-                                <h5>{row.transactionName}</h5>
-                              </Col>
-                            </Row>
+                    <TableRow key={row.id}>
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell>{row.transactionName}</TableCell>
+                      <TableCell>{row.notes}</TableCell>
+                      <TableCell>${row.transactionAmount.toFixed(2)}</TableCell>
+                      <TableCell>{row.budgetCategory}</TableCell>
+                      <TableCell>${row.budgetRemaining.toFixed(2)}</TableCell>
 
-                            <Row>
-                              <Col>
-                                <p className="text-secondary">{row.date}</p>
-                              </Col>
-                              <Col className="text-right">
-                                <b>${row.transactionAmount.toFixed(2)}</b>
-                              </Col>
-                            </Row>
-                          </div>
-                        </AccordionSummary>
-                        <AccordionDetails className="d-flex justify-content-center p-0 m-0">
-                          <div className="d-flex justify-content-center p-0 m-0">
-                            <Row>
-                              <Col className="d-flex justify-content-center">
-                                <Button onClick={edit} className="p-2">
-                                  Edit &nbsp;
-                                  <img
-                                    src={EditIcon}
-                                    id={row.id}
-                                    style={{
-                                      width: "35px",
-                                      height: "35px",
-                                      padding: "4px",
-                                    }}
-                                  />
-                                </Button>
-                              </Col>
-                              <Col className="d-flex justify-content-center">
-                                <Button onClick={deleteCat} className="p-2">
-                                  Delete &nbsp;
-                                  <img
-                                    id={row.id}
-                                    style={{
-                                      width: "40px",
-                                      height: "35px",
-                                    }}
-                                    src={TrashIcon}
-                                  />
-                                </Button>
-                              </Col>
-
-                              <Col className="col-12 col-md-6">
-                                <IndividualBudgetProgressBarTransactions
-                                  className="p-0 m-0"
-                                  categoryId={row.id}
-                                  budget_remaining={row.budgetRemaining}
-                                  category_name={row.budgetCategory}
-                                  category_budget={row.categoryBudget}
-                                />
-                              </Col>
-
-                              <Col className="col-12 m-4">
-                                <b>Notes: &nbsp;</b>
-
-                                {row.notes}
-                              </Col>
-                            </Row>
-                          </div>
-                        </AccordionDetails>
-                      </Accordion>
-                    </div>
-                    // </TableRow>
+                      <TableCell align="center">
+                        <Button onClick={edit}>
+                          <img src={EditIcon} id={row.id} />
+                        </Button>
+                        <Button onClick={deleteCat}>
+                          <img
+                            id={row.id}
+                            style={{
+                              width: "32px",
+                              height: "32px",
+                              margin: "auto",
+                            }}
+                            src={TrashIcon}
+                          />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
                   ))}
                 </TableBody>
               </Table>
@@ -242,10 +172,7 @@ class TransactionList extends Component {
               }}
             >
               <div>
-                <EditFormPurchases
-                  purchaseId={this.state.purchaseId}
-                  categoryList={this.props.purchases}
-                />
+                <EditFormPurchases purchaseId={this.state.purchaseId} />
               </div>
             </Modal>
             <Modal

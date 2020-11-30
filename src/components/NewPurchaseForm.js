@@ -104,11 +104,11 @@ class NewPurchaseForm extends Component {
           });
         }, 3500);
       })
-      .then(() => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-      })
+      // .then(() => {
+      //   setTimeout(() => {
+      //     window.location.reload();
+      //   }, 3000);
+      // })
 
       .catch((error) => {
         console.log(error);
@@ -226,13 +226,13 @@ class NewPurchaseForm extends Component {
               <Col
                 className="text-right p-0 col-3 float-right align-text-bottom"
                 style={{
-                  marginRight: "-15px",
+                  marginRight: "-10px",
                   marginBottom: "-35px",
                 }}
               >
                 $
               </Col>
-              <Col className="col-6">
+              <Col className="col-6" style={{ marginTop: "-7px" }}>
                 <Form.Control
                   placeholder="20"
                   name="price"
@@ -275,7 +275,7 @@ class NewPurchaseForm extends Component {
               type="submit"
               color="secondary"
             >
-              Cancel
+              Back
             </Button>
           </Form.Group>
 

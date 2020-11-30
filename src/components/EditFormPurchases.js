@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import { Button, Paper } from "@material-ui/core";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -8,10 +8,7 @@ const userId = localStorage.getItem("userId");
 class NewCategoryForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      category_name: this.props.category_name,
-      category_budget: this.props.category_budget,
-    };
+    this.state = {};
   }
   componentDidMount = () => {
     this.props.fetchPurchase(userId, this.props.purchaseId);
@@ -24,11 +21,12 @@ class NewCategoryForm extends Component {
     e.preventDefault();
     axios
       .put(
-        `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/category/${this.props.categoryId}`,
+        `https://simply-budget-backend.herokuapp.com/user/${userId}/purchases/${this.props.purchaseId}`,
         {
-          category_name: this.state.category_name,
-          category_budget: this.state.category_budget,
-          budget_remaining: this.state.category_budget,
+          category_id: this.state.category_id,
+          purchase_name: this.state.purchase_name,
+          purchase_notes: this.state.purchase_notes,
+          price: this.state.price,
         }
       )
       .then((response) => console.log(response))
@@ -36,6 +34,7 @@ class NewCategoryForm extends Component {
       .catch((error) => console.log(error));
   };
   render() {
+    console.log(this.props.purchase[0]);
     if (!this.props.purchase[0]) {
       return "Loading...";
     } else {
@@ -63,8 +62,8 @@ class NewCategoryForm extends Component {
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    name="category_name"
-                    placeholder={this.props.purchase[0].category_name}
+                    name="purchase_name"
+                    placeholder={this.props.purchase[0].purchase_name}
                     onChange={this.handleChange}
                   />
                 </Form.Group>
@@ -73,10 +72,24 @@ class NewCategoryForm extends Component {
                 <Form.Label>
                   <b>Update Purchase Amount</b>
                 </Form.Label>
-                <Form.Control
-                  name="category_budget"
-                  onChange={this.handleChange}
-                />
+                <Row>
+                  <Col
+                    className="text-right p-0 col-3 float-right align-text-bottom"
+                    style={{
+                      marginRight: "-10px",
+                      marginBottom: "-35px",
+                    }}
+                  >
+                    $
+                  </Col>
+                  <Col className="col-8" style={{ marginTop: "-7px" }}>
+                    <Form.Control
+                      name="price"
+                      onChange={this.handleChange}
+                      placeholder={this.props.purchase[0].price.toFixed(2)}
+                    />
+                  </Col>
+                </Row>
               </Form.Group>
               <Button
                 variant="contained"

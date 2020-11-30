@@ -185,7 +185,6 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
-
   maxWidth: "600px",
   minHeight: "300px",
   backgroundColor: "white",

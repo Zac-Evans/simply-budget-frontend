@@ -26,7 +26,10 @@ export default class App extends Component {
         <div>
           {window.location.pathname !== "/" &&
             window.location.pathname !== "/login" &&
-            window.location.pathname !== "/register" && <Header />}
+            window.location.pathname !== "/register" &&
+            window.location.pathname !== "/income-setup" &&
+            window.location.pathname !== "/bill-setup" &&
+            window.location.pathname !== "/category-setup" && <Header />}
 
           <Router>
             <Switch>
@@ -40,7 +43,12 @@ export default class App extends Component {
     }
     return (
       <div>
-        {window.location.pathname !== "/" && <Header />}
+        {window.location.pathname !== "/" &&
+          window.location.pathname !== "/login" &&
+          window.location.pathname !== "/register" &&
+          window.location.pathname !== "/income-setup" &&
+          window.location.pathname !== "/bill-setup" &&
+          window.location.pathname !== "/category-setup" && <Header />}
 
         <Router>
           <Switch>
