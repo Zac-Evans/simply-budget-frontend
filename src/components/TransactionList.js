@@ -69,8 +69,9 @@ class TransactionList extends Component {
       purchaseId: "",
       selectedMonth: DateTime.local().month - 1,
       selectedYear: DateTime.local().year,
-      selectedCategory: 0,
+      selectedCategory: "All",
       noPurchases: false,
+      transactionList: [],
     };
   }
 
@@ -99,11 +100,20 @@ class TransactionList extends Component {
         purchaseYear
       );
     });
-    const thisMonthTransactions = [];
+
+    let thisMonthTransactions = [];
+    console.log(thisMonthTransactions);
     for (let i = 0; i < rows.length; i++) {
       if (
         rows[i].purchaseMonth === this.state.selectedMonth &&
-        rows[i].purchaseYear === this.state.selectedYear
+        rows[i].purchaseYear === this.state.selectedYear &&
+        rows[i].budgetCategory === this.state.selectedCategory
+      ) {
+        thisMonthTransactions.push(rows[i]);
+      } else if (
+        rows[i].purchaseMonth === this.state.selectedMonth &&
+        rows[i].purchaseYear === this.state.selectedYear &&
+        this.state.selectedCategory === "All"
       ) {
         thisMonthTransactions.push(rows[i]);
       }
@@ -141,7 +151,19 @@ class TransactionList extends Component {
       color: "white",
     };
 
-    console.log(this.props);
+    const categoryIdList = this.props.purchases.map(
+      (purchase) => purchase.budget_category.id
+    );
+
+    const categoryIdListUnique = [...new Set(categoryIdList)];
+
+    const categoryNameList = this.props.purchases.map(
+      (purchase) => purchase.budget_category.category_name
+    );
+
+    const categoryNameListUnique = [...new Set(categoryNameList)];
+
+    console.log(this.state.selectedCategory);
     return (
       <div>
         {!this.state.noPurchases ? (
@@ -234,18 +256,10 @@ class TransactionList extends Component {
                     onChange={handleCategoryChange}
                     className="text-light"
                   >
-                    <MenuItem value={0}>All</MenuItem>
-                    {this.props.purchases
-                      .map((purchase) => ({
-                        id: purchase.budget_category.id,
-                        // categoryName: purchase.budget_category.category_name,
-                      }))
-                      .filter((value, index, arr) => {
-                        return arr.indexOf(value.id === index.id);
-                      })
-                      .map((item) => (
-                        <MenuItem value={item.id}>{item.id}</MenuItem>
-                      ))}
+                    <MenuItem value={"All"}>All</MenuItem>
+                    {categoryNameListUnique.map((category, i) => (
+                      <MenuItem value={category}>{category}</MenuItem>
+                    ))}
                   </Select>
                   <FormHelperText></FormHelperText>
                 </FormControl>
