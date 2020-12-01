@@ -75,7 +75,7 @@ export default class Login extends Component {
             </Link>
           </Col>
           <Col className="d-flex justify-content-center m-0 p-0">
-            <img width="200hw" className="mb-4 ml-0 mr-0 p-0" src={Logo} />
+            <img width="200vw" className="mb-4 ml-0 mr-0 p-0" src={Logo} />
           </Col>
           <Col />
         </div>
