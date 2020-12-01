@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row, InputGroup } from "react-bootstrap";
 import { Button } from "@material-ui/core";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -110,13 +110,15 @@ class NewPurchaseForm extends Component {
   };
 
   render() {
-    const categoryList = this.props.categories.map((category) => {
-      return {
-        category_name: category.category_name,
-        category_id: category.id,
-        budget_remaining: category.budget_remaining,
-      };
-    });
+    const categoryList = this.props.categories
+      .map((category) => {
+        return {
+          category_name: category.category_name,
+          category_id: category.id,
+          budget_remaining: category.budget_remaining,
+        };
+      })
+      .sort((a, b) => (a.category_name > b.category_name ? 1 : -1));
 
     const renderSnackBar = () => {
       if (
@@ -205,7 +207,7 @@ class NewPurchaseForm extends Component {
           </Form.Row>
           <hr />
           <Form.Group>
-            <Row className="d-flex">
+            <Row className="d-flex justify-content-center">
               {/* <Form.Group>
               <FontAwesomeIcon
                 className="text-center m-4"
@@ -214,26 +216,25 @@ class NewPurchaseForm extends Component {
               />
             </Form.Group> */}
 
-              <Col className="col-3">
-                <b className="ml-3">*Amount:</b>
+              <Col className="col-4 text-center">
+                <h5 style={{ marginTop: "5px" }}>
+                  <b>*Amount:</b>
+                </h5>
               </Col>
-              <Col
-                className="text-right p-0 col-3 float-right align-text-bottom"
-                style={{
-                  marginRight: "-10px",
-                  marginBottom: "-35px",
-                }}
-              >
-                $
-              </Col>
-              <Col className="col-6" style={{ marginTop: "-7px" }}>
-                <Form.Control
-                  placeholder="20.00"
-                  name="price"
-                  className="text-left m-0 p-0"
-                  value={this.state.price}
-                  onChange={this.handleChange}
-                />
+
+              <Col className="col-6">
+                <InputGroup className="mb-2">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>$</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    placeholder="20.00"
+                    name="price"
+                    className="text-left"
+                    value={this.state.price}
+                    onChange={this.handleChange}
+                  />
+                </InputGroup>
               </Col>
             </Row>
           </Form.Group>
@@ -255,21 +256,17 @@ class NewPurchaseForm extends Component {
           </Form.Group>
 
           <Form.Group className="d-flex justify-content-start">
+            <Button className="m-4" variant="contained" type="submit">
+              Back
+            </Button>
             <Button
               variant="contained"
               type="button"
-              className="m-4"
+              className="m-4 text-white"
+              style={{ backgroundColor: "rgb(71, 117, 62)" }}
               onClick={this.handlePurchaseSubmit}
             >
-              Add
-            </Button>
-            <Button
-              className="m-4"
-              variant="contained"
-              type="submit"
-              color="secondary"
-            >
-              Back
+              <b>Add</b>
             </Button>
           </Form.Group>
 

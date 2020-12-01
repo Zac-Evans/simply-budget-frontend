@@ -30,3 +30,7 @@ code {
 .push {
   line-height: 1.5;
 } */
+
+.MuiSelect-icon {
+  color: rgba(255, 249, 249, 1);
+}

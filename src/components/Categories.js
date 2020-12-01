@@ -109,39 +109,28 @@ const Categories = (props) => {
           <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
             Budgets
           </h1>
-          <Paper
-            style={{
-              border: "2px solid #000",
-              margin: "auto",
-              maxWidth: "900px",
-            }}
+
+          <TableContainer
+            style={{ maxWidth: "700px", margin: "auto" }}
+            className="mt-3"
+            component={Paper}
           >
-            <TableContainer
-              style={{ maxWidth: "700px", margin: "auto" }}
-              className="mt-3"
-              component={Paper}
-            >
-              <Table aria-label="customized table">
-                <TableHead>
-                  <TableRow style={{ backgroundColor: "#264653" }}>
-                    <StyledTableCell align="left">Category</StyledTableCell>
-                    <StyledTableCell align="center">Budget</StyledTableCell>
-                    <StyledTableCell align="center">
-                      Remaining Budget
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      Edit/Remove Budget
-                    </StyledTableCell>
-                  </TableRow>
-                </TableHead>
-              </Table>
-            </TableContainer>
+            <Table aria-label="customized table">
+              <TableHead>
+                <TableRow style={{ backgroundColor: "#264653" }}>
+                  <StyledTableCell align="left">Category</StyledTableCell>
+                  <StyledTableCell align="center">Budget</StyledTableCell>
+                  <StyledTableCell align="center">
+                    Remaining Budget
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    Edit/Remove Budget
+                  </StyledTableCell>
+                </TableRow>
+              </TableHead>
+            </Table>
             <h1 className="text-center p-4">Nothing here!</h1>
-            <Row className="d-flex justify-content-center">
-              <AddCategoryCard />
-              <AddPurchaseCard />
-            </Row>
-          </Paper>
+          </TableContainer>
         </div>
       ) : (
         // <div

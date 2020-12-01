@@ -33,21 +33,23 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                   variant="danger"
                   now={progress.value}
                   label={
-                    <Row
-                      className="d-flex justify-content-between position-absolute w-75 ml-3"
-                      style={{ maxWidth: "650px" }}
-                    >
-                      <Fade direction="up" delay="100" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b>{Math.round(progress.value)}%</b>
-                        </h4>
-                      </Fade>
-                      <Fade direction="up" delay="150" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b> ${props.budget_remaining} remaining</b>
-                        </h4>
-                      </Fade>
-                    </Row>
+                    Math.round(progress.value) ? (
+                      <Row
+                        className="d-flex justify-content-between position-absolute w-75 ml-3"
+                        style={{ maxWidth: "650px" }}
+                      >
+                        <Fade direction="up" delay="100" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b>{Math.round(progress.value)}%</b>
+                          </h4>
+                        </Fade>
+                        <Fade direction="up" delay="150" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b> ${props.budget_remaining} remaining</b>
+                          </h4>
+                        </Fade>
+                      </Row>
+                    ) : null
                   }
                 />
               </div>
@@ -68,21 +70,23 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                   variant="success"
                   now={progress.value}
                   label={
-                    <Row
-                      className="d-flex justify-content-between pt-2 position-absolute w-75 ml-3"
-                      style={{ maxWidth: "650px" }}
-                    >
-                      <Fade direction="up" delay="100" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b>{Math.round(progress.value)}%</b>
-                        </h4>
-                      </Fade>
-                      <Fade direction="up" delay="150" triggerOnce>
-                        <h4 style={fontSizer}>
-                          <b> ${props.budget_remaining} remaining</b>
-                        </h4>
-                      </Fade>
-                    </Row>
+                    Math.round(progress.value) ? (
+                      <Row
+                        className="d-flex justify-content-between pt-2 position-absolute w-75 ml-3"
+                        style={{ maxWidth: "650px" }}
+                      >
+                        <Fade direction="up" delay="100" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b>{Math.round(progress.value)}%</b>
+                          </h4>
+                        </Fade>
+                        <Fade direction="up" delay="150" triggerOnce>
+                          <h4 style={fontSizer}>
+                            <b> ${props.budget_remaining} remaining</b>
+                          </h4>
+                        </Fade>
+                      </Row>
+                    ) : null
                   }
                 />
               </div>

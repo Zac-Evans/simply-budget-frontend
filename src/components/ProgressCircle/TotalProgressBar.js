@@ -9,8 +9,9 @@ import { DateTime } from "luxon";
 const TotalBudgetProgressBar = (props) => {
   const budgetSpent = props.totalBudget - props.budget_remaining;
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
-  const fontSizer = { fontSize: "calc(16px + 1vw)", color: "black" };
+  const fontSizer = { fontSize: "calc(14px + 1vw)", color: "black" };
 
+  console.log(props);
   return (
     <div>
       <div className="ml-4 mr-4 mt-1 mb-1">
@@ -20,14 +21,31 @@ const TotalBudgetProgressBar = (props) => {
         >
           <Fade direction="up" triggerOnce>
             <b>{DateTime.local().monthLong}</b>
+            <h2 className="text-center">
+              Total monthly budget:{" "}
+              <span style={{ color: "rgb(71, 117, 62)" }}>
+                <b>${props.totalBudget ? props.totalBudget : 0}</b>
+              </span>
+            </h2>
           </Fade>
         </h1>
         <hr />
-        <h2 className="text-center">
-          Total monthly budget: ${props.totalBudget ? props.totalBudget : 0}
-        </h2>
-        <p>Monthly Income</p>
-        <p>Monthly Spending</p>
+
+        <Row className="d-flex justify-content-around">
+          <h5 className="p-1">
+            Monthly income:&nbsp;
+            <span style={{ color: "rgb(71, 117, 62)" }}>
+              <b>${props.income.toFixed(2)}</b>
+            </span>
+          </h5>
+
+          <h5 className="p-1">
+            Unallocated:&nbsp;
+            <span style={{ color: "rgb(80, 80, 80)" }}>
+              <b>${(props.income - props.totalBudget).toFixed(2)}</b>
+            </span>
+          </h5>
+        </Row>
         <Spring
           to={{ value: budgetPercentage.toFixed(0) }}
           from={{ value: 0 }}
@@ -57,7 +75,7 @@ const TotalBudgetProgressBar = (props) => {
                       </Fade>
                       <Fade direction="up" delay="150" triggerOnce>
                         <h4 style={fontSizer}>
-                          <b> ${props.budget_remaining} remaining</b>
+                          <b> ${props.budget_remaining.toFixed(2)} remaining</b>
                         </h4>
                       </Fade>
                     </Row>
@@ -114,8 +132,9 @@ const mapStateToProps = (state, ownProps) => {
     category: state.category,
     categoryId: parseInt(ownProps.categoryId),
     budget_remaining: ownProps.budget_remaining,
-    totalBudget: parseInt(ownProps.totalBudget),
+    totalBudget: parseInt(ownProps.totalBudget).toFixed(2),
     category_name: ownProps.category_name,
+    income: ownProps.income,
   };
 };
 

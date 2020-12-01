@@ -136,7 +136,7 @@ export default class Login extends Component {
               <Col>
                 Not registered? <br />
                 <Link to="/register">
-                  <b> Create an account</b>
+                  <b> Create an account!</b>
                 </Link>
               </Col>
             </Row>

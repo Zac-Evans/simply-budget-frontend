@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCategories } from "../../actions/";
+import { fetchUser } from "../../actions";
 import ProgressCircle from "./ProgressCircle";
 import { Row } from "react-bootstrap";
 import TotalProgressBar from "./TotalProgressBar";
@@ -17,6 +18,7 @@ class ProgressCirclesContainer extends Component {
   componentDidMount() {
     const userId = localStorage.getItem("userId");
     this.props.fetchCategories(userId);
+    this.props.fetchUser(userId);
   }
 
   render() {
@@ -40,9 +42,14 @@ class ProgressCirclesContainer extends Component {
       },
     };
 
+    const categoryList = this.props.categories.sort((a, b) =>
+      a.category_name > b.category_name ? 1 : -1
+    );
+
+    console.log(this.props.user);
     return (
       <div className=" m-0 p-0 w-100">
-        {!this.props.categories[0] ? (
+        {!this.props.categories[0] || !this.props.user[0] ? (
           <div>
             <Fade className="text-center m-2" direction="up" triggerOnce>
               <h1>Create a new budget to get started!</h1>
@@ -60,7 +67,7 @@ class ProgressCirclesContainer extends Component {
               <div className="mx-auto">
                 <Row className="d-flex justify-content-center">
                   {this.props.categories[0] &&
-                    this.props.categories.map((category) => (
+                    categoryList.map((category) => (
                       <ProgressCircle
                         key={category.id}
                         categoryId={category.id}
@@ -90,6 +97,7 @@ class ProgressCirclesContainer extends Component {
             <TotalProgressBar
               totalBudget={addedBudget}
               budget_remaining={addedRemainingBudget}
+              income={this.props.user[0].income}
             />
             <Row className="d-flex justify-content-around">
               <AddPurchaseCard />
@@ -128,9 +136,9 @@ class ProgressCirclesContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { categories: state.categories };
+  return { categories: state.categories, user: state.user };
 };
 
-export default connect(mapStateToProps, { fetchCategories })(
+export default connect(mapStateToProps, { fetchCategories, fetchUser })(
   ProgressCirclesContainer
 );

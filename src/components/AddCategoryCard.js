@@ -62,7 +62,7 @@ const AddCategoryCard = () => {
 
         <CardActions>
           <Button variant="contained" onClick={handleOpen}>
-            <b>Create a new category</b>
+            <b>Create a new budget</b>
           </Button>
         </CardActions>
       </Card>

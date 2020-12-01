@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Row, InputGroup } from "react-bootstrap";
 import { Button } from "@material-ui/core";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -15,7 +15,6 @@ class NewCategoryForm extends Component {
   }
   componentDidMount = () => {
     this.props.fetchCategory(userId, this.props.categoryId);
-    console.log(this.props.category);
   };
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -72,18 +71,33 @@ class NewCategoryForm extends Component {
               <Form.Label>
                 <b>Update Monthly Budget</b>
               </Form.Label>
-              <Form.Control
-                name="category_budget"
-                onChange={this.handleChange}
-              />
+              <InputGroup className="mb-2 w-75 mx-auto">
+                <InputGroup.Prepend>
+                  <InputGroup.Text>$</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  name="category_budget"
+                  placeholder={this.props.category[0].category_budget.toFixed(
+                    2
+                  )}
+                  onChange={this.handleChange}
+                />
+              </InputGroup>
             </Form.Group>
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={this.handleCategorySubmit}
-            >
-              Save
-            </Button>
+            <Row className="d-flex justify-content-center">
+              <Button className="m-4" variant="contained" type="submit">
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                className="m-4 text-white"
+                type="submit"
+                style={{ backgroundColor: "rgb(71, 117, 62)" }}
+                onClick={this.handleCategorySubmit}
+              >
+                <b>Save</b>
+              </Button>
+            </Row>
           </Form>
         </div>
       );

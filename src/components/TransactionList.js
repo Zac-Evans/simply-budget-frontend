@@ -43,7 +43,8 @@ function createData(
   budgetRemaining,
   purchaseMonth,
   categoryBudget,
-  purchaseYear
+  purchaseYear,
+  categoryId
 ) {
   return {
     id,
@@ -56,6 +57,7 @@ function createData(
     purchaseMonth,
     categoryBudget,
     purchaseYear,
+    categoryId,
   };
 }
 
@@ -67,6 +69,9 @@ class TransactionList extends Component {
       open: false,
       open1: false,
       purchaseId: "",
+      categoryId: "",
+      price: 0,
+      remaining: 0,
       selectedMonth: DateTime.local().month - 1,
       selectedYear: DateTime.local().year,
       selectedCategory: "All",
@@ -86,17 +91,34 @@ class TransactionList extends Component {
       let purchaseDate = new Date(purchase.createdAt).toLocaleDateString(
         "en-US"
       );
+      let categoryName = purchase.budget_category
+        ? purchase.budget_category.category_name
+        : "Unassigned";
+
+      let budgetRemaining = purchase.budget_category
+        ? purchase.budget_category.budget_remaining
+        : 0;
+
+      let categoryBudget = purchase.budget_category
+        ? purchase.budget_category.category_budget
+        : 0;
+
+      let categoryId = purchase.budget_category
+        ? purchase.budget_category.id
+        : 0;
+
       return createData(
         purchase.id,
         purchaseDate,
         purchase.purchase_name,
         purchase.price,
-        purchase.budget_category.category_name,
+        categoryName,
         purchase.purchase_notes,
-        purchase.budget_category.budget_remaining,
+        budgetRemaining,
         purchaseMonth,
-        purchase.budget_category.category_budget,
-        purchaseYear
+        categoryBudget,
+        purchaseYear,
+        categoryId
       );
     });
 
@@ -132,12 +154,24 @@ class TransactionList extends Component {
 
     const edit = (e) => {
       e.preventDefault();
-      this.setState({ open: true, purchaseId: e.target.id });
+      this.setState({
+        open: true,
+        purchaseId: e.target.id,
+        categoryId: e.target.getAttribute("category"),
+        price: e.target.getAttribute("price"),
+        remaining: e.target.getAttribute("remaining"),
+      });
     };
 
     const deleteCat = (e) => {
       e.preventDefault();
-      this.setState({ open1: true, purchaseId: e.target.id });
+      this.setState({
+        open1: true,
+        purchaseId: e.target.id,
+        categoryId: e.target.getAttribute("category"),
+        price: e.target.getAttribute("price"),
+        remaining: e.target.getAttribute("remaining"),
+      });
     };
 
     const handleClose = () => {
@@ -150,28 +184,24 @@ class TransactionList extends Component {
       color: "white",
     };
 
-    const categoryIdList = this.props.purchases.map(
-      (purchase) => purchase.budget_category.id
-    );
-
-    const categoryIdListUnique = [...new Set(categoryIdList)];
-
-    const categoryNameList = this.props.purchases.map(
-      (purchase) => purchase.budget_category.category_name
+    const categoryNameList = this.props.purchases.map((purchase) =>
+      purchase.budget_category
+        ? purchase.budget_category.category_name
+        : "Unassigned"
     );
 
     const categoryNameListUnique = [...new Set(categoryNameList)];
 
+    console.log(this.state);
     return (
       <div>
         {!this.state.noPurchases ? (
           <TableContainer className="m-0 p-0">
-            <h1 className="text-center" style={{ fontSize: "60px" }}>
+            <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
               Purchases
             </h1>
             <Paper
               style={{
-                border: "2px solid #000",
                 margin: "auto",
                 maxWidth: "700px",
               }}
@@ -179,7 +209,7 @@ class TransactionList extends Component {
               <Row
                 className="d-flex justify-content-around"
                 style={{
-                  backgroundColor: "#212529",
+                  backgroundColor: "rgb(49,49,49)",
                   margin: "auto",
                   maxWidth: "700px",
                 }}
@@ -255,7 +285,7 @@ class TransactionList extends Component {
                     className="text-light"
                   >
                     <MenuItem value={"All"}>All</MenuItem>
-                    {categoryNameListUnique.map((category, i) => (
+                    {categoryNameListUnique.map((category) => (
                       <MenuItem value={category}>{category}</MenuItem>
                     ))}
                   </Select>
@@ -277,7 +307,9 @@ class TransactionList extends Component {
                           <div className="d-inline w-100">
                             <Row>
                               <Col>
-                                Budget - <b>{row.budgetCategory}</b>
+                                <Row className="pl-3">
+                                  Budget -&nbsp;<b> {row.budgetCategory}</b>
+                                </Row>
                               </Col>
                               <Col className="text-right">
                                 <h5>{row.transactionName}</h5>
@@ -298,12 +330,15 @@ class TransactionList extends Component {
                         <AccordionDetails className="d-flex justify-content-center p-0 m-0 bg-light">
                           <div className="d-flex justify-content-center p-0 m-0">
                             <Row>
-                              <Col className="d-flex justify-content-center">
+                              <Col className="d-flex justify-content-center mt-2">
                                 <Button onClick={edit} className="p-2">
                                   Edit &nbsp;
                                   <img
                                     id={row.id}
                                     src={EditIcon}
+                                    value={row.categoryId}
+                                    price={row.transactionAmount}
+                                    remaining={row.budgetRemaining}
                                     style={{
                                       width: "35px",
                                       height: "35px",
@@ -312,11 +347,14 @@ class TransactionList extends Component {
                                   />
                                 </Button>
                               </Col>
-                              <Col className="d-flex justify-content-center">
+                              <Col className="d-flex justify-content-center mt-2">
                                 <Button onClick={deleteCat} className="p-2">
                                   Delete &nbsp;
                                   <img
                                     id={row.id}
+                                    category={row.categoryId}
+                                    price={row.transactionAmount}
+                                    remaining={row.budgetRemaining}
                                     style={{
                                       width: "40px",
                                       height: "35px",
@@ -382,7 +420,12 @@ class TransactionList extends Component {
               }}
             >
               <div>
-                <DeleteFormPurchases purchaseId={this.state.purchaseId} />
+                <DeleteFormPurchases
+                  purchaseId={this.state.purchaseId}
+                  categoryId={this.state.categoryId}
+                  price={this.state.price}
+                  remaining={this.state.remaining}
+                />
               </div>
             </Modal>
           </TableContainer>

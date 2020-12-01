@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row, InputGroup } from "react-bootstrap";
 import { Button } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -33,7 +33,7 @@ class NewCategoryForm extends Component {
       }, 2000);
     }
     e.preventDefault();
-    console.log(this.state);
+
     axios
       .post(
         `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/create`,
@@ -65,11 +65,11 @@ class NewCategoryForm extends Component {
           });
         }, 3500);
       })
-      // .then(() => {
-      //   setTimeout(() => {
-      //     window.location.reload();
-      //   }, 3000);
-      // })
+      .then(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -162,29 +162,29 @@ class NewCategoryForm extends Component {
               <Form.Label>
                 <b>*Monthly Allowance</b>
               </Form.Label>
-              <Form.Control
-                placeholder="$100"
-                name="category_budget"
-                onChange={this.handleChange}
-              />
+              <InputGroup className="mb-2">
+                <InputGroup.Prepend>
+                  <InputGroup.Text>$</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  placeholder="100.00"
+                  name="category_budget"
+                  onChange={this.handleChange}
+                />
+              </InputGroup>
             </Form.Group>
           </Form.Row>
           <Row className="d-flex justify-content-center">
-            <Button
-              className="m-4"
-              variant="contained"
-              // type="submit"
-              onClick={this.handleCategorySubmit}
-            >
-              Add
+            <Button className="m-4" variant="contained" type="submit">
+              Back
             </Button>
             <Button
-              className="m-4"
+              className="m-4 text-white"
               variant="contained"
-              type="submit"
-              color="secondary"
+              style={{ backgroundColor: "rgb(71, 117, 62)" }}
+              onClick={this.handleCategorySubmit}
             >
-              Back
+              <b>Add</b>
             </Button>
           </Row>
           <p className="mt-3 mb-0">* required</p>

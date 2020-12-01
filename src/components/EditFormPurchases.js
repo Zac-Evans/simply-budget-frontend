@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row, InputGroup } from "react-bootstrap";
 import { Button, Paper } from "@material-ui/core";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -81,30 +81,32 @@ class NewCategoryForm extends Component {
                     $
                   </Col>
                   <Col className="col-8" style={{ marginTop: "-7px" }}>
-                    <Form.Control
-                      name="price"
-                      onChange={this.handleChange}
-                      placeholder={this.props.purchase[0].price.toFixed(2)}
-                    />
+                    {" "}
+                    <InputGroup className="mb-2">
+                      <InputGroup.Prepend>
+                        <InputGroup.Text>$</InputGroup.Text>
+                      </InputGroup.Prepend>
+                      <Form.Control
+                        name="price"
+                        onChange={this.handleChange}
+                        placeholder={this.props.purchase[0].price.toFixed(2)}
+                      />
+                    </InputGroup>
                   </Col>
                 </Row>
               </Form.Group>
               <Form.Group className="d-flex justify-content-center">
-                <Button
-                  className="m-4"
-                  variant="contained"
-                  type="submit"
-                  onClick={this.handleCategorySubmit}
-                >
-                  Save
+                <Button className="m-4" variant="contained" type="submit">
+                  Back
                 </Button>
                 <Button
-                  className="m-4"
+                  className="m-4 text-white"
                   variant="contained"
                   type="submit"
-                  color="secondary"
+                  style={{ backgroundColor: "rgb(71, 117, 62)" }}
+                  onClick={this.handleCategorySubmit}
                 >
-                  Back
+                  <b>Save</b>
                 </Button>
               </Form.Group>
             </Form>
