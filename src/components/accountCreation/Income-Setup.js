@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { Button, Col } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import NumberInput from "./Number-Input";
 import FailModal from "../loginComponents/Fail-Modal";
 import Logo from "../../images/simply-logo-white.png";
@@ -60,20 +60,19 @@ export default class IncomeSetup extends Component {
     return (
       <div
         style={{
-          paddingTop: "2%",
-          paddingBottom: "2%",
           backgroundColor: "rgb(71, 117, 62)",
           minHeight: "100vh",
         }}
+        className="d-flex flex-column justify-content-center align-items-stretch"
       >
-        <div className="d-flex justify-content-around">
-          <Col>
+        <div className="d-flex justify-content-center">
+          <Col className="d-flex justify-content-end align-items-center">
             <Link to="/register">
-              <h5 className="text-white p-3">← Back</h5>
+              <h5 className="text-white p-0 m-0">← Back</h5>
             </Link>
           </Col>
-          <Col className="d-flex justify-content-center">
-            <img height="80vh" className="mb-4" src={Logo} />
+          <Col className="d-flex justify-content-center m-0 p-0">
+            <img width="200vw" className="mb-4 ml-0 mr-0 p-0" src={Logo} />
           </Col>
           <Col />
         </div>
@@ -93,7 +92,7 @@ export default class IncomeSetup extends Component {
 
           <Form
             className="mx-auto"
-            style={{ maxWidth: "400px" }}
+            style={{ maxWidth: "500px" }}
             onSubmit={this.handleSubmit}
           >
             <NumberInput
@@ -101,16 +100,18 @@ export default class IncomeSetup extends Component {
               id="income"
               handleChange={this.handleChange}
             />
-            <Button
-              style={{
-                border: "1px solid rgb(173, 173, 173)",
-                backgroundColor: "rgb(71, 117, 62)",
-                width: "100%",
-              }}
-              type="submit"
-            >
-              Next
-            </Button>
+            <Row className="d-flex justify-content-center">
+              <Button
+                style={{
+                  border: "1px solid rgb(173, 173, 173)",
+                  backgroundColor: "rgb(60, 60, 60)",
+                  width: "30%",
+                }}
+                type="submit"
+              >
+                <b>Next ➜</b>
+              </Button>
+            </Row>
           </Form>
         </div>
       </div>
@@ -122,6 +123,9 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
+  marginLeft: "auto",
+  marginRight: "auto",
+  width: "100%",
   maxWidth: "600px",
   minHeight: "300px",
   backgroundColor: "white",

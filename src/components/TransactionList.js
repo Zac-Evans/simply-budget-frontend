@@ -71,7 +71,6 @@ class TransactionList extends Component {
       selectedYear: DateTime.local().year,
       selectedCategory: "All",
       noPurchases: false,
-      transactionList: [],
     };
   }
 
@@ -102,7 +101,7 @@ class TransactionList extends Component {
     });
 
     let thisMonthTransactions = [];
-    console.log(thisMonthTransactions);
+
     for (let i = 0; i < rows.length; i++) {
       if (
         rows[i].purchaseMonth === this.state.selectedMonth &&
@@ -163,7 +162,6 @@ class TransactionList extends Component {
 
     const categoryNameListUnique = [...new Set(categoryNameList)];
 
-    console.log(this.state.selectedCategory);
     return (
       <div>
         {!this.state.noPurchases ? (
@@ -179,14 +177,14 @@ class TransactionList extends Component {
               }}
             >
               <Row
-                className="d-flex justify-content-center"
+                className="d-flex justify-content-around"
                 style={{
                   backgroundColor: "#212529",
                   margin: "auto",
                   maxWidth: "700px",
                 }}
               >
-                <FormControl className="mx-4 my-2" style={{ width: "150px" }}>
+                <FormControl className="mx-1 my-2" style={{ width: "100px" }}>
                   <InputLabel
                     id="demo-simple-select-helper-label"
                     className="text-light"
@@ -215,7 +213,7 @@ class TransactionList extends Component {
                   </Select>
                   <FormHelperText></FormHelperText>
                 </FormControl>
-                <FormControl className="my-2 mx-4" style={{ width: "150px" }}>
+                <FormControl className="my-2 mx-1" style={{ width: "100px" }}>
                   <InputLabel
                     id="demo-simple-select-helper-label"
                     className="text-light"
@@ -242,7 +240,7 @@ class TransactionList extends Component {
                   </Select>
                   <FormHelperText></FormHelperText>
                 </FormControl>
-                <FormControl className="my-2 mx-4" style={{ width: "150px" }}>
+                <FormControl className="my-2 mx-1" style={{ width: "100px" }}>
                   <InputLabel
                     id="demo-simple-select-helper-label"
                     className="text-light"

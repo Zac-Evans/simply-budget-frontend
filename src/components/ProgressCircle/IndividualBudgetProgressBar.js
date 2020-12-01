@@ -19,7 +19,7 @@ const IndividualBudgetProgressBar = (props) => {
         margin: "-5px",
       }}
       className="mx-auto"
-      elevation="24"
+      elevation={24}
     >
       <div className="mx-auto mt-1 mb-1" style={{ maxWidth: "700px" }}>
         <Spring

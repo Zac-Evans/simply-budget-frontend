@@ -72,27 +72,26 @@ export default class Register extends Component {
     return (
       <div
         style={{
-          paddingTop: "2%",
-          paddingBottom: "2%",
           backgroundColor: "rgb(71, 117, 62)",
           minHeight: "100vh",
         }}
+        className="d-flex flex-column justify-content-center align-items-stretch"
       >
-        <div className="d-flex justify-content-around">
-          <Col>
+        <div className="d-flex justify-content-center">
+          <Col className="d-flex justify-content-end align-items-center">
             <Link to="/login">
-              <h5 className="text-white p-3">← Back</h5>
+              <h5 className="text-white p-0 m-0">← Back</h5>
             </Link>
           </Col>
-          <Col className="d-flex justify-content-center">
-            <img height="80vh" className="mb-4" src={Logo} />
+          <Col className="d-flex justify-content-center m-0 p-0">
+            <img width="200vw" className="mb-4 ml-0 mr-0 p-0" src={Logo} />
           </Col>
           <Col />
         </div>
         <div style={divStyle} className="mx-auto">
           <Form
             className=" mx-auto"
-            style={{ maxWidth: "400px" }}
+            style={{ maxWidth: "500px" }}
             onSubmit={this.handleSubmit}
           >
             <div className="d-flex justify-content-center">
@@ -107,8 +106,8 @@ export default class Register extends Component {
               className="mb-4 text-center"
               style={{ fontSize: "clamp(16px,2.5vh,24px)" }}
             >
-              Create a{" "}
-              <b style={{ color: "rgb(71, 117, 62)" }}>Simply Budget</b> account
+              Create a<b style={{ color: "rgb(71, 117, 62)" }}>Simply Budget</b>{" "}
+              account
             </p>
             <Form.Group>
               <Form.Control
@@ -185,7 +184,10 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
-  maxWidth: "600px",
+  marginLeft: "auto",
+  marginRight: "auto",
+  width: "100%",
+  maxWidth: "400px",
   minHeight: "300px",
   backgroundColor: "white",
 };

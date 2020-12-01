@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Form, Col, Tooltip, OverlayTrigger, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import { Button } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { connect } from "react-redux";
 import { fetchCategories } from "../actions";
@@ -83,7 +83,7 @@ class NewPurchaseForm extends Component {
           }
         )
       )
-      .then((response) => {
+      .then(() => {
         if (this.state.Showing) return;
         e.preventDefault();
         this.setState({ Show: true, Showing: true });
@@ -104,12 +104,6 @@ class NewPurchaseForm extends Component {
           });
         }, 3500);
       })
-      // .then(() => {
-      //   setTimeout(() => {
-      //     window.location.reload();
-      //   }, 3000);
-      // })
-
       .catch((error) => {
         console.log(error);
       });

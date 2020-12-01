@@ -63,25 +63,24 @@ export default class Login extends Component {
     return (
       <div
         style={{
-          paddingTop: "2%",
-          paddingBottom: "2%",
           backgroundColor: "rgb(71, 117, 62)",
           minHeight: "100vh",
         }}
+        className="d-flex flex-column justify-content-center align-items-stretch"
       >
         <div className="d-flex justify-content-around">
-          <Col>
+          <Col className="d-flex justify-content-end align-items-center">
             <Link to="/">
-              <h5 className="text-white p-3">← Back</h5>
+              <h5 className="text-white p-0 m-0">← Back</h5>
             </Link>
           </Col>
-          <Col className="d-flex justify-content-center">
-            <img height="80vh" className="mb-4" src={Logo} />
+          <Col className="d-flex justify-content-center m-0 p-0">
+            <img width="200hw" className="mb-4 ml-0 mr-0 p-0" src={Logo} />
           </Col>
           <Col />
         </div>
 
-        <div style={divStyle} className="mx-auto pb-4">
+        <div style={divStyle} className="mx-auto">
           <Form className="mx-auto " onSubmit={this.handleSubmit}>
             <div className="d-flex justify-content-center">
               <img
@@ -128,26 +127,16 @@ export default class Login extends Component {
                   }}
                   type="submit"
                 >
-                  Submit
+                  <b>Submit</b>
                 </Button>
               </Col>
             </Row>
-            <Row className="text-center d-flex justify-content-center">
-              <b className="m-2">OR</b>
-            </Row>
 
-            <Row className="text-center d-flex justify-content-center m-2">
+            <Row className="text-center d-flex justify-content-center mt-4">
               <Col>
+                Not registered? <br />
                 <Link to="/register">
-                  <Button
-                    style={{
-                      border: "1px solid rgb(173, 173, 173)",
-                      backgroundColor: "#00a367",
-                      width: "70%",
-                    }}
-                  >
-                    Create account
-                  </Button>
+                  <b> Create an account</b>
                 </Link>
               </Col>
             </Row>
@@ -171,10 +160,10 @@ const divStyle = {
   boxShadow: "1px 1px 20px",
   borderRadius: "10px",
   padding: "30px",
-  height: "70vh",
-  maxHeight: "450px",
-  maxWidth: "600px",
-  minHeight: "400px",
-
+  marginLeft: "auto",
+  marginRight: "auto",
+  width: "100%",
+  maxWidth: "400px",
+  minHeight: "300px",
   backgroundColor: "white",
 };
