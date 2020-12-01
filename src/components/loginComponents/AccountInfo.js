@@ -13,13 +13,13 @@ class AccountInfo extends Component {
 
   render() {
     return (
-      <Container style={{ width: "700px", margin: "auto" }}>
+      <div className="p-3 w-100">
         <Row>
           <Col style={{ borderBottom: "1px solid black" }}>
             <h5>Personal Information</h5>
           </Col>
         </Row>
-        <Row className="mt-3">
+        <Row className="mt-3 mx-auto ">
           <Col>
             <h4>First Name</h4>
             {this.props.user[0] && <p>{this.props.user[0].first_name}</p>}
@@ -29,7 +29,7 @@ class AccountInfo extends Component {
             {this.props.user[0] && <p>{this.props.user[0].last_name}</p>}
           </Col>
         </Row>
-        <Row>
+        <Row className="mx-auto">
           <Col>
             <h4>Email</h4>
             {this.props.user[0] && <p>{this.props.user[0].email}</p>}
@@ -43,7 +43,7 @@ class AccountInfo extends Component {
             <p>*******</p>
           </Col>
         </Row>
-      </Container>
+      </div>
     );
   }
 }

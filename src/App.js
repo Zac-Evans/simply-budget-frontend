@@ -58,7 +58,7 @@ export default class App extends Component {
             <Route path="/income-setup" component={Income_Setup} />
             <Route path="/bill-setup" component={Bill_Setup} />
             <Route path="/category-setup" component={Category_Setup} />
-            <Route path="/dashboard/account" component={Account} />
+            <Route exact path="/dashboard/account" component={Account} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route
               exact

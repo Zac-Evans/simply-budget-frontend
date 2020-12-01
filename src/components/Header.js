@@ -39,7 +39,7 @@ class PageHeader extends Component {
           {localStorage.getItem("userId") ? (
             <Navbar.Brand href="/dashboard">
               <img
-                height="140"
+                height="120"
                 className="d-inline-block align-top"
                 src={Logo}
               />
@@ -47,7 +47,7 @@ class PageHeader extends Component {
           ) : (
             <Navbar.Brand href="/">
               <img
-                height="140"
+                height="120"
                 className="d-inline-block align-top"
                 src={Logo}
               />

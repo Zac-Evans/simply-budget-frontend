@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
+import { Button } from "@material-ui/core";
 
 class EditAccount extends Component {
   constructor() {
@@ -59,18 +59,19 @@ class EditAccount extends Component {
 
   render() {
     return (
-      <Form style={{ width: "700px", margin: "auto" }}>
+      <Form className="w-100 p-3">
         <Row>
           <Col style={{ borderBottom: "1px solid black" }}>
             <h5>Personal Information</h5>
           </Col>
         </Row>
-        <Row className="mt-3">
+        <Row className="mt-3 mx-auto">
           <Col>
-            <h4>First Name</h4>
+            <h4 className="m-0 p-0">First Name</h4>
             {this.props.user[0] && (
               <FormControl
                 id="first_name"
+                className="m-0 p-0"
                 placeholder={this.props.user[0].first_name}
                 onChange={this.handleChange}
                 style={inputStyle}
@@ -78,9 +79,10 @@ class EditAccount extends Component {
             )}
           </Col>
           <Col>
-            <h4>Last Name</h4>
+            <h4 className="m-0 p-0">Last Name</h4>
             {this.props.user[0] && (
               <FormControl
+                className="m-0 p-0"
                 id="last_name"
                 placeholder={this.props.user[0].last_name}
                 onChange={this.handleChange}
@@ -89,9 +91,9 @@ class EditAccount extends Component {
             )}
           </Col>
         </Row>
-        <Row>
+        <Row className="mx-auto pt-2 m-0">
           <Col>
-            <h4>Email</h4>
+            <h4 className="m-0 p-0">Email</h4>
             {this.props.user[0] && (
               <FormControl
                 id="email"
@@ -103,10 +105,11 @@ class EditAccount extends Component {
             )}
           </Col>
           <Col>
-            <h4>Income</h4>
+            <h4 className="m-0 p-0">Income</h4>
             {this.props.user[0] && (
               <FormControl
                 id="income"
+                className="m-0 p-0"
                 placeholder={this.props.user[0].income}
                 onChange={this.handleChange}
                 style={inputStyle}
@@ -114,9 +117,10 @@ class EditAccount extends Component {
             )}
           </Col>
           <Col>
-            <h4>Password</h4>
+            <h4 className="m-0 p-0">Password</h4>
             {this.props.user[0] && (
               <FormControl
+                className="m-0 p-0"
                 id="password"
                 type="password"
                 placeholder="*******"
@@ -126,9 +130,20 @@ class EditAccount extends Component {
             )}
           </Col>
         </Row>
-        <Button className="mb-3" onClick={this.handleSubmit}>
-          Save
-        </Button>
+        <Form.Group className="d-flex justify-content-center">
+          <Button className="m-4" variant="contained" type="submit">
+            Back
+          </Button>
+          <Button
+            className="m-4 text-white"
+            variant="contained"
+            type="submit"
+            style={{ backgroundColor: "rgb(71, 117, 62)" }}
+            onClick={this.handleSubmit}
+          >
+            <b>Save</b>
+          </Button>
+        </Form.Group>
       </Form>
     );
   }
