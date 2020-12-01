@@ -144,8 +144,6 @@ class TransactionList extends Component {
       }
     }
 
-    console.log(thisMonthTransactions);
-
     const sortedThisMonthTransactions = thisMonthTransactions.sort((a, b) =>
       a.dateInt < b.dateInt ? 1 : -1
     );
@@ -201,20 +199,21 @@ class TransactionList extends Component {
     );
 
     const categoryNameListUnique = [...new Set(categoryNameList)];
-
     console.log(this.state);
     return (
-      <div>
+      <div style={{ paddingBottom: "2.5rem" }}>
         {!this.state.noPurchases ? (
           <TableContainer className="m-0 p-0">
             <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
               Purchases
             </h1>
             <Paper
+              className="my-4 mx-auto"
               style={{
-                margin: "auto",
                 maxWidth: "700px",
+                zIndex: "1000",
               }}
+              elevation={10}
             >
               <Row
                 className="d-flex justify-content-around"
@@ -224,7 +223,7 @@ class TransactionList extends Component {
                   maxWidth: "700px",
                 }}
               >
-                <FormControl className="mx-1 my-2" style={{ width: "100px" }}>
+                <FormControl className="mx-1 my-2" style={{ width: "120px" }}>
                   <InputLabel
                     id="demo-simple-select-helper-label"
                     className="text-light"
@@ -238,18 +237,42 @@ class TransactionList extends Component {
                     onChange={handleMonthChange}
                     className="text-light"
                   >
-                    <MenuItem value={0}>January</MenuItem>
-                    <MenuItem value={1}>February</MenuItem>
-                    <MenuItem value={2}>March</MenuItem>
-                    <MenuItem value={3}>April</MenuItem>
-                    <MenuItem value={4}>May</MenuItem>
-                    <MenuItem value={5}>June</MenuItem>
-                    <MenuItem value={6}>July</MenuItem>
-                    <MenuItem value={7}>August</MenuItem>
-                    <MenuItem value={8}>September</MenuItem>
-                    <MenuItem value={9}>October</MenuItem>
-                    <MenuItem value={10}>November</MenuItem>
-                    <MenuItem value={11}>December</MenuItem>
+                    <MenuItem value={0}>
+                      <h5>January</h5>
+                    </MenuItem>
+                    <MenuItem value={1}>
+                      <h5>February</h5>
+                    </MenuItem>
+                    <MenuItem value={2}>
+                      <h5>March</h5>
+                    </MenuItem>
+                    <MenuItem value={3}>
+                      <h5>April</h5>
+                    </MenuItem>
+                    <MenuItem value={4}>
+                      <h5>May</h5>
+                    </MenuItem>
+                    <MenuItem value={5}>
+                      <h5>June</h5>
+                    </MenuItem>
+                    <MenuItem value={6}>
+                      <h5>July</h5>
+                    </MenuItem>
+                    <MenuItem value={7}>
+                      <h5>August</h5>
+                    </MenuItem>
+                    <MenuItem value={8}>
+                      <h5>September</h5>
+                    </MenuItem>
+                    <MenuItem value={9}>
+                      <h5>October</h5>
+                    </MenuItem>
+                    <MenuItem value={10}>
+                      <h5>November</h5>
+                    </MenuItem>
+                    <MenuItem value={11}>
+                      <h5>December</h5>
+                    </MenuItem>
                   </Select>
                   <FormHelperText></FormHelperText>
                 </FormControl>
@@ -267,16 +290,24 @@ class TransactionList extends Component {
                     onChange={handleYearChange}
                     className="text-light"
                   >
-                    <MenuItem value={2020}>2020</MenuItem>
-                    <MenuItem value={2019}>2019</MenuItem>
-                    <MenuItem value={2018}>2018</MenuItem>
-                    <MenuItem value={2017}>2017</MenuItem>
-                    <MenuItem value={2016}>2016</MenuItem>
-                    <MenuItem value={2015}>2015</MenuItem>
-                    <MenuItem value={2014}>2014</MenuItem>
-                    <MenuItem value={2013}>2013</MenuItem>
-                    <MenuItem value={2012}>2012</MenuItem>
-                    <MenuItem value={2011}>2011</MenuItem>
+                    <MenuItem value={2020}>
+                      <h5>2020</h5>
+                    </MenuItem>
+                    <MenuItem value={2019}>
+                      <h5>2019</h5>
+                    </MenuItem>
+                    <MenuItem value={2018}>
+                      <h5>2018</h5>
+                    </MenuItem>
+                    <MenuItem value={2017}>
+                      <h5>2017</h5>
+                    </MenuItem>
+                    <MenuItem value={2016}>
+                      <h5>2016</h5>
+                    </MenuItem>
+                    <MenuItem value={2015}>
+                      <h5>2015</h5>
+                    </MenuItem>
                   </Select>
                   <FormHelperText></FormHelperText>
                 </FormControl>
@@ -294,9 +325,13 @@ class TransactionList extends Component {
                     onChange={handleCategoryChange}
                     className="text-light"
                   >
-                    <MenuItem value={"All"}>All</MenuItem>
+                    <MenuItem value={"All"}>
+                      <h5>All</h5>
+                    </MenuItem>
                     {categoryNameListUnique.map((category) => (
-                      <MenuItem value={category}>{category}</MenuItem>
+                      <MenuItem value={category}>
+                        <h5>{category}</h5>
+                      </MenuItem>
                     ))}
                   </Select>
                   <FormHelperText></FormHelperText>
@@ -346,7 +381,7 @@ class TransactionList extends Component {
                                   <img
                                     id={row.id}
                                     src={EditIcon}
-                                    value={row.categoryId}
+                                    category={row.categoryId}
                                     price={row.transactionAmount}
                                     remaining={row.budgetRemaining}
                                     style={{
@@ -414,6 +449,9 @@ class TransactionList extends Component {
                 <EditFormPurchases
                   purchaseId={this.state.purchaseId}
                   categoryList={this.props.purchases}
+                  categoryId={this.state.categoryId}
+                  price={this.state.price}
+                  remaining={this.state.remaining}
                 />
               </div>
             </Modal>

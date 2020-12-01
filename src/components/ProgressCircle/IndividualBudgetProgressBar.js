@@ -25,7 +25,7 @@ const IndividualBudgetProgressBar = (props) => {
         <Spring
           to={{ value: budgetPercentage.toFixed(0) }}
           from={{ value: 0 }}
-          config={{ tension: 800, friction: 100, mass: 19, clamp: true }}
+          config={{ tension: 800, friction: 200, mass: 30, clamp: true }}
         >
           {(progress) =>
             budgetPercentage > 100 ? (

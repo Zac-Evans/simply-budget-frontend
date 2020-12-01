@@ -65,24 +65,24 @@ class NewPurchaseForm extends Component {
       }, 2000);
     }
 
+    axios.post(
+      `https://simply-budget-backend.herokuapp.com/user/${userId}/purchases/create`,
+      {
+        category_id: this.state.category_id,
+        purchase_name: this.state.purchase_name,
+        purchase_notes: this.state.purchase_notes,
+        price: parseInt(this.state.price),
+      }
+    );
+
     axios
-      .post(
-        `https://simply-budget-backend.herokuapp.com/user/${userId}/purchases/create`,
+      .put(
+        `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/category/${this.state.category_id}`,
         {
-          category_id: this.state.category_id,
-          purchase_name: this.state.purchase_name,
-          purchase_notes: this.state.purchase_notes,
-          price: parseInt(this.state.price),
+          budget_remaining: this.state.budget_remaining - this.state.price,
         }
       )
-      .then(
-        axios.put(
-          `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/category/${this.state.category_id}`,
-          {
-            budget_remaining: this.state.budget_remaining - this.state.price,
-          }
-        )
-      )
+
       .then(() => {
         if (this.state.Showing) return;
         e.preventDefault();

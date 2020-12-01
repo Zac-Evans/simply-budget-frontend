@@ -28,6 +28,18 @@ class NewCategoryForm extends Component {
           price: this.state.price,
         }
       )
+      .then(
+        axios.put(
+          `https://simply-budget-backend.herokuapp.com/user/${userId}/budget/category/${this.props.categoryId}`,
+          {
+            budget_remaining:
+              parseInt(this.props.remaining) +
+              parseInt(this.props.purchase[0].price) -
+              parseInt(this.state.price),
+          }
+        )
+      )
+
       .then((response) => console.log(response))
       .then(() => window.location.reload())
       .catch((error) => console.log(error));
@@ -36,6 +48,7 @@ class NewCategoryForm extends Component {
     if (!this.props.purchase[0]) {
       return "Loading...";
     } else {
+      console.log(this.props);
       return (
         <div>
           <Paper style={{ border: "2px solid #000" }} className="p-3">
@@ -120,6 +133,9 @@ const mapStateToProps = (state, ownProps) => {
   return {
     purchase: state.purchase,
     purchaseId: ownProps.purchaseId,
+    categoryId: ownProps.categoryId,
+    price: ownProps.price,
+    remaining: ownProps.remaining,
   };
 };
 export default connect(mapStateToProps, { fetchPurchase })(NewCategoryForm);

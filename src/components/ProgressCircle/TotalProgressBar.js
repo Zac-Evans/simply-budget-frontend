@@ -95,7 +95,9 @@ const TotalBudgetProgressBar = (props) => {
                       <h4 style={fontSizer}>
                         <b>
                           {props.budget_remaining
-                            ? "$" + props.budget_remaining + " remaining"
+                            ? "$" +
+                              props.budget_remaining.toFixed(2) +
+                              " remaining"
                             : ""}
                         </b>
                       </h4>

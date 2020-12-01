@@ -7,8 +7,8 @@ import ProgressCirclesContainer from "./ProgressCircle/ProgressCirclesContainer"
 class Dashboard extends Component {
   render() {
     return (
-      <Container>
-        <ProgressCirclesContainer /> :
+      <Container style={{ paddingBottom: "2.5rem" }}>
+        <ProgressCirclesContainer />
       </Container>
     );
   }

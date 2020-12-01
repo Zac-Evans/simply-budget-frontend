@@ -18,12 +18,14 @@ import TransactionList from "./components/TransactionList";
 import CarouselApp from "./components/CarouselApp";
 import Account from "./components/loginComponents/Account";
 import Categories from "./components/Categories";
+import SiteFooter from "./components/SiteFooter";
+import Attributions from "./components/Attributions";
 
 export default class App extends Component {
   render() {
     if (!localStorage.getItem("userId")) {
       return (
-        <div>
+        <div style={{ minHeight: "100vh", position: "relative" }}>
           {window.location.pathname !== "/" &&
             window.location.pathname !== "/login" &&
             window.location.pathname !== "/register" &&
@@ -36,13 +38,15 @@ export default class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/" component={CarouselApp} />
+              <Route exact path="/attributions" component={Attributions} />
             </Switch>
           </Router>
+          <SiteFooter />
         </div>
       );
     }
     return (
-      <div>
+      <div style={{ minHeight: "100vh", position: "relative" }}>
         {window.location.pathname !== "/" &&
           window.location.pathname !== "/login" &&
           window.location.pathname !== "/register" &&
@@ -65,36 +69,12 @@ export default class App extends Component {
               path="/dashboard/transactions"
               component={TransactionList}
             />
+            <Route exact path="/attributions" component={Attributions} />
             <Route exact path="/dashboard/categories" component={Categories} />
           </Switch>
         </Router>
+        <SiteFooter />
       </div>
     );
   }
 }
-
-// class App extends Component {
-//   componentDidMount() {
-//     this.props.fetchCategories(localStorage.getItem("userId"));
-//   }
-
-//   renderList() {
-//     console.log(this.props.categories[0]);
-//     return this.props.categories.map((category, index) => {
-//       return (
-//         <div key={category.id}>
-//           <h2>{category.category_name}</h2>
-//         </div>
-//       );
-//     });
-//   }
-//   render() {
-//     return <div>{this.renderList()}</div>;
-//   }
-// }
-
-// const mapStateToProps = (state) => {
-//   return { categories: state.categories };
-// };
-
-// export default connect(mapStateToProps, { fetchCategories })(App);

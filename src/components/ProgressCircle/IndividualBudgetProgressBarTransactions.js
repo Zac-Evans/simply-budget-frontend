@@ -41,12 +41,12 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                         style={{ maxWidth: "650px" }}
                       >
                         <Fade direction="up" delay="100" triggerOnce>
-                          <h4 style={fontSizer}>
+                          <h4 style={fontSizer} className="text-white">
                             <b>{Math.round(progress.value)}%</b>
                           </h4>
                         </Fade>
                         <Fade direction="up" delay="150" triggerOnce>
-                          <h4 style={fontSizer}>
+                          <h4 style={fontSizer} className="text-white">
                             <b>
                               ${props.budget_remaining.toFixed(2)} remaining
                             </b>

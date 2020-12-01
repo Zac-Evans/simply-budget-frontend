@@ -88,7 +88,7 @@ class ProgressCirclesContainer extends Component {
 
     console.log(this.props);
     return (
-      <div className=" m-0 p-0 w-100">
+      <div className=" mb-4 p-0 w-100">
         {!this.props.categories[0] || !this.props.user[0] ? (
           <div>
             <Fade className="text-center m-2" direction="up" triggerOnce>

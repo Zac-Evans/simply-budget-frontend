@@ -112,7 +112,7 @@ const Categories = (props) => {
   );
 
   return (
-    <TableContainer>
+    <TableContainer style={{ paddingBottom: "2.5rem" }}>
       {!props.categories[0] ? (
         <div>
           <h1 className="text-center my-4" style={{ fontSize: "60px" }}>
@@ -123,6 +123,7 @@ const Categories = (props) => {
             style={{ maxWidth: "700px", margin: "auto" }}
             className="mt-3"
             component={Paper}
+            elevation={24}
           >
             <Table aria-label="customized table">
               <TableHead>
@@ -156,8 +157,9 @@ const Categories = (props) => {
           </h1>
           <TableContainer
             style={{ maxWidth: "700px", margin: "auto" }}
-            className="mt-3"
+            className="mt-3 mb-3"
             component={Paper}
+            elevation={24}
           >
             <Table aria-label="customized table">
               <TableHead>
@@ -235,26 +237,27 @@ const Categories = (props) => {
           </Modal>
         </div>
       )}
-      <div className="d-flex justify-content-center pt-2 mb-0 pb-0">
-        <h3>
-          <b>
-            Your &nbsp;
-            <span style={{ color: "rgb(71, 117, 62)" }}>
-              {DateTime.local().monthLong}
-            </span>
-          </b>
-        </h3>
-      </div>
-      <div className="mt-4">
-        {alphaCategoryBars.map((category) => (
-          <IndividualBudgetProgressBar
-            key={category.id}
-            categoryId={category.id}
-            budget_remaining={category.budget_remaining}
-            category_budget={category.category_budget}
-            category_name={category.category_name}
-          />
-        ))}
+
+      <div style={{ backgroundColor: "white" }} className="m-0 pt-3 pb-4">
+        <Paper
+          className="d-flex justify-content-center mb-0 pb-0 mx-auto"
+          style={{ backgroundColor: "rgb(30, 30, 30)", maxWidth: "700px" }}
+        >
+          <h1 className="text-light">
+            <b>{DateTime.local().monthLong}</b>
+          </h1>
+        </Paper>
+        <div>
+          {alphaCategoryBars.map((category) => (
+            <IndividualBudgetProgressBar
+              key={category.id}
+              categoryId={category.id}
+              budget_remaining={category.budget_remaining}
+              category_budget={category.category_budget}
+              category_name={category.category_name}
+            />
+          ))}
+        </div>
       </div>
       <Row className="d-flex justify-content-center m-0 p-0">
         <AddCategoryCard className="p-0 m-0" />
