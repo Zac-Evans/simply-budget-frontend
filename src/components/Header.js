@@ -35,6 +35,7 @@ class PageHeader extends Component {
           collapseOnSelect
           expand="lg"
           bg="dark"
+          className="navbar-dark"
         >
           {localStorage.getItem("userId") ? (
             <Navbar.Brand href="/dashboard">
