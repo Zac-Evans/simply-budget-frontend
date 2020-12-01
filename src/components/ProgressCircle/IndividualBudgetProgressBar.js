@@ -9,7 +9,7 @@ const IndividualBudgetProgressBar = (props) => {
   const budgetSpent = props.totalBudget - props.budget_remaining;
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
   const fontSizer = { fontSize: "clamp(16px, 1vw, 24px)", color: "black" };
-  console.log(props);
+
   return (
     <Paper
       style={{
@@ -57,7 +57,10 @@ const IndividualBudgetProgressBar = (props) => {
                         </Fade>
                         <Fade direction="up" delay="150" triggerOnce>
                           <h4 style={fontSizer}>
-                            <b> ${props.budget_remaining} remaining</b>
+                            <b>
+                              {" "}
+                              ${props.budget_remaining.toFixed(2)} remaining
+                            </b>
                           </h4>
                         </Fade>
                       </Row>
@@ -94,7 +97,10 @@ const IndividualBudgetProgressBar = (props) => {
                         </Fade>
                         <Fade direction="up" delay="150" triggerOnce>
                           <h4 style={fontSizer}>
-                            <b> ${props.budget_remaining} remaining</b>
+                            <b>
+                              {" "}
+                              ${props.budget_remaining.toFixed(2)} remaining
+                            </b>
                           </h4>
                         </Fade>
                       </Row>

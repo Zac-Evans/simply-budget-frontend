@@ -4,6 +4,7 @@ import { fetchCategories } from "../actions/";
 import { connect } from "react-redux";
 // Material UI things
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { DateTime } from "luxon";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 //Table elements
@@ -72,7 +73,7 @@ const Categories = (props) => {
       budgetRemaining,
     };
   }
-  const rows = props.categories.map((category) => {
+  const unsortedCategories = props.categories.map((category) => {
     return createData(
       category.id,
       category.category_name,
@@ -101,6 +102,14 @@ const Categories = (props) => {
     setCategoryId(e.target.id);
     setOpen1(true);
   };
+
+  const alphaCategoryBars = props.categories.sort((a, b) =>
+    a.category_name > b.category_name ? 1 : -1
+  );
+
+  const alphaCategoryList = unsortedCategories.sort((a, b) =>
+    a.categoryName > b.categoryName ? 1 : -1
+  );
 
   return (
     <TableContainer>
@@ -160,7 +169,7 @@ const Categories = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
+                {alphaCategoryList.map((row) => (
                   <StyledTableRow key={row.id}>
                     <StyledTableCell align="left">
                       {row.categoryName}
@@ -226,8 +235,18 @@ const Categories = (props) => {
           </Modal>
         </div>
       )}
+      <div className="d-flex justify-content-center pt-2 mb-0 pb-0">
+        <h3>
+          <b>
+            Your &nbsp;
+            <span style={{ color: "rgb(71, 117, 62)" }}>
+              {DateTime.local().monthLong}
+            </span>
+          </b>
+        </h3>
+      </div>
       <div className="mt-4">
-        {props.categories.map((category) => (
+        {alphaCategoryBars.map((category) => (
           <IndividualBudgetProgressBar
             key={category.id}
             categoryId={category.id}

@@ -17,7 +17,7 @@ class EditAccount extends Component {
         last_name: this.props.user[0].last_name,
         email: this.props.user[0].email,
         password: this.props.user[0].password,
-        income: this.props.user[0].income
+        income: this.props.user[0].income,
       };
     }
   }
@@ -46,8 +46,8 @@ class EditAccount extends Component {
           first_name: this.state.first_name,
           last_name: this.state.last_name,
           email: this.state.email,
-          password: this.state.password,
-          income: this.state.income
+          // password: this.state.password,
+          income: this.state.income,
         }
       )
       .then((res) => {

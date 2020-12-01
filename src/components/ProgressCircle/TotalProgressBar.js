@@ -11,7 +11,6 @@ const TotalBudgetProgressBar = (props) => {
   const budgetPercentage = (budgetSpent / props.totalBudget) * 100;
   const fontSizer = { fontSize: "calc(14px + 1vw)", color: "black" };
 
-  console.log(props);
   return (
     <div>
       <div className="ml-4 mr-4 mt-1 mb-1">
@@ -31,21 +30,6 @@ const TotalBudgetProgressBar = (props) => {
         </h1>
         <hr />
 
-        <Row className="d-flex justify-content-around">
-          <h5 className="p-1">
-            Monthly income:&nbsp;
-            <span style={{ color: "rgb(71, 117, 62)" }}>
-              <b>${props.income.toFixed(2)}</b>
-            </span>
-          </h5>
-
-          <h5 className="p-1">
-            Unallocated:&nbsp;
-            <span style={{ color: "rgb(80, 80, 80)" }}>
-              <b>${(props.income - props.totalBudget).toFixed(2)}</b>
-            </span>
-          </h5>
-        </Row>
         <Spring
           to={{ value: budgetPercentage.toFixed(0) }}
           from={{ value: 0 }}
@@ -122,6 +106,21 @@ const TotalBudgetProgressBar = (props) => {
             )
           }
         </Spring>
+        <Row className="d-flex justify-content-around">
+          <h6 className="p-1">
+            Monthly income:&nbsp;
+            <span style={{ color: "rgb(71, 117, 62)" }}>
+              <b>${props.income.toFixed(2)}</b>
+            </span>
+          </h6>
+
+          <h6 className="p-1">
+            Unallocated:&nbsp;
+            <span style={{ color: "rgb(80, 80, 80)" }}>
+              <b>${(props.income - props.totalBudget).toFixed(2)}</b>
+            </span>
+          </h6>
+        </Row>
       </div>
     </div>
   );

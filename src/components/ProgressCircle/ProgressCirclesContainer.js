@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchCategories } from "../../actions/";
-import { fetchUser } from "../../actions";
+import {
+  fetchCategories,
+  fetchUser,
+  fetchPurchasesWithCategory,
+} from "../../actions/";
 import ProgressCircle from "./ProgressCircle";
 import { Row } from "react-bootstrap";
+import { DateTime } from "luxon";
 import TotalProgressBar from "./TotalProgressBar";
 import { fadeInUp } from "react-animations";
 import Radium, { StyleRoot } from "radium";
@@ -15,13 +19,49 @@ import NewCategoryCircle from "../NewCategoryCircle";
 import { Fade } from "react-awesome-reveal";
 
 class ProgressCirclesContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedMonth: DateTime.local().month - 1,
+      selectedYear: DateTime.local().year,
+    };
+  }
+
   componentDidMount() {
     const userId = localStorage.getItem("userId");
     this.props.fetchCategories(userId);
     this.props.fetchUser(userId);
+    this.props.fetchPurchasesWithCategory(userId);
   }
+  createData = (purchaseMonth, purchaseYear, purchaseDate) => {
+    return {
+      purchaseMonth,
+      purchaseYear,
+      purchaseDate,
+    };
+  };
 
   render() {
+    const rows = this.props.purchases.map((purchase) => {
+      let purchaseMonth = new Date(purchase.createdAt).getMonth();
+      let purchaseYear = new Date(purchase.createdAt).getFullYear();
+      let purchaseDate = new Date(purchase.createdAt).toLocaleDateString(
+        "en-US"
+      );
+      return this.createData(purchaseMonth, purchaseYear, purchaseDate);
+    });
+
+    let thisMonthTransactions = [];
+    for (let i = 0; i < rows.length; i++) {
+      if (
+        rows[i].purchaseMonth === this.state.selectedMonth &&
+        rows[i].purchaseYear === this.state.selectedYear
+      ) {
+        thisMonthTransactions.push(rows[i]);
+      }
+    }
+
     const totalBudget = this.props.categories.map((category) => {
       return category.category_budget;
     });
@@ -46,7 +86,7 @@ class ProgressCirclesContainer extends Component {
       a.category_name > b.category_name ? 1 : -1
     );
 
-    console.log(this.props.user);
+    console.log(this.props);
     return (
       <div className=" m-0 p-0 w-100">
         {!this.props.categories[0] || !this.props.user[0] ? (
@@ -136,9 +176,15 @@ class ProgressCirclesContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { categories: state.categories, user: state.user };
+  return {
+    categories: state.categories,
+    user: state.user,
+    purchases: state.purchasesWithCategory,
+  };
 };
 
-export default connect(mapStateToProps, { fetchCategories, fetchUser })(
-  ProgressCirclesContainer
-);
+export default connect(mapStateToProps, {
+  fetchCategories,
+  fetchUser,
+  fetchPurchasesWithCategory,
+})(ProgressCirclesContainer);

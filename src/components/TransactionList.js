@@ -44,7 +44,8 @@ function createData(
   purchaseMonth,
   categoryBudget,
   purchaseYear,
-  categoryId
+  categoryId,
+  dateInt
 ) {
   return {
     id,
@@ -58,6 +59,7 @@ function createData(
     categoryBudget,
     purchaseYear,
     categoryId,
+    dateInt,
   };
 }
 
@@ -88,9 +90,10 @@ class TransactionList extends Component {
     const rows = this.props.purchases.map((purchase) => {
       let purchaseMonth = new Date(purchase.createdAt).getMonth();
       let purchaseYear = new Date(purchase.createdAt).getFullYear();
-      let purchaseDate = new Date(purchase.createdAt).toLocaleDateString(
+      let purchaseDateString = new Date(purchase.createdAt).toLocaleDateString(
         "en-US"
       );
+      let purchaseDate = new Date(purchase.createdAt).getDate();
       let categoryName = purchase.budget_category
         ? purchase.budget_category.category_name
         : "Unassigned";
@@ -109,7 +112,7 @@ class TransactionList extends Component {
 
       return createData(
         purchase.id,
-        purchaseDate,
+        purchaseDateString,
         purchase.purchase_name,
         purchase.price,
         categoryName,
@@ -118,7 +121,8 @@ class TransactionList extends Component {
         purchaseMonth,
         categoryBudget,
         purchaseYear,
-        categoryId
+        categoryId,
+        purchaseDate
       );
     });
 
@@ -139,6 +143,12 @@ class TransactionList extends Component {
         thisMonthTransactions.push(rows[i]);
       }
     }
+
+    console.log(thisMonthTransactions);
+
+    const sortedThisMonthTransactions = thisMonthTransactions.sort((a, b) =>
+      a.dateInt < b.dateInt ? 1 : -1
+    );
 
     const handleMonthChange = (e) => {
       this.setState({ selectedMonth: e.target.value });
@@ -295,7 +305,7 @@ class TransactionList extends Component {
 
               <div>
                 <div>
-                  {thisMonthTransactions.map((row) => (
+                  {sortedThisMonthTransactions.map((row) => (
                     <div key={row.id} style={{ border: "1px solid black" }}>
                       <Accordion style={{ display: "block" }}>
                         <AccordionSummary

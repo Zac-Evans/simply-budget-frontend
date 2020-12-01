@@ -28,14 +28,16 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                   style={{
                     height: "25px",
                     border: "2px solid black",
-                    margin: "5px",
+                    minWidth: "300px",
+                    marginLeft: "5px",
+                    marginRight: "5px",
                   }}
                   variant="danger"
                   now={progress.value}
                   label={
                     Math.round(progress.value) ? (
                       <Row
-                        className="d-flex justify-content-between position-absolute w-75 ml-3"
+                        className="d-flex justify-content-between position-absolute pt-2 w-75 ml-3"
                         style={{ maxWidth: "650px" }}
                       >
                         <Fade direction="up" delay="100" triggerOnce>
@@ -45,7 +47,9 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                         </Fade>
                         <Fade direction="up" delay="150" triggerOnce>
                           <h4 style={fontSizer}>
-                            <b> ${props.budget_remaining} remaining</b>
+                            <b>
+                              ${props.budget_remaining.toFixed(2)} remaining
+                            </b>
                           </h4>
                         </Fade>
                       </Row>
@@ -82,7 +86,9 @@ const IndividualBudgetProgressBarTransactions = (props) => {
                         </Fade>
                         <Fade direction="up" delay="150" triggerOnce>
                           <h4 style={fontSizer}>
-                            <b> ${props.budget_remaining} remaining</b>
+                            <b>
+                              ${props.budget_remaining.toFixed(2)} remaining
+                            </b>
                           </h4>
                         </Fade>
                       </Row>

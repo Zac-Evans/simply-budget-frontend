@@ -57,7 +57,6 @@ class TransactionList extends Component {
   }
 
   render() {
-    // console.log()
     console.log(DateTime.local().month);
     const rows = this.props.purchases.map((purchase) => {
       let purchaseMonth = new Date(purchase.createdAt).getMonth();
@@ -101,7 +100,6 @@ class TransactionList extends Component {
       color: "white",
     };
 
-    console.log(thisMonthTransactions);
     return (
       <TableContainer>
         {this.props.purchases[0] ? (

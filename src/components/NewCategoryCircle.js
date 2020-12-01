@@ -43,7 +43,7 @@ const NewCategoryCircle = () => {
       >
         <h5>
           <AddIcon />
-          New Category
+          New Budget
         </h5>
       </Fab>
       {/* <Fade> */}

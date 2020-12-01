@@ -84,7 +84,12 @@ export default class Register extends Component {
             </Link>
           </Col>
           <Col className="d-flex justify-content-center m-0 p-0">
-            <img width="200px" className="mb-4 ml-0 mr-0 p-0" src={Logo} />
+            <img
+              width="200px"
+              height="120px"
+              className="mb-4 ml-0 mr-0 p-0"
+              src={Logo}
+            />
           </Col>
           <Col />
         </div>
